@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fila de Motoboys</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+
+    input {
+      border: 1px solid #d1d5db;
+      margin-bottom: 10px;
+    }
+
+    button {
+      border: 0;
+      background: #111827;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button.green {
+      background: #15803d;
+    }
+
+    button.red {
+      background: #b91c1c;
+    }
+
+    .fila-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 5px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .numero {
+      font-size: 20px;
+      font-weight: bold;
+      margin-right: 12px;
+    }
+
+    .nome {
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .horario {
+      color: #6b7280;
+      font-size: 13px;
+    }
+
+    .status {
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .entrega {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .mensagem {
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .sucesso {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .erro {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .contador {
+      background: #e5e7eb;
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    @media(max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛵 Fila de Motoboys</h1>
+</header>
+
+<div class="container">
+
+  <!-- ENTRADA DO MOTOBOY -->
+  <div class="card">
+    <h2>📱 Entrar na fila</h2>
+
+    <input
+      type="text"
+      id="nome"
+      placeholder="Digite seu nome"
+      autocomplete="off"
+    >
+
+    <button onclick="entrarNaFila()">
+      ENTRAR NA FILA
+    </button>
+
+    <div id="mensagem" class="mensagem"></div>
+  </div>
+
+  <!-- PAINEL -->
+  <div class="grid">
+
+    <div class="card">
+      <h2>
+        🟢 Disponíveis
+        <span id="contadorFila" class="contador">0</span>
+      </h2>
+
+      <div id="fila">
+        Carregando...
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        🛵 Em entrega
+        <span id="contadorEntrega" class="contador">0</span>
+      </h2>
+
+      <div id="entregas">
+        Carregando...
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONTROLE DA LOJA -->
+  <div class="card">
+    <h2>🚀 Controle da loja</h2>
+
+    <button class="green" onclick="chamarProximo()">
+      CHAMAR PRÓXIMO
+    </button>
+
+    <br><br>
+
+    <button class="red" onclick="encerrarDia()">
+      ENCERRAR DIA
+    </button>
+  </div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   CONFIGURAÇÃO DO SUPABASE
+   ===================================================== */
+
+const SUPABASE_URL =
+  "https://nmkkabthynytwevadthq.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_pvTjmMDG1aC7qDyYW3kEZA_WR9-a-E3";
+
+const supabaseClient =
+  supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =====================================================
+   FUNÇÕES AUXILIARES
+   ===================================================== */
+
+function mostrarMensagem(texto, tipo = "sucesso") {
+
+  const elemento =
+    document.getElementById("mensagem");
+
+  elemento.innerText = texto;
+
+  elemento.className =
+    "mensagem " + tipo;
+
+}
+
+
+function limparMensagem() {
+
+  const elemento =
+    document.getElementById("mensagem");
+
+  elemento.innerText = "";
+
+  elemento.className = "mensagem";
+
+}
+
+
+function escaparHTML(texto) {
+
+  const div =
+    document.createElement("div");
+
+  div.textContent = texto;
+
+  return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   ENTRAR / RETORNAR
+   ===================================================== */
+
+async function entrarNaFila() {
+
+  limparMensagem();
+
+  const campo =
+    document.getElementById("nome");
+
+  const nome =
+    campo.value.trim();
+
+  if (!nome) {
+
+    mostrarMensagem(
+      "Digite seu nome.",
+      "erro"
+    );
+
+    return;
+  }
+
+
+  /*
+    Verifica se esse nome está
+    atualmente em entrega.
+  */
+
+  const { data: emEntrega, error: erroEntrega } =
+    await supabaseClient
+      .from("motoboys")
+      .select("*")
+      .ilike("nome", nome)
+      .eq("status", "em_entrega")
+      .maybeSingle();
+
+
+  if (erroEntrega) {
+
+    mostrarMensagem(
+      "Erro ao consultar o sistema.",
+      "erro"
+    );
+
+    console.error(erroEntrega);
+
+    return;
+  }
+
+
+  /*
+    Se estava em entrega,
+    significa que voltou.
+  */
+
+  if (emEntrega) {
+
+    const { data: filaAtual } =
+      await supabaseClient
+        .from("motoboys")
+        .select("posicao")
+        .eq("status", "disponivel")
+        .order("posicao", {
+          ascending: false
+        })
+        .limit(1);
+
+    let novaPosicao = 1;
+
+    if (filaAtual && filaAtual.length > 0) {
+
+      novaPosicao =
+        (filaAtual[0].posicao || 0) + 1;
+    }
+
+
+    const { error } =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+          status: "disponivel",
+          posicao: novaPosicao
+        })
+        .eq("id", emEntrega.id);
+
+
+    if (error) {
+
+      mostrarMensagem(
+        "Não foi possível registrar o retorno.",
+        "erro"
+      );
+
+      return;
+    }
+
+
+    await supabaseClient
+      .from("movimentacoes")
+      .insert({
+        motoboy_id: emEntrega.id,
+        nome: emEntrega.nome,
+        tipo: "retorno",
+        horario: new Date().toISOString()
+      });
+
+
+    mostrarMensagem(
+      nome + " retornou e foi para o final da fila."
+    );
+
+    campo.value = "";
+
+    carregarDados();
+
+    return;
+  }
+
+
+  /*
+    Verifica se já está na fila.
+  */
+
+  const { data: jaNaFila } =
+    await supabaseClient
+      .from("motoboys")
+      .select("*")
+      .ilike("nome", nome)
+      .eq("status", "disponivel")
+      .maybeSingle();
+
+
+  if (jaNaFila) {
+
+    mostrarMensagem(
+      nome + " já está na fila.",
+      "erro"
+    );
+
+    return;
+  }
+
+
+  /*
+    Descobre a próxima posição.
+  */
+
+  const { data: ultimaPosicao } =
+    await supabaseClient
+      .from("motoboys")
+      .select("posicao")
+      .eq("status", "disponivel")
+      .order("posicao", {
+        ascending: false
+      })
+      .limit(1);
+
+
+  let posicao = 1;
+
+  if (
+    ultimaPosicao &&
+    ultimaPosicao.length > 0
+  ) {
+
+    posicao =
+      (ultimaPosicao[0].posicao || 0) + 1;
+  }
+
+
+  /*
+    Primeira chegada.
+  */
+
+  const agora =
+    new Date().toISOString();
+
+
+  const { data: novoMotoboy, error } =
+    await supabaseClient
+      .from("motoboys")
+      .insert({
+        nome: nome,
+        primeira_chegada: agora,
+        status: "disponivel",
+        posicao: posicao
+      })
+      .select()
+      .single();
+
+
+  if (error) {
+
+    mostrarMensagem(
+      "Não foi possível entrar na fila.",
+      "erro"
+    );
+
+    console.error(error);
+
+    return;
+  }
+
+
+  await supabaseClient
+    .from("movimentacoes")
+    .insert({
+      motoboy_id: novoMotoboy.id,
+      nome: nome,
+      tipo: "entrada",
+      horario: agora
+    });
+
+
+  mostrarMensagem(
+    nome +
+    " entrou na fila na posição " +
+    posicao +
+    "."
+  );
+
+
+  campo.value = "";
+
+  carregarDados();
+}
+
+
+/* =====================================================
+   CHAMAR PRÓXIMO
+   ===================================================== */
+
+async function chamarProximo() {
+
+  const { data, error } =
+    await supabaseClient
+      .from("motoboys")
+      .select("*")
+      .eq("status", "disponivel")
+      .order("posicao", {
+        ascending: true
+      })
+      .limit(1)
+      .maybeSingle();
+
+
+  if (error) {
+
+    alert(
+      "Erro ao consultar a fila."
+    );
+
+    return;
+  }
+
+
+  if (!data) {
+
+    alert(
+      "Não há motoboys disponíveis."
+    );
+
+    return;
+  }
+
+
+  const { error: erroUpdate } =
+    await supabaseClient
+      .from("motoboys")
+      .update({
+        status: "em_entrega",
+        posicao: null
+      })
+      .eq("id", data.id);
+
+
+  if (erroUpdate) {
+
+    alert(
+      "Não foi possível chamar o motoboy."
+    );
+
+    return;
+  }
+
+
+  await supabaseClient
+    .from("movimentacoes")
+    .insert({
+      motoboy_id: data.id,
+      nome: data.nome,
+      tipo: "saida",
+      horario: new Date().toISOString()
+    });
+
+
+  /*
+    Reorganiza as posições
+    restantes.
+  */
+
+  const { data: restantes } =
+    await supabaseClient
+      .from("motoboys")
+      .select("*")
+      .eq("status", "disponivel")
+      .order("posicao", {
+        ascending: true
+      });
+
+
+  if (restantes) {
+
+    for (
+      let i = 0;
+      i < restantes.length;
+      i++
+    ) {
+
+      await supabaseClient
+        .from("motoboys")
+        .update({
+          posicao: i + 1
+        })
+        .eq(
+          "id",
+          restantes[i].id
+        );
+    }
+  }
+
+
+  carregarDados();
+
+  alert(
+    "🛵 " +
+    data.nome +
+    " foi chamado para entrega!"
+  );
+}
+
+
+/* =====================================================
+   CARREGAR FILA
+   ===================================================== */
+
+async function carregarDados() {
+
+  const { data: fila } =
+    await supabaseClient
+      .from("motoboys")
+      .select("*")
+      .eq("status", "disponivel")
+      .order("posicao", {
+        ascending: true
+      });
+
+
+  const { data: entregas } =
+    await supabaseClient
+      .from("motoboys")
+      .select("*")
+      .eq("status", "em_entrega")
+      .order("primeira_chegada", {
+        ascending: true
+      });
+
+
+  const elementoFila =
+    document.getElementById("fila");
+
+  const elementoEntrega =
+    document.getElementById("entregas");
+
+
+  elementoFila.innerHTML = "";
+
+  elementoEntrega.innerHTML = "";
+
+
+  document.getElementById(
+    "contadorFila"
+  ).innerText =
+    fila ? fila.length : 0;
+
+
+  document.getElementById(
+    "contadorEntrega"
+  ).innerText =
+    entregas ? entregas.length : 0;
+
+
+  if (!fila || fila.length === 0) {
+
+    elementoFila.innerHTML =
+      "<p>Nenhum motoboy disponível.</p>";
+
+  } else {
+
+    fila.forEach((moto, index) => {
+
+      const horario =
+        new Date(
+          moto.primeira_chegada
+        ).toLocaleTimeString(
+          "pt-BR",
+          {
+            hour: "2-digit",
+            minute: "2-digit"
+          }
+        );
+
+
+      elementoFila.innerHTML += `
+        <div class="fila-item">
+
+          <div>
+            <span class="numero">
+              ${index + 1}º
+            </span>
+
+            <span class="nome">
+              ${escaparHTML(moto.nome)}
+            </span>
+
+            <div class="horario">
+              Primeira chegada: ${horario}
+            </div>
+          </div>
+
+          <span class="status">
+            Disponível
+          </span>
+
+        </div>
+      `;
+
+    });
+  }
+
+
+  if (!entregas || entregas.length === 0) {
+
+    elementoEntrega.innerHTML =
+      "<p>Nenhum motoboy em entrega.</p>";
+
+  } else {
+
+    entregas.forEach(moto => {
+
+      const horario =
+        new Date(
+          moto.primeira_chegada
+        ).toLocaleTimeString(
+          "pt-BR",
+          {
+            hour: "2-digit",
+            minute: "2-digit"
+          }
+        );
+
+
+      elementoEntrega.innerHTML += `
+        <div class="fila-item">
+
+          <div>
+            <span class="nome">
+              🛵 ${escaparHTML(moto.nome)}
+            </span>
+
+            <div class="horario">
+              Primeira chegada: ${horario}
+            </div>
+          </div>
+
+          <span class="status entrega">
+            Em entrega
+          </span>
+
+        </div>
+      `;
+
+    });
+  }
+}
+
+
+/* =====================================================
+   ENCERRAR DIA
+   ===================================================== */
+
+async function encerrarDia() {
+
+  const confirmar =
+    confirm(
+      "Encerrar o dia e limpar a fila atual?"
+    );
+
+  if (!confirmar) return;
+
+
+  const { data } =
+    await supabaseClient
+      .from("motoboys")
+      .select("*")
+      .in(
+        "status",
+        [
+          "disponivel",
+          "em_entrega"
+        ]
+      );
+
+
+  if (data) {
+
+    for (const moto of data) {
+
+      await supabaseClient
+        .from("movimentacoes")
+        .insert({
+          motoboy_id: moto.id,
+          nome: moto.nome,
+          tipo: "encerramento",
+          horario: new Date().toISOString()
+        });
+
+    }
+  }
+
+
+  await supabaseClient
+    .from("motoboys")
+    .delete()
+    .in(
+      "status",
+      [
+        "disponivel",
+        "em_entrega"
+      ]
+    );
+
+
+  carregarDados();
+
+  alert(
+    "Dia encerrado. A fila está vazia."
+  );
+}
+
+
+/* =====================================================
+   ATUALIZAÇÃO AUTOMÁTICA
+   ===================================================== */
+
+supabaseClient
+  .channel("fila-motoboys")
+  .on(
+    "postgres_changes",
+    {
+      event: "*",
+      schema: "public",
+      table: "motoboys"
+    },
+    () => {
+      carregarDados();
+    }
+  )
+  .subscribe();
+
+
+/* =====================================================
+   INICIAR
+   ===================================================== */
+
+carregarDados();
+
+</script>
+
+</body>
+</html>
