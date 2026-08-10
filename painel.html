@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel - Fila de Motoboys</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f4f6;
+  color:#111827
+}
+
+header{
+  background:#111827;
+  color:white;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+header h1{
+  margin:0;
+  font-size:24px
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08)
+}
+
+h2{
+  margin-top:0
+}
+
+.contador{
+  background:#e5e7eb;
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:13px
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 5px;
+  border-bottom:1px solid #e5e7eb
+}
+
+.posicao{
+  font-size:22px;
+  font-weight:bold;
+  width:45px
+}
+
+.nome{
+  font-weight:bold;
+  font-size:18px
+}
+
+.info{
+  color:#6b7280;
+  font-size:13px;
+  margin-top:4px
+}
+
+.status{
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+  background:#dcfce7;
+  color:#166534
+}
+
+.entrega{
+  background:#fef3c7;
+  color:#92400e
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:14px 18px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer
+}
+
+.chamar{
+  background:#15803d;
+  color:white;
+  width:100%
+}
+
+.encerrar{
+  background:#b91c1c;
+  color:white
+}
+
+button:hover{
+  opacity:.9
+}
+
+.vazio{
+  color:#6b7280;
+  padding:15px 0
+}
+
+.destaque{
+  background:#dcfce7;
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:20px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  display:none
+}
+
+.historico-item{
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+  font-size:14px
+}
+
+@media(max-width:750px){
+  .grid{
+    grid-template-columns:1fr
+  }
+
+  header{
+    flex-direction:column;
+    gap:8px
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>🛵 Painel da Pizzaria</h1>
+
+  <div id="relogio"></div>
+
+</header>
+
+
+<div class="container">
+
+  <div id="chamado" class="destaque"></div>
+
+
+  <div class="grid">
+
+    <!-- FILA -->
+
+    <div class="card">
+
+      <h2>
+        🟢 Fila de disponíveis
+
+        <span
+          id="contadorFila"
+          class="contador"
+        >0</span>
+
+      </h2>
+
+      <div id="fila">
+        Carregando...
+      </div>
+
+    </div>
+
+
+    <!-- ENTREGAS -->
+
+    <div class="card">
+
+      <h2>
+        🛵 Em entrega
+
+        <span
+          id="contadorEntrega"
+          class="contador"
+        >0</span>
+
+      </h2>
+
+      <div id="entregas">
+        Carregando...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CONTROLE -->
+
+  <div class="card">
+
+    <h2>🚀 Controle</h2>
+
+    <button
+      class="chamar"
+      onclick="chamarProximo()"
+    >
+      CHAMAR PRÓXIMO
+    </button>
+
+    <br><br>
+
+    <button
+      class="encerrar"
+      onclick="encerrarDia()"
+    >
+      🌙 ENCERRAR DIA
+    </button>
+
+  </div>
+
+
+  <!-- HISTÓRICO -->
+
+  <div class="card">
+
+    <h2>📊 Histórico de hoje</h2>
+
+    <div id="historico">
+      Carregando...
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+   ===================================================== */
+
+const SUPABASE_URL =
+"https://nmkkabthynytwevadthq.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_pvTjmMDG1aC7qDyYW3kEZA_WR9-a-E3";
+
+
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =====================================================
+   RELÓGIO
+   ===================================================== */
+
+function atualizarRelogio(){
+
+  const agora =
+  new Date();
+
+  document.getElementById(
+    "relogio"
+  ).innerText =
+  agora.toLocaleTimeString(
+    "pt-BR"
+  );
+
+}
+
+setInterval(
+  atualizarRelogio,
+  1000
+);
+
+atualizarRelogio();
+
+
+/* =====================================================
+   CARREGAR DADOS
+   ===================================================== */
+
+async function carregarDados(){
+
+  const {data:fila} =
+  await supabaseClient
+  .from("motoboys")
+  .select("*")
+  .eq(
+    "status",
+    "disponivel"
+  )
+  .order(
+    "posicao",
+    {ascending:true}
+  );
+
+
+  const {data:entregas} =
+  await supabaseClient
+  .from("motoboys")
+  .select("*")
+  .eq(
+    "status",
+    "em_entrega"
+  )
+  .order(
+    "primeira_chegada",
+    {ascending:true}
+  );
+
+
+  mostrarFila(
+    fila || []
+  );
+
+  mostrarEntregas(
+    entregas || []
+  );
+
+  carregarHistorico();
+
+}
+
+
+/* =====================================================
+   MOSTRAR FILA
+   ===================================================== */
+
+function mostrarFila(fila){
+
+  const elemento =
+  document.getElementById(
+    "fila"
+  );
+
+  elemento.innerHTML = "";
+
+
+  document.getElementById(
+    "contadorFila"
+  ).innerText =
+  fila.length;
+
+
+  if(
+    fila.length === 0
+  ){
+
+    elemento.innerHTML =
+    '<div class="vazio">Nenhum motoboy disponível.</div>';
+
+    return;
+  }
+
+
+  fila.forEach(
+    (moto,index)=>{
+
+      const horario =
+      new Date(
+        moto.primeira_chegada
+      ).toLocaleTimeString(
+        "pt-BR",
+        {
+          hour:"2-digit",
+          minute:"2-digit"
+        }
+      );
+
+
+      elemento.innerHTML += `
+
+        <div class="item">
+
+          <div style="display:flex;align-items:center">
+
+            <div class="posicao">
+              ${index+1}º
+            </div>
+
+            <div>
+
+              <div class="nome">
+                ${esc(moto.nome)}
+              </div>
+
+              <div class="info">
+                Primeira chegada:
+                ${horario}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="status">
+            Disponível
+          </div>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   MOSTRAR ENTREGAS
+   ===================================================== */
+
+function mostrarEntregas(
+  entregas
+){
+
+  const elemento =
+  document.getElementById(
+    "entregas"
+  );
+
+  elemento.innerHTML = "";
+
+
+  document.getElementById(
+    "contadorEntrega"
+  ).innerText =
+  entregas.length;
+
+
+  if(
+    entregas.length === 0
+  ){
+
+    elemento.innerHTML =
+    '<div class="vazio">Nenhum motoboy em entrega.</div>';
+
+    return;
+  }
+
+
+  entregas.forEach(
+    moto=>{
+
+      const horario =
+      new Date(
+        moto.primeira_chegada
+      ).toLocaleTimeString(
+        "pt-BR",
+        {
+          hour:"2-digit",
+          minute:"2-digit"
+        }
+      );
+
+
+      elemento.innerHTML += `
+
+        <div class="item">
+
+          <div>
+
+            <div class="nome">
+              🛵 ${esc(moto.nome)}
+            </div>
+
+            <div class="info">
+              Primeira chegada:
+              ${horario}
+            </div>
+
+          </div>
+
+          <div class="status entrega">
+            Em entrega
+          </div>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   CHAMAR PRÓXIMO
+   ===================================================== */
+
+async function chamarProximo(){
+
+  const {data:moto} =
+  await supabaseClient
+  .from("motoboys")
+  .select("*")
+  .eq(
+    "status",
+    "disponivel"
+  )
+  .order(
+    "posicao",
+    {ascending:true}
+  )
+  .limit(1)
+  .maybeSingle();
+
+
+  if(!moto){
+
+    alert(
+      "Não há motoboys disponíveis."
+    );
+
+    return;
+  }
+
+
+  const agora =
+  new Date().toISOString();
+
+
+  const {error} =
+  await supabaseClient
+  .from("motoboys")
+  .update({
+    status:"em_entrega",
+    posicao:null
+  })
+  .eq(
+    "id",
+    moto.id
+  );
+
+
+  if(error){
+
+    alert(
+      "Erro ao chamar o motoboy."
+    );
+
+    console.error(error);
+
+    return;
+  }
+
+
+  await supabaseClient
+  .from("movimentacoes")
+  .insert({
+
+    motoboy_id:
+    moto.id,
+
+    nome:
+    moto.nome,
+
+    tipo:
+    "saida",
+
+    horario:
+    agora
+
+  });
+
+
+  /*
+    Reorganiza a fila.
+  */
+
+  const {data:restantes} =
+  await supabaseClient
+  .from("motoboys")
+  .select("*")
+  .eq(
+    "status",
+    "disponivel"
+  )
+  .order(
+    "posicao",
+    {ascending:true}
+  );
+
+
+  if(restantes){
+
+    for(
+      let i=0;
+      i<restantes.length;
+      i++
+    ){
+
+      await supabaseClient
+      .from("motoboys")
+      .update({
+        posicao:i+1
+      })
+      .eq(
+        "id",
+        restantes[i].id
+      );
+
+    }
+
+  }
+
+
+  const chamado =
+  document.getElementById(
+    "chamado"
+  );
+
+
+  chamado.innerText =
+  "🛵 " +
+  moto.nome +
+  " foi chamado para entrega!";
+
+
+  chamado.style.display =
+  "block";
+
+
+  setTimeout(
+    ()=>{
+      chamado.style.display =
+      "none";
+    },
+    5000
+  );
+
+
+  carregarDados();
+
+}
+
+
+/* =====================================================
+   HISTÓRICO
+   ===================================================== */
+
+async function carregarHistorico(){
+
+  const hoje =
+  new Date();
+
+  const inicio =
+  new Date(
+    hoje.getFullYear(),
+    hoje.getMonth(),
+    hoje.getDate()
+  ).toISOString();
+
+
+  const {data} =
+  await supabaseClient
+  .from("movimentacoes")
+  .select("*")
+  .gte(
+    "horario",
+    inicio
+  )
+  .order(
+    "horario",
+    {ascending:false}
+  )
+  .limit(100);
+
+
+  const elemento =
+  document.getElementById(
+    "historico"
+  );
+
+  elemento.innerHTML = "";
+
+
+  if(
+    !data ||
+    data.length === 0
+  ){
+
+    elemento.innerHTML =
+    '<div class="vazio">Nenhuma movimentação hoje.</div>';
+
+    return;
+  }
+
+
+  data.forEach(
+    mov=>{
+
+      const horario =
+      new Date(
+        mov.horario
+      ).toLocaleTimeString(
+        "pt-BR",
+        {
+          hour:"2-digit",
+          minute:"2-digit"
+        }
+      );
+
+
+      let texto =
+      "";
+
+
+      if(
+        mov.tipo === "entrada"
+      ){
+
+        texto =
+        "🟢 entrou na fila";
+
+      }else if(
+        mov.tipo === "saida"
+      ){
+
+        texto =
+        "🛵 saiu para entrega";
+
+      }else if(
+        mov.tipo === "retorno"
+      ){
+
+        texto =
+        "🔄 retornou à fila";
+
+      }else{
+
+        texto =
+        "🌙 encerramento";
+
+      }
+
+
+      elemento.innerHTML += `
+
+        <div class="historico-item">
+
+          <b>
+            ${horario}
+          </b>
+
+          —
+          ${esc(mov.nome)}
+          ${texto}
+
+        </div>
+
+      `;
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   ENCERRAR DIA
+   ===================================================== */
+
+async function encerrarDia(){
+
+  const confirmar =
+  confirm(
+    "Deseja realmente encerrar o dia?"
+  );
+
+
+  if(!confirmar)
+    return;
+
+
+  const {data} =
+  await supabaseClient
+  .from("motoboys")
+  .select("*")
+  .in(
+    "status",
+    [
+      "disponivel",
+      "em_entrega"
+    ]
+  );
+
+
+  if(data){
+
+    for(
+      const moto of data
+    ){
+
+      await supabaseClient
+      .from("movimentacoes")
+      .insert({
+
+        motoboy_id:
+        moto.id,
+
+        nome:
+        moto.nome,
+
+        tipo:
+        "encerramento",
+
+        horario:
+        new Date().toISOString()
+
+      });
+
+    }
+
+  }
+
+
+  await supabaseClient
+  .from("motoboys")
+  .delete()
+  .in(
+    "status",
+    [
+      "disponivel",
+      "em_entrega"
+    ]
+  );
+
+
+  carregarDados();
+
+
+  alert(
+    "Dia encerrado. A fila foi zerada."
+  );
+
+}
+
+
+/* =====================================================
+   ATUALIZAÇÃO AUTOMÁTICA
+   ===================================================== */
+
+supabaseClient
+.channel(
+  "painel-fila"
+)
+.on(
+  "postgres_changes",
+  {
+    event:"*",
+    schema:"public",
+    table:"motoboys"
+  },
+  ()=>{
+    carregarDados();
+  }
+)
+.subscribe();
+
+
+/* =====================================================
+   SEGURANÇA HTML
+   ===================================================== */
+
+function esc(texto){
+
+  const div =
+  document.createElement(
+    "div"
+  );
+
+  div.textContent =
+  texto;
+
+  return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   INICIAR
+   ===================================================== */
+
+carregarDados();
+
+</script>
+
+</body>
+</html>
