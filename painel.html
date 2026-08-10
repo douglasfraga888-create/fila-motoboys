@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Painel - Fila de Motoboys</title>
 
@@ -77,6 +83,7 @@ h2 {
   align-items: center;
   padding: 15px 5px;
   border-bottom: 1px solid #e5e7eb;
+  gap: 10px;
 }
 
 .esquerda {
@@ -107,6 +114,7 @@ h2 {
   font-size: 12px;
   background: #dcfce7;
   color: #166534;
+  white-space: nowrap;
 }
 
 .status.entrega {
@@ -141,6 +149,11 @@ button {
 
 button:hover {
   opacity: .9;
+}
+
+button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
 }
 
 #mensagem {
@@ -190,6 +203,38 @@ button:hover {
   color: #6b7280;
 }
 
+
+/* CONTROLES DA FILA */
+
+.direita-fila {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.acoes-fila {
+  display: flex;
+  gap: 5px;
+}
+
+.acoes-fila button {
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.botao-subir,
+.botao-descer {
+  background: #374151;
+  color: white;
+}
+
+.botao-excluir {
+  background: #b91c1c;
+  color: white;
+}
+
+
 @media (max-width: 750px) {
 
   .grid {
@@ -202,20 +247,36 @@ button:hover {
     text-align: center;
   }
 
-  .item {
-    gap: 10px;
+}
+
+
+@media (max-width: 600px) {
+
+  .item-fila {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .direita-fila {
+    width: 100%;
+    justify-content: space-between;
   }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-  <h1>🛵 Painel da Pizzaria</h1>
+  <h1>
+    🛵 Painel da Pizzaria
+  </h1>
 
   <div id="relogio">
     --:--
@@ -235,19 +296,24 @@ button:hover {
 
   <div class="grid">
 
-    <!-- FILA -->
+
+    <!-- DISPONÍVEIS -->
 
     <div class="card">
 
       <h2>
+
         🟢 Disponíveis
+
         <span
           id="contadorFila"
           class="contador"
         >
           0
         </span>
+
       </h2>
+
 
       <div id="fila">
         Carregando...
@@ -256,19 +322,24 @@ button:hover {
     </div>
 
 
-    <!-- ENTREGAS -->
+
+    <!-- EM ENTREGA -->
 
     <div class="card">
 
       <h2>
+
         🛵 Em entrega
+
         <span
           id="contadorEntrega"
           class="contador"
         >
           0
         </span>
+
       </h2>
+
 
       <div id="entregas">
         Carregando...
@@ -279,11 +350,15 @@ button:hover {
   </div>
 
 
+
   <!-- CONTROLE -->
 
   <div class="card">
 
-    <h2>🚀 Controle da loja</h2>
+    <h2>
+      🚀 Controle da loja
+    </h2>
+
 
     <button
       class="chamar"
@@ -292,7 +367,9 @@ button:hover {
       CHAMAR PRÓXIMO
     </button>
 
+
     <br><br>
+
 
     <button
       class="encerrar"
@@ -304,6 +381,7 @@ button:hover {
   </div>
 
 
+
   <!-- HISTÓRICO -->
 
   <div class="card">
@@ -311,6 +389,7 @@ button:hover {
     <h2>
       🕐 Primeiras chegadas de hoje
     </h2>
+
 
     <div id="historico">
       Carregando...
@@ -321,7 +400,9 @@ button:hover {
 </div>
 
 
+
 <script>
+
 
 /* =====================================================
    SUPABASE
@@ -330,8 +411,10 @@ button:hover {
 const SUPABASE_URL =
   "https://nmkkabthynytwevadthq.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_pvTjmMDG1aC7qDyYW3kEZA_WR9-a-E3";
+
 
 const supabaseClient =
   supabase.createClient(
@@ -340,18 +423,28 @@ const supabaseClient =
   );
 
 
+
 /* =====================================================
    MENSAGENS
    ===================================================== */
 
-function mostrarMensagem(texto, tipo) {
+function mostrarMensagem(
+  texto,
+  tipo
+) {
 
   const elemento =
-    document.getElementById("mensagem");
+    document.getElementById(
+      "mensagem"
+    );
 
-  elemento.innerText = texto;
 
-  elemento.className = tipo;
+  elemento.innerText =
+    texto;
+
+
+  elemento.className =
+    tipo;
 
 }
 
@@ -359,13 +452,20 @@ function mostrarMensagem(texto, tipo) {
 function esconderMensagem() {
 
   const elemento =
-    document.getElementById("mensagem");
+    document.getElementById(
+      "mensagem"
+    );
 
-  elemento.innerText = "";
 
-  elemento.className = "";
+  elemento.innerText =
+    "";
+
+
+  elemento.className =
+    "";
 
 }
+
 
 
 /* =====================================================
@@ -374,9 +474,15 @@ function esconderMensagem() {
 
 function atualizarRelogio() {
 
-  const agora = new Date();
+  const agora =
+    new Date();
 
-  document.getElementById("relogio").innerText =
+
+  document
+    .getElementById(
+      "relogio"
+    )
+    .innerText =
     agora.toLocaleTimeString(
       "pt-BR",
       {
@@ -388,12 +494,15 @@ function atualizarRelogio() {
 
 }
 
+
 setInterval(
   atualizarRelogio,
   1000
 );
 
+
 atualizarRelogio();
+
 
 
 /* =====================================================
@@ -403,27 +512,29 @@ atualizarRelogio();
 function esc(texto) {
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  div.textContent = texto;
+
+  div.textContent =
+    texto;
+
 
   return div.innerHTML;
 
 }
 
 
+
 /* =====================================================
-   CARREGAR TUDO
+   CARREGAR DADOS
    ===================================================== */
 
 async function carregarDados() {
 
   try {
 
-    /*
-      Busca todos os motoboys que
-      estão participando do dia.
-    */
 
     const resposta =
       await supabaseClient
@@ -442,15 +553,15 @@ async function carregarDados() {
       resposta.data || [];
 
 
-    /*
-      FILA
-    */
+
+    /* FILA */
 
     const fila =
       todos
         .filter(
           moto =>
-            moto.status === "disponivel"
+            moto.status ===
+            "disponivel"
         )
         .sort(
           (a,b) =>
@@ -459,41 +570,40 @@ async function carregarDados() {
         );
 
 
-    /*
-      ENTREGAS
-    */
+
+    /* ENTREGAS */
 
     const entregas =
+      todos.filter(
+        moto =>
+          moto.status ===
+          "em_entrega"
+      );
+
+
+    mostrarFila(
+      fila
+    );
+
+
+    mostrarEntregas(
+      entregas
+    );
+
+
+    mostrarHistorico(
       todos
-        .filter(
-          moto =>
-            moto.status === "em_entrega"
-        );
-
-
-    mostrarFila(fila);
-
-    mostrarEntregas(entregas);
-
-    /*
-      O histórico é baseado exclusivamente
-      em primeira_chegada.
-
-      Portanto:
-      - retorno NÃO cria nova entrada;
-      - saída NÃO cria nova entrada;
-      - cada motoboy aparece somente uma vez.
-    */
-
-    mostrarHistorico(todos);
+    );
 
 
   } catch (erro) {
 
+
     console.error(
-      "Erro ao carregar dados:",
+      "Erro ao carregar:",
       erro
     );
+
 
     mostrarMensagem(
       "Erro ao carregar o sistema: " +
@@ -506,82 +616,181 @@ async function carregarDados() {
 }
 
 
+
 /* =====================================================
-   FILA
+   MOSTRAR FILA
    ===================================================== */
 
-function mostrarFila(fila) {
+function mostrarFila(
+  fila
+) {
+
 
   const elemento =
-    document.getElementById("fila");
+    document.getElementById(
+      "fila"
+    );
 
-  elemento.innerHTML = "";
 
-  document.getElementById(
-    "contadorFila"
-  ).innerText =
+  elemento.innerHTML =
+    "";
+
+
+  document
+    .getElementById(
+      "contadorFila"
+    )
+    .innerText =
     fila.length;
 
 
-  if (fila.length === 0) {
+  if (
+    fila.length === 0
+  ) {
+
 
     elemento.innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy disponível.' +
       '</div>';
 
+
     return;
 
   }
 
 
+
   fila.forEach(
     (moto, index) => {
 
+
       const horario =
-        new Date(
-          moto.primeira_chegada
-        ).toLocaleTimeString(
-          "pt-BR",
-          {
-            hour: "2-digit",
-            minute: "2-digit"
-          }
-        );
+        moto.primeira_chegada
+          ?
+          new Date(
+            moto.primeira_chegada
+          )
+          .toLocaleTimeString(
+            "pt-BR",
+            {
+              hour: "2-digit",
+              minute: "2-digit"
+            }
+          )
+          :
+          "--:--";
+
+
+      const podeSubir =
+        index > 0;
+
+
+      const podeDescer =
+        index <
+        fila.length - 1;
+
 
 
       elemento.innerHTML += `
 
-        <div class="item">
+        <div class="item item-fila">
+
 
           <div class="esquerda">
 
+
             <div class="posicao">
+
               ${index + 1}º
+
             </div>
+
 
             <div>
 
+
               <div class="nome">
+
                 ${esc(moto.nome)}
+
               </div>
 
+
               <div class="info">
+
                 Primeira chegada:
                 ${horario}
+
               </div>
+
 
             </div>
 
+
           </div>
 
-          <div class="status">
-            Disponível
+
+
+          <div class="direita-fila">
+
+
+            <div class="status">
+
+              Disponível
+
+            </div>
+
+
+
+            <div class="acoes-fila">
+
+
+              <button
+                class="botao-subir"
+                title="Subir uma posição"
+                ${podeSubir ? "" : "disabled"}
+                onclick="moverNaFila('${moto.id}', -1)"
+              >
+
+                ▲
+
+              </button>
+
+
+              <button
+                class="botao-descer"
+                title="Descer uma posição"
+                ${podeDescer ? "" : "disabled"}
+                onclick="moverNaFila('${moto.id}', 1)"
+              >
+
+                ▼
+
+              </button>
+
+
+              <button
+                class="botao-excluir"
+                title="Excluir da fila"
+                onclick="excluirDaFila('${moto.id}')"
+              >
+
+                🗑️
+
+              </button>
+
+
+            </div>
+
+
           </div>
+
 
         </div>
 
       `;
+
 
     }
   );
@@ -589,74 +798,110 @@ function mostrarFila(fila) {
 }
 
 
+
 /* =====================================================
-   ENTREGAS
+   MOSTRAR ENTREGAS
    ===================================================== */
 
-function mostrarEntregas(entregas) {
+function mostrarEntregas(
+  entregas
+) {
+
 
   const elemento =
-    document.getElementById("entregas");
+    document.getElementById(
+      "entregas"
+    );
 
-  elemento.innerHTML = "";
 
-  document.getElementById(
-    "contadorEntrega"
-  ).innerText =
+  elemento.innerHTML =
+    "";
+
+
+  document
+    .getElementById(
+      "contadorEntrega"
+    )
+    .innerText =
     entregas.length;
 
 
-  if (entregas.length === 0) {
+
+  if (
+    entregas.length === 0
+  ) {
+
 
     elemento.innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy em entrega.' +
       '</div>';
 
+
     return;
 
   }
 
 
+
   entregas.forEach(
     moto => {
 
+
       const horario =
-        new Date(
-          moto.primeira_chegada
-        ).toLocaleTimeString(
-          "pt-BR",
-          {
-            hour: "2-digit",
-            minute: "2-digit"
-          }
-        );
+        moto.primeira_chegada
+          ?
+          new Date(
+            moto.primeira_chegada
+          )
+          .toLocaleTimeString(
+            "pt-BR",
+            {
+              hour: "2-digit",
+              minute: "2-digit"
+            }
+          )
+          :
+          "--:--";
 
 
       elemento.innerHTML += `
 
         <div class="item">
 
+
           <div>
 
+
             <div class="nome">
+
               🛵 ${esc(moto.nome)}
+
             </div>
+
 
             <div class="info">
+
               Primeira chegada:
               ${horario}
+
             </div>
 
+
           </div>
 
+
           <div class="status entrega">
+
             Em entrega
+
           </div>
+
 
         </div>
 
       `;
+
 
     }
   );
@@ -664,54 +909,73 @@ function mostrarEntregas(entregas) {
 }
 
 
+
 /* =====================================================
    HISTÓRICO
    ===================================================== */
 
-function mostrarHistorico(motoboys) {
+function mostrarHistorico(
+  motoboys
+) {
+
 
   const elemento =
-    document.getElementById("historico");
+    document.getElementById(
+      "historico"
+    );
 
-  elemento.innerHTML = "";
+
+  elemento.innerHTML =
+    "";
 
 
-  /*
-    Ordena pela primeira chegada.
-  */
 
   const historico =
     [...motoboys]
+
       .filter(
         moto =>
           moto.primeira_chegada
       )
+
       .sort(
         (a,b) =>
-          new Date(a.primeira_chegada) -
-          new Date(b.primeira_chegada)
+          new Date(
+            a.primeira_chegada
+          ) -
+          new Date(
+            b.primeira_chegada
+          )
       );
 
 
-  if (historico.length === 0) {
+
+  if (
+    historico.length === 0
+  ) {
+
 
     elemento.innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy registrou chegada hoje.' +
       '</div>';
 
+
     return;
 
   }
 
 
+
   historico.forEach(
     (moto, index) => {
+
 
       const horario =
         new Date(
           moto.primeira_chegada
-        ).toLocaleTimeString(
+        )
+        .toLocaleTimeString(
           "pt-BR",
           {
             hour: "2-digit",
@@ -724,6 +988,7 @@ function mostrarHistorico(motoboys) {
 
         <div class="historico-item">
 
+
           <div class="historico-nome">
 
             ${index + 1}º —
@@ -731,20 +996,552 @@ function mostrarHistorico(motoboys) {
 
           </div>
 
+
           <div class="historico-horario">
 
             🕐 ${horario}
 
           </div>
 
+
         </div>
 
       `;
+
 
     }
   );
 
 }
+
+
+
+/* =====================================================
+   REORGANIZAR FILA
+   ===================================================== */
+
+async function reorganizarFila() {
+
+
+  const resposta =
+    await supabaseClient
+      .from("motoboys")
+      .select(
+        "id,posicao"
+      )
+      .eq(
+        "status",
+        "disponivel"
+      )
+      .order(
+        "posicao",
+        {
+          ascending: true
+        }
+      );
+
+
+  if (
+    resposta.error
+  ) {
+
+    throw resposta.error;
+
+  }
+
+
+  const fila =
+    resposta.data || [];
+
+
+
+  for (
+    let i = 0;
+    i < fila.length;
+    i++
+  ) {
+
+
+    const novaPosicao =
+      i + 1;
+
+
+    if (
+      fila[i].posicao !==
+      novaPosicao
+    ) {
+
+
+      const atualizacao =
+        await supabaseClient
+          .from("motoboys")
+          .update({
+
+            posicao:
+              novaPosicao
+
+          })
+          .eq(
+            "id",
+            fila[i].id
+          );
+
+
+      if (
+        atualizacao.error
+      ) {
+
+        throw atualizacao.error;
+
+      }
+
+    }
+
+  }
+
+}
+
+
+
+/* =====================================================
+   SUBIR / DESCER MOTOBOY
+   ===================================================== */
+
+async function moverNaFila(
+  id,
+  direcao
+) {
+
+
+  esconderMensagem();
+
+
+  try {
+
+
+    /*
+      Busca a fila atual.
+    */
+
+    const resposta =
+      await supabaseClient
+        .from("motoboys")
+        .select(
+          "id,nome,posicao"
+        )
+        .eq(
+          "status",
+          "disponivel"
+        )
+        .order(
+          "posicao",
+          {
+            ascending: true
+          }
+        );
+
+
+    if (
+      resposta.error
+    ) {
+
+      throw resposta.error;
+
+    }
+
+
+    let fila =
+      resposta.data || [];
+
+
+
+    const indice =
+      fila.findIndex(
+        moto =>
+          String(moto.id) ===
+          String(id)
+      );
+
+
+    if (
+      indice === -1
+    ) {
+
+      throw new Error(
+        "Motoboy não encontrado."
+      );
+
+    }
+
+
+    const novoIndice =
+      indice + direcao;
+
+
+    if (
+      novoIndice < 0 ||
+      novoIndice >= fila.length
+    ) {
+
+      return;
+
+    }
+
+
+
+    /*
+      Primeiro reorganiza a fila.
+    */
+
+    await reorganizarFila();
+
+
+
+    /*
+      Busca novamente para pegar
+      as posições atualizadas.
+    */
+
+    const novaResposta =
+      await supabaseClient
+        .from("motoboys")
+        .select(
+          "id,nome,posicao"
+        )
+        .eq(
+          "status",
+          "disponivel"
+        )
+        .order(
+          "posicao",
+          {
+            ascending: true
+          }
+        );
+
+
+    if (
+      novaResposta.error
+    ) {
+
+      throw novaResposta.error;
+
+    }
+
+
+    fila =
+      novaResposta.data || [];
+
+
+    const novoIndiceAtual =
+      fila.findIndex(
+        moto =>
+          String(moto.id) ===
+          String(id)
+      );
+
+
+    const destinoIndice =
+      novoIndiceAtual +
+      direcao;
+
+
+    if (
+      destinoIndice < 0 ||
+      destinoIndice >= fila.length
+    ) {
+
+      return;
+
+    }
+
+
+    const atual =
+      fila[
+        novoIndiceAtual
+      ];
+
+
+    const outro =
+      fila[
+        destinoIndice
+      ];
+
+
+
+    /*
+      Coloca temporariamente o atual
+      numa posição negativa.
+    */
+
+    const passo1 =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+
+          posicao:
+            -999999
+
+        })
+        .eq(
+          "id",
+          atual.id
+        );
+
+
+    if (
+      passo1.error
+    ) {
+
+      throw passo1.error;
+
+    }
+
+
+
+    /*
+      O outro assume a posição
+      do motoboy selecionado.
+    */
+
+    const passo2 =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+
+          posicao:
+            atual.posicao
+
+        })
+        .eq(
+          "id",
+          outro.id
+        );
+
+
+    if (
+      passo2.error
+    ) {
+
+      throw passo2.error;
+
+    }
+
+
+
+    /*
+      O selecionado assume a
+      posição do outro.
+    */
+
+    const passo3 =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+
+          posicao:
+            outro.posicao
+
+        })
+        .eq(
+          "id",
+          atual.id
+        );
+
+
+    if (
+      passo3.error
+    ) {
+
+      throw passo3.error;
+
+    }
+
+
+
+    mostrarMensagem(
+      "✅ Ordem da fila alterada.",
+      "sucesso"
+    );
+
+
+    await carregarDados();
+
+
+  } catch (erro) {
+
+
+    console.error(
+      "Erro ao mudar ordem:",
+      erro
+    );
+
+
+    mostrarMensagem(
+      "Não foi possível mudar a ordem: " +
+      erro.message,
+      "erro"
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   EXCLUIR DA FILA
+   ===================================================== */
+
+async function excluirDaFila(
+  id
+) {
+
+
+  esconderMensagem();
+
+
+  try {
+
+
+    /*
+      Busca o motoboy para mostrar
+      o nome na confirmação.
+    */
+
+    const busca =
+      await supabaseClient
+        .from("motoboys")
+        .select(
+          "id,nome,status"
+        )
+        .eq(
+          "id",
+          id
+        )
+        .maybeSingle();
+
+
+    if (
+      busca.error
+    ) {
+
+      throw busca.error;
+
+    }
+
+
+    const moto =
+      busca.data;
+
+
+    if (!moto) {
+
+      throw new Error(
+        "Motoboy não encontrado."
+      );
+
+    }
+
+
+    if (
+      moto.status !==
+      "disponivel"
+    ) {
+
+      alert(
+        "Esse motoboy não está mais na fila de disponíveis."
+      );
+
+      await carregarDados();
+
+      return;
+
+    }
+
+
+
+    const confirmar =
+      confirm(
+        "Excluir " +
+        moto.nome +
+        " da fila?\n\n" +
+        "Ele será removido da fila de disponíveis."
+      );
+
+
+    if (
+      !confirmar
+    ) {
+
+      return;
+
+    }
+
+
+
+    const resposta =
+      await supabaseClient
+        .from("motoboys")
+        .delete()
+        .eq(
+          "id",
+          id
+        )
+        .eq(
+          "status",
+          "disponivel"
+        );
+
+
+    if (
+      resposta.error
+    ) {
+
+      throw resposta.error;
+
+    }
+
+
+
+    /*
+      Corrige a ordem restante.
+    */
+
+    await reorganizarFila();
+
+
+
+    mostrarMensagem(
+      "🗑️ " +
+      moto.nome +
+      " foi excluído da fila.",
+      "sucesso"
+    );
+
+
+    await carregarDados();
+
+
+  } catch (erro) {
+
+
+    console.error(
+      "Erro ao excluir:",
+      erro
+    );
+
+
+    mostrarMensagem(
+      "Não foi possível excluir da fila: " +
+      erro.message,
+      "erro"
+    );
+
+  }
+
+}
+
 
 
 /* =====================================================
@@ -753,14 +1550,12 @@ function mostrarHistorico(motoboys) {
 
 async function chamarProximo() {
 
+
   esconderMensagem();
 
 
   try {
 
-    /*
-      Procura o primeiro da fila.
-    */
 
     const resposta =
       await supabaseClient
@@ -780,7 +1575,9 @@ async function chamarProximo() {
         .maybeSingle();
 
 
-    if (resposta.error) {
+    if (
+      resposta.error
+    ) {
 
       throw resposta.error;
 
@@ -791,27 +1588,32 @@ async function chamarProximo() {
       resposta.data;
 
 
+
     if (!moto) {
+
 
       alert(
         "Não há motoboys disponíveis."
       );
+
 
       return;
 
     }
 
 
-    /*
-      Coloca o motoboy em entrega.
-    */
 
     const atualizacao =
       await supabaseClient
         .from("motoboys")
         .update({
-          status: "em_entrega",
-          posicao: null
+
+          status:
+            "em_entrega",
+
+          posicao:
+            null
+
         })
         .eq(
           "id",
@@ -819,70 +1621,28 @@ async function chamarProximo() {
         );
 
 
-    if (atualizacao.error) {
+    if (
+      atualizacao.error
+    ) {
 
       throw atualizacao.error;
 
     }
 
 
-    /*
-      Reorganiza as posições
-      da fila restante.
-    */
-
-    const restante =
-      await supabaseClient
-        .from("motoboys")
-        .select("*")
-        .eq(
-          "status",
-          "disponivel"
-        )
-        .order(
-          "posicao",
-          {
-            ascending: true
-          }
-        );
-
-
-    if (restante.error) {
-
-      throw restante.error;
-
-    }
-
-
-    const lista =
-      restante.data || [];
-
-
-    for (
-      let i = 0;
-      i < lista.length;
-      i++
-    ) {
-
-      await supabaseClient
-        .from("motoboys")
-        .update({
-          posicao: i + 1
-        })
-        .eq(
-          "id",
-          lista[i].id
-        );
-
-    }
-
 
     /*
-      Mostra quem foi chamado.
+      Reorganiza a fila restante.
     */
+
+    await reorganizarFila();
+
+
 
     const chamado =
-      document.getElementById("chamado");
+      document.getElementById(
+        "chamado"
+      );
 
 
     chamado.innerText =
@@ -911,10 +1671,12 @@ async function chamarProximo() {
 
   } catch (erro) {
 
+
     console.error(
       "Erro ao chamar:",
       erro
     );
+
 
     mostrarMensagem(
       "Erro ao chamar o motoboy: " +
@@ -927,11 +1689,13 @@ async function chamarProximo() {
 }
 
 
+
 /* =====================================================
    ENCERRAR DIA
    ===================================================== */
 
 async function encerrarDia() {
+
 
   const confirmar =
     confirm(
@@ -943,7 +1707,9 @@ async function encerrarDia() {
     );
 
 
-  if (!confirmar) {
+  if (
+    !confirmar
+  ) {
 
     return;
 
@@ -952,13 +1718,6 @@ async function encerrarDia() {
 
   try {
 
-    /*
-      Remove TODOS os motoboys que
-      estão participando do dia.
-
-      Como o histórico usa a tabela
-      motoboys, ele também será zerado.
-    */
 
     const resposta =
       await supabaseClient
@@ -973,59 +1732,69 @@ async function encerrarDia() {
         );
 
 
-    if (resposta.error) {
+    if (
+      resposta.error
+    ) {
 
       throw resposta.error;
 
     }
 
 
-    /*
-      Limpa imediatamente a tela.
-    */
 
-    document.getElementById(
-      "fila"
-    ).innerHTML =
+    document
+      .getElementById(
+        "fila"
+      )
+      .innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy disponível.' +
       '</div>';
 
 
-    document.getElementById(
-      "entregas"
-    ).innerHTML =
+
+    document
+      .getElementById(
+        "entregas"
+      )
+      .innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy em entrega.' +
       '</div>';
 
 
-    document.getElementById(
-      "historico"
-    ).innerHTML =
+
+    document
+      .getElementById(
+        "historico"
+      )
+      .innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy registrou chegada hoje.' +
       '</div>';
 
 
-    document.getElementById(
-      "contadorFila"
-    ).innerText =
+
+    document
+      .getElementById(
+        "contadorFila"
+      )
+      .innerText =
       "0";
 
 
-    document.getElementById(
-      "contadorEntrega"
-    ).innerText =
+
+    document
+      .getElementById(
+        "contadorEntrega"
+      )
+      .innerText =
       "0";
 
 
-    /*
-      Garante que o banco e a tela
-      estejam sincronizados.
-    */
 
     await carregarDados();
+
 
 
     alert(
@@ -1038,8 +1807,9 @@ async function encerrarDia() {
 
   } catch (erro) {
 
+
     console.error(
-      "Erro ao encerrar o dia:",
+      "Erro ao encerrar:",
       erro
     );
 
@@ -1055,26 +1825,39 @@ async function encerrarDia() {
 }
 
 
+
 /* =====================================================
    ATUALIZAÇÃO AUTOMÁTICA
    ===================================================== */
 
 supabaseClient
-  .channel("painel-motoboys")
+  .channel(
+    "painel-motoboys"
+  )
   .on(
     "postgres_changes",
     {
-      event: "*",
-      schema: "public",
-      table: "motoboys"
+
+      event:
+        "*",
+
+      schema:
+        "public",
+
+      table:
+        "motoboys"
+
     },
+
     function() {
 
       carregarDados();
 
     }
+
   )
   .subscribe();
+
 
 
 /* =====================================================
@@ -1083,7 +1866,9 @@ supabaseClient
 
 carregarDados();
 
+
 </script>
 
 </body>
+
 </html>
