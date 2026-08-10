@@ -799,77 +799,60 @@ async function carregarHistorico(){
 async function encerrarDia(){
 
   const confirmar =
-  confirm(
-    "Deseja realmente encerrar o dia?"
-  );
+    confirm(
+      "Deseja realmente encerrar o dia?\n\n" +
+      "A fila de disponíveis, os motoboys em entrega " +
+      "e o histórico de hoje serão apagados."
+    );
 
-
-  if(!confirmar)
+  if (!confirmar) {
     return;
-
-
-  const {data} =
-  await supabaseClient
-  .from("motoboys")
-  .select("*")
-  .in(
-    "status",
-    [
-      "disponivel",
-      "em_entrega"
-    ]
-  );
-
-
-  if(data){
-
-    for(
-      const moto of data
-    ){
-
-      await supabaseClient
-      .from("movimentacoes")
-      .insert({
-
-        motoboy_id:
-        moto.id,
-
-        nome:
-        moto.nome,
-
-        tipo:
-        "encerramento",
-
-        horario:
-        new Date().toISOString()
-
-      });
-
-    }
-
   }
 
+  const { error } =
+    await supabaseClient
+      .from("motoboys")
+      .delete()
+      .in(
+        "status",
+        [
+          "disponivel",
+          "em_entrega"
+        ]
+      );
 
-  await supabaseClient
-  .from("motoboys")
-  .delete()
-  .in(
-    "status",
-    [
-      "disponivel",
-      "em_entrega"
-    ]
-  );
+  if (error) {
 
+    alert(
+      "Não foi possível encerrar o dia."
+    );
 
-  carregarDados();
+    console.error(error);
 
+    return;
+  }
 
-  alert(
-    "Dia encerrado. A fila foi zerada."
-  );
+  /*
+    Também limpamos as movimentações
+    antigas para começar o próximo dia
+    completamente limpo.
+  */
 
-}
+  const { error: erroHistorico } =
+    await supabaseClient
+      .from("movimentacoes")
+      .delete()
+      .neq(
+        "id",
+        "00000000-0000-0000-0000-000000000000"
+      );
+
+  if (erroHistorico) {
+    console.error(
+      "Erro ao limpar movimentações:",
+      erroHistorico
+    );
+  }
 
 
 /* =====================================================
