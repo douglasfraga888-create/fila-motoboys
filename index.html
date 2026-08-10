@@ -777,7 +777,8 @@ async function carregarDados() {
    ENCERRAR DIA
    ===================================================== */
 
- async function encerrarDia(){
+  
+async function encerrarDia(){
 
   const confirmar =
     confirm(
@@ -834,16 +835,6 @@ async function carregarDados() {
       erroHistorico
     );
   }
-
-  carregarDados();
-
-  alert(
-    "🌙 Dia encerrado!\n\n" +
-    "Fila, entregas e histórico foram zerados."
-  );
-
-}
-
 
 /* =====================================================
    ATUALIZAÇÃO AUTOMÁTICA
