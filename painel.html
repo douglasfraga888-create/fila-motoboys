@@ -10,7 +10,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Painel - Fila de Motoboys</title>
+<title>Controle Motoboys Pizzaria de Roma</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -195,7 +195,7 @@ button:disabled {
 
 
 /* =====================================================
-   MOTOboy CHAMADO
+   MOTOBOY CHAMADO
    ===================================================== */
 
 #chamado {
@@ -208,26 +208,6 @@ button:disabled {
   text-align: center;
   font-size: 22px;
   font-weight: bold;
-}
-
-
-/* =====================================================
-   HISTÓRICO
-   ===================================================== */
-
-.historico-item {
-  padding: 12px 5px;
-  border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  justify-content: space-between;
-}
-
-.historico-nome {
-  font-weight: bold;
-}
-
-.historico-horario {
-  color: #6b7280;
 }
 
 
@@ -265,6 +245,41 @@ button:disabled {
 
 
 /* =====================================================
+   GRID DE CHEGADAS
+   ===================================================== */
+
+.historico-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(150px, 1fr)
+    );
+  gap: 12px;
+}
+
+.historico-item {
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.historico-nome {
+  font-size: 17px;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.historico-horario {
+  font-size: 15px;
+  color: #6b7280;
+}
+
+
+/* =====================================================
    RESPONSIVO
    ===================================================== */
 
@@ -281,7 +296,6 @@ button:disabled {
   }
 
 }
-
 
 @media (max-width: 600px) {
 
@@ -308,7 +322,7 @@ button:disabled {
 <header>
 
   <h1>
-    🛵 Painel da Pizzaria
+    🛵 Controle Motoboys Pizzaria de Roma
   </h1>
 
   <div id="relogio">
@@ -434,17 +448,20 @@ button:disabled {
 
 
   <!-- =================================================
-       HISTÓRICO
+       GRID DE CHEGADAS
        ================================================= -->
 
   <div class="card">
 
     <h2>
-      🕐 Primeiras chegadas de hoje
+      🕐 Chegadas
     </h2>
 
 
-    <div id="historico">
+    <div
+      id="historico"
+      class="historico-grid"
+    >
       Carregando...
     </div>
 
@@ -480,9 +497,6 @@ const supabaseClient =
 
 /* =====================================================
    CONTROLE DE CARREGAMENTO
-
-   Evita várias atualizações acontecendo
-   ao mesmo tempo.
    ===================================================== */
 
 let carregandoDados =
@@ -603,10 +617,6 @@ function esc(
 async function carregarDados() {
 
 
-  /*
-    Impede duas atualizações ao mesmo tempo.
-  */
-
   if (
     carregandoDados
   ) {
@@ -643,8 +653,6 @@ async function carregarDados() {
 
 
 
-    /* FILA */
-
     const fila =
       todos
 
@@ -661,8 +669,6 @@ async function carregarDados() {
         );
 
 
-
-    /* ENTREGAS */
 
     const entregas =
       todos
@@ -859,9 +865,7 @@ function mostrarFila(
                 ${podeSubir ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', -1)"
               >
-
                 ▲
-
               </button>
 
 
@@ -871,9 +875,7 @@ function mostrarFila(
                 ${podeDescer ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', 1)"
               >
-
                 ▼
-
               </button>
 
 
@@ -882,9 +884,7 @@ function mostrarFila(
                 title="Excluir da fila"
                 onclick="excluirDaFila('${moto.id}')"
               >
-
                 🗑️
-
               </button>
 
 
@@ -1022,7 +1022,7 @@ function mostrarEntregas(
 
 
 /* =====================================================
-   HISTÓRICO
+   GRID DE CHEGADAS
    ===================================================== */
 
 function mostrarHistorico(
@@ -1079,7 +1079,7 @@ function mostrarHistorico(
 
 
   historico.forEach(
-    (moto, index) => {
+    moto => {
 
 
       const horario =
@@ -1102,7 +1102,6 @@ function mostrarHistorico(
 
           <div class="historico-nome">
 
-            ${index + 1}º —
             ${esc(moto.nome)}
 
           </div>
@@ -1215,7 +1214,7 @@ async function reorganizarFila() {
 
 
 /* =====================================================
-   SUBIR / DESCER MOTOBOY
+   SUBIR / DESCER
    ===================================================== */
 
 async function moverNaFila(
@@ -1310,11 +1309,6 @@ async function moverNaFila(
       fila[destino];
 
 
-
-    /*
-      Usa posição temporária para
-      fazer a troca.
-    */
 
     const passo1 =
       await supabaseClient
@@ -1422,7 +1416,7 @@ async function moverNaFila(
 
 
 /* =====================================================
-   EXCLUIR DA FILA
+   EXCLUIR
    ===================================================== */
 
 async function excluirDaFila(
@@ -1480,7 +1474,7 @@ async function excluirDaFila(
 
 
       alert(
-        "Esse motoboy não está mais na fila de disponíveis."
+        "Esse motoboy não está mais na fila."
       );
 
 
@@ -1497,8 +1491,7 @@ async function excluirDaFila(
       confirm(
         "Excluir " +
         moto.nome +
-        " da fila?\n\n" +
-        "Ele será removido da fila de disponíveis."
+        " da fila?"
       );
 
 
@@ -1556,13 +1549,12 @@ async function excluirDaFila(
 
 
     console.error(
-      "Erro ao excluir:",
       erro
     );
 
 
     mostrarMensagem(
-      "Não foi possível excluir da fila: " +
+      "Não foi possível excluir: " +
       erro.message,
       "erro"
     );
@@ -1585,11 +1577,6 @@ async function chamarProximo() {
 
   try {
 
-
-    /*
-      Procura o primeiro motoboy
-      da fila.
-    */
 
     const resposta =
       await supabaseClient
@@ -1637,10 +1624,6 @@ async function chamarProximo() {
 
 
 
-    /*
-      Vai para EM ENTREGA.
-    */
-
     const atualizacao =
       await supabaseClient
         .from("motoboys")
@@ -1668,10 +1651,6 @@ async function chamarProximo() {
     }
 
 
-
-    /*
-      Corrige a ordem restante.
-    */
 
     await reorganizarFila();
 
@@ -1715,7 +1694,6 @@ async function chamarProximo() {
 
 
     console.error(
-      "Erro ao chamar:",
       erro
     );
 
@@ -1742,10 +1720,8 @@ async function encerrarDia() {
   const confirmar =
     confirm(
       "ENCERRAR O DIA?\n\n" +
-      "Todos os motoboys da fila e " +
-      "em entrega serão removidos.\n\n" +
-      "O histórico de primeiras chegadas " +
-      "também ficará vazio."
+      "Todos os motoboys serão removidos.\n\n" +
+      "A fila, entregas e chegadas serão zeradas."
     );
 
 
@@ -1786,66 +1762,12 @@ async function encerrarDia() {
 
 
 
-    document
-      .getElementById(
-        "fila"
-      )
-      .innerHTML =
-      '<div class="vazio">' +
-      'Nenhum motoboy disponível.' +
-      '</div>';
-
-
-
-    document
-      .getElementById(
-        "entregas"
-      )
-      .innerHTML =
-      '<div class="vazio">' +
-      'Nenhum motoboy em entrega.' +
-      '</div>';
-
-
-
-    document
-      .getElementById(
-        "historico"
-      )
-      .innerHTML =
-      '<div class="vazio">' +
-      'Nenhum motoboy registrou chegada hoje.' +
-      '</div>';
-
-
-
-    document
-      .getElementById(
-        "contadorFila"
-      )
-      .innerText =
-      "0";
-
-
-
-    document
-      .getElementById(
-        "contadorEntrega"
-      )
-      .innerText =
-      "0";
-
-
-
     await carregarDados();
 
 
 
     alert(
-      "🌙 Dia encerrado com sucesso!\n\n" +
-      "Fila: vazia\n" +
-      "Em entrega: vazio\n" +
-      "Histórico: vazio"
+      "🌙 Dia encerrado com sucesso!"
     );
 
 
@@ -1853,7 +1775,6 @@ async function encerrarDia() {
 
 
     console.error(
-      "Erro ao encerrar:",
       erro
     );
 
@@ -1871,7 +1792,7 @@ async function encerrarDia() {
 
 
 /* =====================================================
-   BOTÃO ATUALIZAR LISTA
+   ATUALIZAR MANUALMENTE
    ===================================================== */
 
 async function atualizarListaManual() {
@@ -1880,138 +1801,79 @@ async function atualizarListaManual() {
   esconderMensagem();
 
 
-  try {
+  await carregarDados();
 
 
-    await carregarDados();
+  mostrarMensagem(
+    "🔄 Lista atualizada.",
+    "sucesso"
+  );
 
 
-
-    mostrarMensagem(
-      "🔄 Lista atualizada.",
-      "sucesso"
-    );
-
-
-
-    setTimeout(
-      function() {
-
-
-        esconderMensagem();
-
-
-      },
-      2000
-    );
-
-
-  } catch (erro) {
-
-
-    console.error(
-      "Erro ao atualizar manualmente:",
-      erro
-    );
-
-  }
+  setTimeout(
+    esconderMensagem,
+    2000
+  );
 
 }
 
 
 
 /* =====================================================
-   REALTIME DO SUPABASE
-
-   Sempre que houver INSERT,
-   UPDATE ou DELETE na tabela
-   motoboys, recarrega o painel.
+   REALTIME
    ===================================================== */
 
-const canalRealtime =
-  supabaseClient
+supabaseClient
 
-    .channel(
-      "painel-motoboys-realtime"
-    )
+  .channel(
+    "painel-motoboys-realtime"
+  )
 
-    .on(
-      "postgres_changes",
+  .on(
+    "postgres_changes",
+    {
 
-      {
+      event:
+        "*",
 
-        event:
-          "*",
+      schema:
+        "public",
 
-        schema:
-          "public",
+      table:
+        "motoboys"
 
-        table:
-          "motoboys"
+    },
 
-      },
-
-      function(payload) {
+    function() {
 
 
-        console.log(
-          "Alteração detectada no Supabase:",
-          payload
-        );
+      carregarDados();
 
+    }
 
-        carregarDados();
+  )
 
-      }
-
-    )
-
-    .subscribe(
-      function(status) {
-
-
-        console.log(
-          "Status Realtime:",
-          status
-        );
-
-      }
-    );
+  .subscribe();
 
 
 
 /* =====================================================
-   ATUALIZAÇÃO AUTOMÁTICA DE SEGURANÇA
-
-   Mesmo se o Realtime não estiver
-   habilitado no Supabase, o painel
-   verifica sozinho a cada 3 segundos.
+   ATUALIZAÇÃO A CADA 3 SEGUNDOS
    ===================================================== */
 
 setInterval(
-  function() {
-
-
-    carregarDados();
-
-
-  },
+  carregarDados,
   3000
 );
 
 
 
 /* =====================================================
-   ATUALIZA QUANDO VOLTA PARA A ABA
-
-   Útil se o painel estiver aberto
-   em celular, tablet ou computador
-   e a aba ficar em segundo plano.
+   AO VOLTAR PARA A ABA
    ===================================================== */
 
 document.addEventListener(
   "visibilitychange",
-
   function() {
 
 
@@ -2030,19 +1892,9 @@ document.addEventListener(
 
 
 
-/* =====================================================
-   ATUALIZA QUANDO A JANELA RECEBE FOCO
-   ===================================================== */
-
 window.addEventListener(
   "focus",
-
-  function() {
-
-
-    carregarDados();
-
-  }
+  carregarDados
 );
 
 
