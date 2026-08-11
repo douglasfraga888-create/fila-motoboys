@@ -245,12 +245,44 @@ button:disabled {
 
 
 /* =====================================================
-   GRID / LISTA DE CHEGADAS
+   CONTROLES EM ENTREGA
+   ===================================================== */
+
+.direita-entrega {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.acoes-entrega {
+  display: flex;
+  gap: 5px;
+}
+
+.acoes-entrega button {
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.botao-retornar-manual {
+  background: #2563eb;
+  color: white;
+}
+
+
+/* =====================================================
+   GRID
    ===================================================== */
 
 .grid-cabecalho {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns:
+    2fr
+    1fr
+    1fr
+    1fr
+    1fr;
   gap: 10px;
   padding: 10px;
   background: #111827;
@@ -263,7 +295,12 @@ button:disabled {
 
 .grid-item {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns:
+    2fr
+    1fr
+    1fr
+    1fr
+    1fr;
   gap: 10px;
   align-items: center;
   padding: 12px 10px;
@@ -276,6 +313,12 @@ button:disabled {
 
 .grid-horario {
   color: #6b7280;
+}
+
+.grid-entregas {
+  text-align: center;
+  font-weight: bold;
+  color: #1d4ed8;
 }
 
 .campo-grid {
@@ -318,12 +361,14 @@ button:disabled {
 
 @media (max-width: 650px) {
 
-  .item-fila {
+  .item-fila,
+  .item-entrega {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .direita-fila {
+  .direita-fila,
+  .direita-entrega {
     width: 100%;
     justify-content: space-between;
   }
@@ -384,6 +429,8 @@ button:disabled {
   <div class="grid-principal">
 
 
+    <!-- DISPONÍVEIS -->
+
     <div class="card">
 
       <h2>
@@ -406,6 +453,8 @@ button:disabled {
     </div>
 
 
+
+    <!-- EM ENTREGA -->
 
     <div class="card">
 
@@ -506,6 +555,10 @@ button:disabled {
         Máquina
       </div>
 
+      <div>
+        Entregas
+      </div>
+
     </div>
 
 
@@ -566,13 +619,16 @@ function mostrarMensagem(
       "mensagem"
     );
 
+
   elemento.innerText =
     texto;
+
 
   elemento.className =
     tipo;
 
 }
+
 
 
 function esconderMensagem() {
@@ -582,8 +638,10 @@ function esconderMensagem() {
       "mensagem"
     );
 
+
   elemento.innerText =
     "";
+
 
   elemento.className =
     "";
@@ -642,8 +700,10 @@ function esc(
       "div"
     );
 
+
   div.textContent =
     texto ?? "";
+
 
   return div.innerHTML;
 
@@ -731,6 +791,13 @@ async function carregarDados() {
     );
 
 
+    /*
+      IMPORTANTE:
+
+      O GRID recebe TODOS os registros,
+      inclusive status "removido".
+    */
+
     mostrarGrid(
       todos
     );
@@ -771,7 +838,6 @@ function mostrarFila(
   fila
 ) {
 
-
   const elemento =
     document.getElementById(
       "fila"
@@ -795,7 +861,6 @@ function mostrarFila(
     fila.length === 0
   ) {
 
-
     elemento.innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy disponível.' +
@@ -809,7 +874,10 @@ function mostrarFila(
 
 
   fila.forEach(
-    (moto, index) => {
+    (
+      moto,
+      index
+    ) => {
 
 
       const horario =
@@ -833,7 +901,6 @@ function mostrarFila(
           "--:--";
 
 
-
       const podeSubir =
         index > 0;
 
@@ -848,14 +915,11 @@ function mostrarFila(
 
         <div class="item item-fila">
 
-
           <div class="esquerda">
-
 
             <div class="posicao">
               ${index + 1}º
             </div>
-
 
             <div>
 
@@ -871,7 +935,6 @@ function mostrarFila(
             </div>
 
           </div>
-
 
 
           <div class="direita-fila">
@@ -907,7 +970,7 @@ function mostrarFila(
 
               <button
                 class="botao-excluir"
-                title="Excluir da fila"
+                title="Remover da fila"
                 onclick="excluirDaFila('${moto.id}')"
               >
                 🗑️
@@ -916,9 +979,7 @@ function mostrarFila(
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -939,7 +1000,6 @@ function mostrarFila(
 function mostrarEntregas(
   entregas
 ) {
-
 
   const elemento =
     document.getElementById(
@@ -963,7 +1023,6 @@ function mostrarEntregas(
   if (
     entregas.length === 0
   ) {
-
 
     elemento.innerHTML =
       '<div class="vazio">' +
@@ -1004,28 +1063,67 @@ function mostrarEntregas(
 
       elemento.innerHTML += `
 
-        <div class="item">
+        <div class="item item-entrega">
 
 
           <div>
 
-
             <div class="nome">
+
               🛵 ${esc(moto.nome)}
+
             </div>
 
 
             <div class="info">
+
               Primeira chegada:
               ${horario}
-            </div>
 
+            </div>
 
           </div>
 
 
-          <div class="status entrega">
-            Em entrega
+
+          <div class="direita-entrega">
+
+
+            <div class="status entrega">
+
+              Em entrega
+
+            </div>
+
+
+            <div class="acoes-entrega">
+
+
+              <button
+                class="botao-retornar-manual"
+                title="Concluir entrega e retornar à fila"
+                onclick="retornarEntregaManual('${moto.id}')"
+              >
+
+                ↩
+
+              </button>
+
+
+              <button
+                class="botao-excluir"
+                title="Remover"
+                onclick="excluirEmEntrega('${moto.id}')"
+              >
+
+                🗑️
+
+              </button>
+
+
+            </div>
+
+
           </div>
 
 
@@ -1043,14 +1141,11 @@ function mostrarEntregas(
 
 /* =====================================================
    GRID
-
-   NOME + HORÁRIO + BAG + MÁQUINA
    ===================================================== */
 
 function mostrarGrid(
   motoboys
 ) {
-
 
   const elemento =
     document.getElementById(
@@ -1062,6 +1157,12 @@ function mostrarGrid(
     "";
 
 
+
+  /*
+    Qualquer registro que possua
+    primeira_chegada continua no Grid,
+    inclusive "removido".
+  */
 
   const lista =
     [...motoboys]
@@ -1086,7 +1187,6 @@ function mostrarGrid(
   if (
     lista.length === 0
   ) {
-
 
     elemento.innerHTML =
       '<div class="vazio">' +
@@ -1117,7 +1217,6 @@ function mostrarGrid(
         );
 
 
-
       elemento.innerHTML += `
 
         <div class="grid-item">
@@ -1143,7 +1242,6 @@ function mostrarGrid(
               class="campo-grid"
               id="bag-${moto.id}"
               type="text"
-              inputmode="numeric"
               value="${esc(moto.bag || "")}"
               placeholder="Bag"
               maxlength="20"
@@ -1159,12 +1257,18 @@ function mostrarGrid(
               class="campo-grid"
               id="maquina-${moto.id}"
               type="text"
-              inputmode="numeric"
               value="${esc(moto.maquina || "")}"
               placeholder="Máquina"
               maxlength="20"
               onchange="salvarBagMaquina('${moto.id}')"
             >
+
+          </div>
+
+
+          <div class="grid-entregas">
+
+            ${moto.entregas_dia || 0}
 
           </div>
 
@@ -1183,15 +1287,11 @@ function mostrarGrid(
 
 /* =====================================================
    SALVAR BAG E MÁQUINA
-
-   Salva automaticamente quando
-   sair do campo.
    ===================================================== */
 
 async function salvarBagMaquina(
   id
 ) {
-
 
   const campoBag =
     document.getElementById(
@@ -1226,7 +1326,6 @@ async function salvarBagMaquina(
 
   try {
 
-
     const resposta =
       await supabaseClient
         .from("motoboys")
@@ -1254,7 +1353,6 @@ async function salvarBagMaquina(
     }
 
 
-
     campoBag.classList.add(
       "salvo"
     );
@@ -1268,7 +1366,6 @@ async function salvarBagMaquina(
     setTimeout(
       function() {
 
-
         campoBag.classList.remove(
           "salvo"
         );
@@ -1277,7 +1374,6 @@ async function salvarBagMaquina(
         campoMaquina.classList.remove(
           "salvo"
         );
-
 
       },
       1000
@@ -1288,7 +1384,6 @@ async function salvarBagMaquina(
 
 
     console.error(
-      "Erro ao salvar Bag/Máquina:",
       erro
     );
 
@@ -1310,7 +1405,6 @@ async function salvarBagMaquina(
    ===================================================== */
 
 async function reorganizarFila() {
-
 
   const resposta =
     await supabaseClient
@@ -1350,7 +1444,6 @@ async function reorganizarFila() {
     i++
   ) {
 
-
     const novaPosicao =
       i + 1;
 
@@ -1359,7 +1452,6 @@ async function reorganizarFila() {
       fila[i].posicao !==
       novaPosicao
     ) {
-
 
       const atualizacao =
         await supabaseClient
@@ -1393,7 +1485,7 @@ async function reorganizarFila() {
 
 
 /* =====================================================
-   SUBIR / DESCER
+   MOVER NA FILA
    ===================================================== */
 
 async function moverNaFila(
@@ -1401,12 +1493,10 @@ async function moverNaFila(
   direcao
 ) {
 
-
   esconderMensagem();
 
 
   try {
-
 
     await reorganizarFila();
 
@@ -1488,7 +1578,10 @@ async function moverNaFila(
       await supabaseClient
         .from("motoboys")
         .update({
-          posicao: -999999
+
+          posicao:
+            -999999
+
         })
         .eq(
           "id",
@@ -1510,8 +1603,10 @@ async function moverNaFila(
       await supabaseClient
         .from("motoboys")
         .update({
+
           posicao:
             atual.posicao
+
         })
         .eq(
           "id",
@@ -1533,8 +1628,10 @@ async function moverNaFila(
       await supabaseClient
         .from("motoboys")
         .update({
+
           posicao:
             outro.posicao
+
         })
         .eq(
           "id",
@@ -1549,7 +1646,6 @@ async function moverNaFila(
       throw passo3.error;
 
     }
-
 
 
     await carregarDados();
@@ -1576,19 +1672,336 @@ async function moverNaFila(
 
 
 /* =====================================================
-   EXCLUIR
+   REMOVER DE DISPONÍVEIS
+
+   NÃO APAGA O REGISTRO.
    ===================================================== */
 
 async function excluirDaFila(
   id
 ) {
 
+  esconderMensagem();
+
+
+  try {
+
+    const busca =
+      await supabaseClient
+        .from("motoboys")
+        .select(
+          "id,nome,status"
+        )
+        .eq(
+          "id",
+          id
+        )
+        .maybeSingle();
+
+
+    if (
+      busca.error
+    ) {
+
+      throw busca.error;
+
+    }
+
+
+    const moto =
+      busca.data;
+
+
+    if (!moto) {
+
+      return;
+
+    }
+
+
+    const confirmar =
+      confirm(
+        "Remover " +
+        moto.nome +
+        " da fila?\n\n" +
+        "O histórico continuará no Grid."
+      );
+
+
+    if (!confirmar) {
+
+      return;
+
+    }
+
+
+
+    const resposta =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+
+          status:
+            "removido",
+
+          posicao:
+            null
+
+        })
+        .eq(
+          "id",
+          id
+        );
+
+
+    if (
+      resposta.error
+    ) {
+
+      throw resposta.error;
+
+    }
+
+
+    await reorganizarFila();
+
+
+    await carregarDados();
+
+
+    mostrarMensagem(
+      "🗑️ " +
+      moto.nome +
+      " foi removido. O Grid foi mantido.",
+      "sucesso"
+    );
+
+
+  } catch (erro) {
+
+
+    console.error(
+      erro
+    );
+
+
+    mostrarMensagem(
+      "Não foi possível remover: " +
+      erro.message,
+      "erro"
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   RETORNO MANUAL DE EM ENTREGA
+
+   +1 ENTREGA
+   ===================================================== */
+
+async function retornarEntregaManual(
+  id
+) {
 
   esconderMensagem();
 
 
   try {
 
+    const busca =
+      await supabaseClient
+        .from("motoboys")
+        .select(
+          "*"
+        )
+        .eq(
+          "id",
+          id
+        )
+        .maybeSingle();
+
+
+    if (
+      busca.error
+    ) {
+
+      throw busca.error;
+
+    }
+
+
+    const moto =
+      busca.data;
+
+
+    if (!moto) {
+
+      return;
+
+    }
+
+
+
+    if (
+      moto.status !==
+      "em_entrega"
+    ) {
+
+      alert(
+        "Esse motoboy não está mais em entrega."
+      );
+
+
+      await carregarDados();
+
+
+      return;
+
+    }
+
+
+
+    const confirmar =
+      confirm(
+        "Concluir a entrega de " +
+        moto.nome +
+        " e retornar para o final da fila?"
+      );
+
+
+    if (!confirmar) {
+
+      return;
+
+    }
+
+
+
+    const maiorPosicao =
+      await supabaseClient
+        .from("motoboys")
+        .select(
+          "posicao"
+        )
+        .eq(
+          "status",
+          "disponivel"
+        )
+        .order(
+          "posicao",
+          {
+            ascending: false
+          }
+        )
+        .limit(1)
+        .maybeSingle();
+
+
+    if (
+      maiorPosicao.error
+    ) {
+
+      throw maiorPosicao.error;
+
+    }
+
+
+
+    const ultimaPosicao =
+      maiorPosicao.data?.posicao ||
+      0;
+
+
+
+    const novasEntregas =
+      (
+        moto.entregas_dia ||
+        0
+      ) + 1;
+
+
+
+    const retorno =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+
+          status:
+            "disponivel",
+
+          posicao:
+            ultimaPosicao + 1,
+
+          entregas_dia:
+            novasEntregas
+
+        })
+        .eq(
+          "id",
+          id
+        );
+
+
+    if (
+      retorno.error
+    ) {
+
+      throw retorno.error;
+
+    }
+
+
+    await carregarDados();
+
+
+    mostrarMensagem(
+      "✅ " +
+      moto.nome +
+      " retornou à fila. Entregas hoje: " +
+      novasEntregas,
+      "sucesso"
+    );
+
+
+  } catch (erro) {
+
+
+    console.error(
+      erro
+    );
+
+
+    mostrarMensagem(
+      "Não foi possível retornar o motoboy: " +
+      erro.message,
+      "erro"
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   REMOVER DE EM ENTREGA
+
+   NÃO SOMA ENTREGA.
+   NÃO APAGA O GRID.
+   ===================================================== */
+
+async function excluirEmEntrega(
+  id
+) {
+
+  esconderMensagem();
+
+
+  try {
 
     const busca =
       await supabaseClient
@@ -1626,15 +2039,15 @@ async function excluirDaFila(
 
     const confirmar =
       confirm(
-        "Excluir " +
+        "Remover " +
         moto.nome +
-        " da fila?"
+        " de Em entrega?\n\n" +
+        "Essa ação não contará uma entrega.\n" +
+        "O histórico continuará no Grid."
       );
 
 
-    if (
-      !confirmar
-    ) {
+    if (!confirmar) {
 
       return;
 
@@ -1645,14 +2058,18 @@ async function excluirDaFila(
     const resposta =
       await supabaseClient
         .from("motoboys")
-        .delete()
+        .update({
+
+          status:
+            "removido",
+
+          posicao:
+            null
+
+        })
         .eq(
           "id",
           id
-        )
-        .eq(
-          "status",
-          "disponivel"
         );
 
 
@@ -1665,11 +2082,15 @@ async function excluirDaFila(
     }
 
 
-
-    await reorganizarFila();
-
-
     await carregarDados();
+
+
+    mostrarMensagem(
+      "🗑️ " +
+      moto.nome +
+      " foi removido. O Grid foi mantido.",
+      "sucesso"
+    );
 
 
   } catch (erro) {
@@ -1681,7 +2102,7 @@ async function excluirDaFila(
 
 
     mostrarMensagem(
-      "Não foi possível excluir: " +
+      "Não foi possível remover: " +
       erro.message,
       "erro"
     );
@@ -1698,12 +2119,10 @@ async function excluirDaFila(
 
 async function chamarProximo() {
 
-
   esconderMensagem();
 
 
   try {
-
 
     const resposta =
       await supabaseClient
@@ -1738,7 +2157,6 @@ async function chamarProximo() {
 
 
     if (!moto) {
-
 
       alert(
         "Não há motoboys disponíveis."
@@ -1834,11 +2252,10 @@ async function chamarProximo() {
 
 
 /* =====================================================
-   ATUALIZAR LISTA
+   ATUALIZAR MANUAL
    ===================================================== */
 
 async function atualizarListaManual() {
-
 
   esconderMensagem();
 
@@ -1863,22 +2280,21 @@ async function atualizarListaManual() {
 
 /* =====================================================
    ENCERRAR DIA
+
+   AQUI SIM APAGA TUDO.
    ===================================================== */
 
 async function encerrarDia() {
 
-
   const confirmar =
     confirm(
       "ENCERRAR O DIA?\n\n" +
-      "Todos os motoboys serão removidos.\n\n" +
-      "A fila, entregas e Grid serão zerados."
+      "Todos os motoboys serão apagados.\n\n" +
+      "Disponíveis, Em entrega e Grid serão zerados."
     );
 
 
-  if (
-    !confirmar
-  ) {
+  if (!confirmar) {
 
     return;
 
@@ -1888,6 +2304,9 @@ async function encerrarDia() {
 
   try {
 
+    /*
+      Agora inclui o status removido.
+    */
 
     const resposta =
       await supabaseClient
@@ -1897,7 +2316,8 @@ async function encerrarDia() {
           "status",
           [
             "disponivel",
-            "em_entrega"
+            "em_entrega",
+            "removido"
           ]
         );
 
