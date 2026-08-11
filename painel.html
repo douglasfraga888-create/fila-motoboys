@@ -10,7 +10,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Controle Motoboys Pizzaria de Roma</title>
+<title>Controle Motoboys Pizzaria Di Roma</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -52,7 +52,7 @@ header h1 {
   padding: 20px;
 }
 
-.grid {
+.grid-principal {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
@@ -150,15 +150,15 @@ button:disabled {
    BOTÕES PRINCIPAIS
    ===================================================== */
 
-.atualizar {
-  width: 100%;
-  background: #2563eb;
-  color: white;
-}
-
 .chamar {
   width: 100%;
   background: #15803d;
+  color: white;
+}
+
+.atualizar {
+  width: 100%;
+  background: #2563eb;
   color: white;
 }
 
@@ -195,7 +195,7 @@ button:disabled {
 
 
 /* =====================================================
-   MOTOBOY CHAMADO
+   CHAMADO
    ===================================================== */
 
 #chamado {
@@ -245,37 +245,56 @@ button:disabled {
 
 
 /* =====================================================
-   GRID DE CHEGADAS
+   GRID / LISTA DE CHEGADAS
    ===================================================== */
 
-.historico-grid {
+.grid-cabecalho {
   display: grid;
-  grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(150px, 1fr)
-    );
-  gap: 12px;
-}
-
-.historico-item {
-  background: #f3f4f6;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-  border: 1px solid #e5e7eb;
-}
-
-.historico-nome {
-  font-size: 17px;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  background: #111827;
+  color: white;
+  border-radius: 10px;
+  font-size: 13px;
   font-weight: bold;
-  color: #111827;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
-.historico-horario {
-  font-size: 15px;
+.grid-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.grid-nome {
+  font-weight: bold;
+}
+
+.grid-horario {
   color: #6b7280;
+}
+
+.campo-grid {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  background: white;
+}
+
+.campo-grid:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.salvo {
+  border-color: #15803d;
+  background: #f0fdf4;
 }
 
 
@@ -285,7 +304,7 @@ button:disabled {
 
 @media (max-width: 750px) {
 
-  .grid {
+  .grid-principal {
     grid-template-columns: 1fr;
   }
 
@@ -297,7 +316,7 @@ button:disabled {
 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 
   .item-fila {
     align-items: flex-start;
@@ -307,6 +326,23 @@ button:disabled {
   .direita-fila {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .grid-cabecalho {
+    display: none;
+  }
+
+  .grid-item {
+    grid-template-columns: 1fr 1fr;
+    background: #f9fafb;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .grid-nome {
+    grid-column: 1 / 3;
+    font-size: 17px;
   }
 
 }
@@ -322,7 +358,7 @@ button:disabled {
 <header>
 
   <h1>
-    🛵 Controle Motoboys Pizzaria de Roma
+    🛵 Controle Motoboys Pizzaria Di Roma
   </h1>
 
   <div id="relogio">
@@ -337,7 +373,6 @@ button:disabled {
 
   <div id="mensagem"></div>
 
-
   <div id="chamado"></div>
 
 
@@ -346,10 +381,8 @@ button:disabled {
        FILA E ENTREGAS
        ================================================= -->
 
-  <div class="grid">
+  <div class="grid-principal">
 
-
-    <!-- DISPONÍVEIS -->
 
     <div class="card">
 
@@ -366,7 +399,6 @@ button:disabled {
 
       </h2>
 
-
       <div id="fila">
         Carregando...
       </div>
@@ -374,8 +406,6 @@ button:disabled {
     </div>
 
 
-
-    <!-- EM ENTREGA -->
 
     <div class="card">
 
@@ -392,12 +422,12 @@ button:disabled {
 
       </h2>
 
-
       <div id="entregas">
         Carregando...
       </div>
 
     </div>
+
 
   </div>
 
@@ -415,10 +445,10 @@ button:disabled {
 
 
     <button
-      class="atualizar"
-      onclick="atualizarListaManual()"
+      class="chamar"
+      onclick="chamarProximo()"
     >
-      🔄 ATUALIZAR LISTA
+      CHAMAR PRÓXIMO
     </button>
 
 
@@ -426,10 +456,10 @@ button:disabled {
 
 
     <button
-      class="chamar"
-      onclick="chamarProximo()"
+      class="atualizar"
+      onclick="atualizarListaManual()"
     >
-      CHAMAR PRÓXIMO
+      🔄 ATUALIZAR LISTA
     </button>
 
 
@@ -448,20 +478,38 @@ button:disabled {
 
 
   <!-- =================================================
-       GRID DE CHEGADAS
+       GRID
        ================================================= -->
 
   <div class="card">
 
     <h2>
-      🕐 Chegadas
+      Grid
     </h2>
 
 
-    <div
-      id="historico"
-      class="historico-grid"
-    >
+    <div class="grid-cabecalho">
+
+      <div>
+        Motoboy
+      </div>
+
+      <div>
+        Chegada
+      </div>
+
+      <div>
+        Nº Bag
+      </div>
+
+      <div>
+        Máquina
+      </div>
+
+    </div>
+
+
+    <div id="historico">
       Carregando...
     </div>
 
@@ -496,7 +544,7 @@ const supabaseClient =
 
 
 /* =====================================================
-   CONTROLE DE CARREGAMENTO
+   CONTROLE
    ===================================================== */
 
 let carregandoDados =
@@ -518,16 +566,13 @@ function mostrarMensagem(
       "mensagem"
     );
 
-
   elemento.innerText =
     texto;
-
 
   elemento.className =
     tipo;
 
 }
-
 
 
 function esconderMensagem() {
@@ -537,10 +582,8 @@ function esconderMensagem() {
       "mensagem"
     );
 
-
   elemento.innerText =
     "";
-
 
   elemento.className =
     "";
@@ -599,10 +642,8 @@ function esc(
       "div"
     );
 
-
   div.textContent =
-    texto;
-
+    texto ?? "";
 
   return div.innerHTML;
 
@@ -611,11 +652,10 @@ function esc(
 
 
 /* =====================================================
-   CARREGAR TODOS OS DADOS
+   CARREGAR DADOS
    ===================================================== */
 
 async function carregarDados() {
-
 
   if (
     carregandoDados
@@ -691,7 +731,7 @@ async function carregarDados() {
     );
 
 
-    mostrarHistorico(
+    mostrarGrid(
       todos
     );
 
@@ -700,7 +740,6 @@ async function carregarDados() {
 
 
     console.error(
-      "Erro ao carregar dados:",
       erro
     );
 
@@ -725,7 +764,7 @@ async function carregarDados() {
 
 
 /* =====================================================
-   MOSTRAR FILA
+   FILA
    ===================================================== */
 
 function mostrarFila(
@@ -814,32 +853,22 @@ function mostrarFila(
 
 
             <div class="posicao">
-
               ${index + 1}º
-
             </div>
 
 
             <div>
 
-
               <div class="nome">
-
                 ${esc(moto.nome)}
-
               </div>
-
 
               <div class="info">
-
                 Primeira chegada:
                 ${horario}
-
               </div>
 
-
             </div>
-
 
           </div>
 
@@ -849,11 +878,8 @@ function mostrarFila(
 
 
             <div class="status">
-
               Disponível
-
             </div>
-
 
 
             <div class="acoes-fila">
@@ -907,7 +933,7 @@ function mostrarFila(
 
 
 /* =====================================================
-   MOSTRAR ENTREGAS
+   EM ENTREGA
    ===================================================== */
 
 function mostrarEntregas(
@@ -985,17 +1011,13 @@ function mostrarEntregas(
 
 
             <div class="nome">
-
               🛵 ${esc(moto.nome)}
-
             </div>
 
 
             <div class="info">
-
               Primeira chegada:
               ${horario}
-
             </div>
 
 
@@ -1003,9 +1025,7 @@ function mostrarEntregas(
 
 
           <div class="status entrega">
-
             Em entrega
-
           </div>
 
 
@@ -1022,10 +1042,12 @@ function mostrarEntregas(
 
 
 /* =====================================================
-   GRID DE CHEGADAS
+   GRID
+
+   NOME + HORÁRIO + BAG + MÁQUINA
    ===================================================== */
 
-function mostrarHistorico(
+function mostrarGrid(
   motoboys
 ) {
 
@@ -1041,7 +1063,7 @@ function mostrarHistorico(
 
 
 
-  const historico =
+  const lista =
     [...motoboys]
 
       .filter(
@@ -1062,13 +1084,13 @@ function mostrarHistorico(
 
 
   if (
-    historico.length === 0
+    lista.length === 0
   ) {
 
 
     elemento.innerHTML =
       '<div class="vazio">' +
-      'Nenhum motoboy registrou chegada hoje.' +
+      'Nenhum motoboy registrado hoje.' +
       '</div>';
 
 
@@ -1078,7 +1100,7 @@ function mostrarHistorico(
 
 
 
-  historico.forEach(
+  lista.forEach(
     moto => {
 
 
@@ -1095,21 +1117,54 @@ function mostrarHistorico(
         );
 
 
+
       elemento.innerHTML += `
 
-        <div class="historico-item">
+        <div class="grid-item">
 
 
-          <div class="historico-nome">
+          <div class="grid-nome">
 
             ${esc(moto.nome)}
 
           </div>
 
 
-          <div class="historico-horario">
+          <div class="grid-horario">
 
             🕐 ${horario}
+
+          </div>
+
+
+          <div>
+
+            <input
+              class="campo-grid"
+              id="bag-${moto.id}"
+              type="text"
+              inputmode="numeric"
+              value="${esc(moto.bag || "")}"
+              placeholder="Bag"
+              maxlength="20"
+              onchange="salvarBagMaquina('${moto.id}')"
+            >
+
+          </div>
+
+
+          <div>
+
+            <input
+              class="campo-grid"
+              id="maquina-${moto.id}"
+              type="text"
+              inputmode="numeric"
+              value="${esc(moto.maquina || "")}"
+              placeholder="Máquina"
+              maxlength="20"
+              onchange="salvarBagMaquina('${moto.id}')"
+            >
 
           </div>
 
@@ -1121,6 +1176,130 @@ function mostrarHistorico(
 
     }
   );
+
+}
+
+
+
+/* =====================================================
+   SALVAR BAG E MÁQUINA
+
+   Salva automaticamente quando
+   sair do campo.
+   ===================================================== */
+
+async function salvarBagMaquina(
+  id
+) {
+
+
+  const campoBag =
+    document.getElementById(
+      "bag-" + id
+    );
+
+
+  const campoMaquina =
+    document.getElementById(
+      "maquina-" + id
+    );
+
+
+  if (
+    !campoBag ||
+    !campoMaquina
+  ) {
+
+    return;
+
+  }
+
+
+  const bag =
+    campoBag.value.trim();
+
+
+  const maquina =
+    campoMaquina.value.trim();
+
+
+
+  try {
+
+
+    const resposta =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+
+          bag:
+            bag,
+
+          maquina:
+            maquina
+
+        })
+        .eq(
+          "id",
+          id
+        );
+
+
+    if (
+      resposta.error
+    ) {
+
+      throw resposta.error;
+
+    }
+
+
+
+    campoBag.classList.add(
+      "salvo"
+    );
+
+
+    campoMaquina.classList.add(
+      "salvo"
+    );
+
+
+    setTimeout(
+      function() {
+
+
+        campoBag.classList.remove(
+          "salvo"
+        );
+
+
+        campoMaquina.classList.remove(
+          "salvo"
+        );
+
+
+      },
+      1000
+    );
+
+
+  } catch (erro) {
+
+
+    console.error(
+      "Erro ao salvar Bag/Máquina:",
+      erro
+    );
+
+
+    mostrarMensagem(
+      "Não foi possível salvar Bag/Máquina: " +
+      erro.message,
+      "erro"
+    );
+
+  }
 
 }
 
@@ -1264,7 +1443,6 @@ async function moverNaFila(
       resposta.data || [];
 
 
-
     const indice =
       fila.findIndex(
         moto =>
@@ -1277,17 +1455,14 @@ async function moverNaFila(
       indice === -1
     ) {
 
-      throw new Error(
-        "Motoboy não encontrado."
-      );
+      return;
 
     }
 
 
-
     const destino =
-      indice + direcao;
-
+      indice +
+      direcao;
 
 
     if (
@@ -1298,7 +1473,6 @@ async function moverNaFila(
       return;
 
     }
-
 
 
     const atual =
@@ -1314,10 +1488,7 @@ async function moverNaFila(
       await supabaseClient
         .from("motoboys")
         .update({
-
-          posicao:
-            -999999
-
+          posicao: -999999
         })
         .eq(
           "id",
@@ -1339,10 +1510,8 @@ async function moverNaFila(
       await supabaseClient
         .from("motoboys")
         .update({
-
           posicao:
             atual.posicao
-
         })
         .eq(
           "id",
@@ -1364,10 +1533,8 @@ async function moverNaFila(
       await supabaseClient
         .from("motoboys")
         .update({
-
           posicao:
             outro.posicao
-
         })
         .eq(
           "id",
@@ -1385,12 +1552,6 @@ async function moverNaFila(
 
 
 
-    mostrarMensagem(
-      "✅ Ordem da fila alterada.",
-      "sucesso"
-    );
-
-
     await carregarDados();
 
 
@@ -1398,7 +1559,6 @@ async function moverNaFila(
 
 
     console.error(
-      "Erro ao mudar ordem:",
       erro
     );
 
@@ -1456,30 +1616,7 @@ async function excluirDaFila(
       busca.data;
 
 
-
     if (!moto) {
-
-      throw new Error(
-        "Motoboy não encontrado."
-      );
-
-    }
-
-
-
-    if (
-      moto.status !==
-      "disponivel"
-    ) {
-
-
-      alert(
-        "Esse motoboy não está mais na fila."
-      );
-
-
-      await carregarDados();
-
 
       return;
 
@@ -1493,7 +1630,6 @@ async function excluirDaFila(
         moto.nome +
         " da fila?"
       );
-
 
 
     if (
@@ -1531,15 +1667,6 @@ async function excluirDaFila(
 
 
     await reorganizarFila();
-
-
-
-    mostrarMensagem(
-      "🗑️ " +
-      moto.nome +
-      " foi excluído da fila.",
-      "sucesso"
-    );
 
 
     await carregarDados();
@@ -1672,19 +1799,15 @@ async function chamarProximo() {
       "block";
 
 
-
     setTimeout(
       function() {
-
 
         chamado.style.display =
           "none";
 
-
       },
       5000
     );
-
 
 
     await carregarDados();
@@ -1711,6 +1834,34 @@ async function chamarProximo() {
 
 
 /* =====================================================
+   ATUALIZAR LISTA
+   ===================================================== */
+
+async function atualizarListaManual() {
+
+
+  esconderMensagem();
+
+
+  await carregarDados();
+
+
+  mostrarMensagem(
+    "🔄 Lista atualizada.",
+    "sucesso"
+  );
+
+
+  setTimeout(
+    esconderMensagem,
+    2000
+  );
+
+}
+
+
+
+/* =====================================================
    ENCERRAR DIA
    ===================================================== */
 
@@ -1721,9 +1872,8 @@ async function encerrarDia() {
     confirm(
       "ENCERRAR O DIA?\n\n" +
       "Todos os motoboys serão removidos.\n\n" +
-      "A fila, entregas e chegadas serão zeradas."
+      "A fila, entregas e Grid serão zerados."
     );
-
 
 
   if (
@@ -1761,9 +1911,7 @@ async function encerrarDia() {
     }
 
 
-
     await carregarDados();
-
 
 
     alert(
@@ -1786,34 +1934,6 @@ async function encerrarDia() {
     );
 
   }
-
-}
-
-
-
-/* =====================================================
-   ATUALIZAR MANUALMENTE
-   ===================================================== */
-
-async function atualizarListaManual() {
-
-
-  esconderMensagem();
-
-
-  await carregarDados();
-
-
-  mostrarMensagem(
-    "🔄 Lista atualizada.",
-    "sucesso"
-  );
-
-
-  setTimeout(
-    esconderMensagem,
-    2000
-  );
 
 }
 
@@ -1846,7 +1966,6 @@ supabaseClient
 
     function() {
 
-
       carregarDados();
 
     }
@@ -1858,7 +1977,7 @@ supabaseClient
 
 
 /* =====================================================
-   ATUALIZAÇÃO A CADA 3 SEGUNDOS
+   ATUALIZAÇÃO AUTOMÁTICA
    ===================================================== */
 
 setInterval(
@@ -1869,19 +1988,17 @@ setInterval(
 
 
 /* =====================================================
-   AO VOLTAR PARA A ABA
+   VOLTAR PARA ABA
    ===================================================== */
 
 document.addEventListener(
   "visibilitychange",
   function() {
 
-
     if (
       document.visibilityState ===
       "visible"
     ) {
-
 
       carregarDados();
 
