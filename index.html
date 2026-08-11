@@ -10,7 +10,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Entrada de Motoboy - Pizzaria Di Roma</title>
+<title>Pizzaria Di Roma - Motoboys</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -21,170 +21,486 @@
 }
 
 body {
+
   margin: 0;
+
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  background: #f3f4f6;
-  padding: 20px;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  background:
+    #f3f4f6;
+
+  padding:
+    20px;
+
 }
 
 .container {
+
   width: 100%;
-  max-width: 520px;
-  margin: 0 auto;
+
+  max-width:
+    520px;
+
+  margin:
+    0 auto;
+
 }
 
 .card {
-  width: 100%;
-  background: white;
-  padding: 30px 22px;
-  border-radius: 18px;
-  box-shadow: 0 5px 20px rgba(0,0,0,.10);
-  text-align: center;
-  margin-bottom: 20px;
+
+  width:
+    100%;
+
+  background:
+    white;
+
+  padding:
+    30px 22px;
+
+  border-radius:
+    18px;
+
+  box-shadow:
+    0 5px 20px
+    rgba(0,0,0,.10);
+
+  text-align:
+    center;
+
+  margin-bottom:
+    20px;
+
 }
 
 .icone {
-  font-size: 55px;
-  margin-bottom: 10px;
+
+  font-size:
+    55px;
+
+  margin-bottom:
+    10px;
+
 }
 
 h1 {
-  margin: 0 0 10px;
-  font-size: 27px;
-  color: #111827;
+
+  margin:
+    0 0 10px;
+
+  font-size:
+    27px;
+
+  color:
+    #111827;
+
 }
 
 h2 {
-  margin: 0;
-  font-size: 22px;
-  color: #111827;
+
+  margin:
+    0;
+
+  font-size:
+    22px;
+
+  color:
+    #111827;
+
 }
 
 .subtitulo {
-  color: #6b7280;
-  margin-bottom: 25px;
-  line-height: 1.4;
+
+  color:
+    #6b7280;
+
+  margin-bottom:
+    25px;
+
+  line-height:
+    1.4;
+
 }
 
 .campo-grupo {
-  text-align: left;
-  margin-bottom: 15px;
+
+  text-align:
+    left;
+
+  margin-bottom:
+    15px;
+
 }
 
 .campo-grupo label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #374151;
+
+  display:
+    block;
+
+  margin-bottom:
+    6px;
+
+  font-size:
+    14px;
+
+  font-weight:
+    bold;
+
+  color:
+    #374151;
+
 }
 
 input {
-  width: 100%;
-  padding: 16px;
-  font-size: 18px;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  outline: none;
+
+  width:
+    100%;
+
+  padding:
+    16px;
+
+  font-size:
+    18px;
+
+  border:
+    1px solid #d1d5db;
+
+  border-radius:
+    10px;
+
+  outline:
+    none;
+
 }
 
 input:focus {
-  border-color: #15803d;
+
+  border-color:
+    #15803d;
+
 }
 
 button {
-  width: 100%;
-  padding: 16px;
-  border: 0;
-  border-radius: 10px;
-  background: #15803d;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
+
+  width:
+    100%;
+
+  padding:
+    16px;
+
+  border:
+    0;
+
+  border-radius:
+    10px;
+
+  background:
+    #15803d;
+
+  color:
+    white;
+
+  font-size:
+    17px;
+
+  font-weight:
+    bold;
+
+  cursor:
+    pointer;
+
 }
 
 button:disabled {
-  opacity: .6;
-  cursor: not-allowed;
+
+  opacity:
+    .6;
+
+  cursor:
+    not-allowed;
+
 }
 
+
+/* =====================================================
+   ÁREAS
+   ===================================================== */
+
 #dadosPrimeiraEntrada {
-  display: none;
+
+  display:
+    none;
+
 }
 
 #areaReconhecido {
-  display: none;
+
+  display:
+    none;
+
 }
 
-.botao-retorno {
-  background: #15803d;
-  font-size: 18px;
-}
 
-.botao-trocar {
-  margin-top: 12px;
-  background: #6b7280;
-  font-size: 14px;
-  padding: 12px;
-}
+/* =====================================================
+   MOTOBOY RECONHECIDO
+   ===================================================== */
 
 .motoboy-reconhecido {
-  font-size: 22px;
-  font-weight: bold;
-  color: #111827;
-  margin-bottom: 12px;
+
+  font-size:
+    22px;
+
+  font-weight:
+    bold;
+
+  color:
+    #111827;
+
+  margin-bottom:
+    12px;
+
 }
 
 .status-reconhecido {
-  margin-bottom: 20px;
-  padding: 14px;
-  border-radius: 10px;
-  font-weight: bold;
-  white-space: pre-line;
+
+  margin-bottom:
+    20px;
+
+  padding:
+    14px;
+
+  border-radius:
+    10px;
+
+  font-weight:
+    bold;
+
+  white-space:
+    pre-line;
+
 }
 
 .status-disponivel {
-  background: #dcfce7;
-  color: #166534;
+
+  background:
+    #dcfce7;
+
+  color:
+    #166534;
+
 }
 
 .status-entrega {
-  background: #fef3c7;
-  color: #92400e;
+
+  background:
+    #fef3c7;
+
+  color:
+    #92400e;
+
 }
+
+
+/* =====================================================
+   BOTÕES
+   ===================================================== */
+
+.botao-retorno {
+
+  background:
+    #15803d;
+
+  font-size:
+    18px;
+
+}
+
+.botao-trocar {
+
+  margin-top:
+    12px;
+
+  background:
+    #6b7280;
+
+  font-size:
+    14px;
+
+  padding:
+    12px;
+
+}
+
+
+/* =====================================================
+   PRIMEIRA ENTRADA
+   ===================================================== */
 
 .aviso-primeira {
-  background: #fef3c7;
-  color: #92400e;
-  padding: 12px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  font-size: 14px;
-  line-height: 1.4;
-  text-align: left;
+
+  background:
+    #fef3c7;
+
+  color:
+    #92400e;
+
+  padding:
+    12px;
+
+  border-radius:
+    10px;
+
+  margin-bottom:
+    15px;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.4;
+
+  text-align:
+    left;
+
 }
 
+
+/* =====================================================
+   NOTIFICAÇÕES
+   ===================================================== */
+
+#areaNotificacoes {
+
+  display:
+    none;
+
+  margin-top:
+    20px;
+
+  padding-top:
+    20px;
+
+  border-top:
+    1px solid #e5e7eb;
+
+}
+
+.notificacao-titulo {
+
+  font-weight:
+    bold;
+
+  margin-bottom:
+    8px;
+
+  color:
+    #111827;
+
+}
+
+.notificacao-texto {
+
+  color:
+    #6b7280;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.4;
+
+  margin-bottom:
+    15px;
+
+}
+
+.botao-notificacao {
+
+  background:
+    #2563eb;
+
+}
+
+.botao-teste {
+
+  display:
+    none;
+
+  margin-top:
+    10px;
+
+  background:
+    #7c3aed;
+
+}
+
+#statusNotificacao {
+
+  margin-top:
+    10px;
+
+  font-size:
+    13px;
+
+  color:
+    #6b7280;
+
+}
+
+
+/* =====================================================
+   MENSAGENS
+   ===================================================== */
+
 #mensagem {
-  display: none;
-  margin-top: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  font-weight: bold;
-  white-space: pre-line;
+
+  display:
+    none;
+
+  margin-top:
+    20px;
+
+  padding:
+    15px;
+
+  border-radius:
+    10px;
+
+  font-weight:
+    bold;
+
+  white-space:
+    pre-line;
+
 }
 
 .sucesso {
-  display: block !important;
-  background: #dcfce7;
-  color: #166534;
+
+  display:
+    block !important;
+
+  background:
+    #dcfce7;
+
+  color:
+    #166534;
+
 }
 
 .erro {
-  display: block !important;
-  background: #fee2e2;
-  color: #991b1b;
+
+  display:
+    block !important;
+
+  background:
+    #fee2e2;
+
+  color:
+    #991b1b;
+
 }
 
 
@@ -193,76 +509,167 @@ button:disabled {
    ===================================================== */
 
 .fila-card {
-  text-align: left;
+
+  text-align:
+    left;
+
 }
 
 .fila-titulo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
+
+  display:
+    flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    center;
+
+  margin-bottom:
+    15px;
+
 }
 
 .contador {
-  background: #e5e7eb;
-  color: #374151;
-  border-radius: 20px;
-  padding: 5px 10px;
-  font-size: 13px;
-  font-weight: bold;
+
+  background:
+    #e5e7eb;
+
+  color:
+    #374151;
+
+  border-radius:
+    20px;
+
+  padding:
+    5px 10px;
+
+  font-size:
+    13px;
+
+  font-weight:
+    bold;
+
 }
 
 .item-fila {
-  display: flex;
-  align-items: center;
-  padding: 14px 5px;
-  border-bottom: 1px solid #e5e7eb;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  padding:
+    14px 5px;
+
+  border-bottom:
+    1px solid #e5e7eb;
+
 }
 
 .item-fila:last-child {
-  border-bottom: 0;
+
+  border-bottom:
+    0;
+
 }
 
 .posicao {
-  width: 55px;
-  font-size: 20px;
-  font-weight: bold;
+
+  width:
+    55px;
+
+  font-size:
+    20px;
+
+  font-weight:
+    bold;
+
 }
 
 .nome-fila {
-  flex: 1;
-  font-size: 17px;
-  font-weight: bold;
+
+  flex:
+    1;
+
+  font-size:
+    17px;
+
+  font-weight:
+    bold;
+
 }
 
 .sua-posicao {
-  background: #dcfce7;
-  border-radius: 10px;
-  padding-left: 8px;
-  padding-right: 8px;
+
+  background:
+    #dcfce7;
+
+  border-radius:
+    10px;
+
+  padding-left:
+    8px;
+
+  padding-right:
+    8px;
+
 }
 
 .voce {
-  margin-left: 8px;
-  font-size: 11px;
-  padding: 4px 7px;
-  border-radius: 12px;
-  background: #15803d;
-  color: white;
-  font-weight: bold;
+
+  margin-left:
+    8px;
+
+  font-size:
+    11px;
+
+  padding:
+    4px 7px;
+
+  border-radius:
+    12px;
+
+  background:
+    #15803d;
+
+  color:
+    white;
+
+  font-weight:
+    bold;
+
 }
 
 .vazio {
-  color: #6b7280;
-  text-align: center;
-  padding: 20px 5px;
+
+  color:
+    #6b7280;
+
+  text-align:
+    center;
+
+  padding:
+    20px 5px;
+
 }
 
 .atualizando {
-  color: #6b7280;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 12px;
+
+  color:
+    #6b7280;
+
+  font-size:
+    12px;
+
+  text-align:
+    center;
+
+  margin-top:
+    12px;
+
 }
 
 </style>
@@ -276,15 +683,13 @@ button:disabled {
 <div class="container">
 
 
-  <!-- =================================================
-       IDENTIFICAÇÃO / RETORNO
-       ================================================= -->
-
   <div class="card">
+
 
     <div class="icone">
       🛵
     </div>
+
 
     <h1>
       Pizzaria Di Roma
@@ -293,13 +698,16 @@ button:disabled {
 
 
     <!-- ===============================================
-         PRIMEIRA IDENTIFICAÇÃO
+         ENTRADA
          =============================================== -->
 
     <div id="areaEntrada">
 
+
       <div class="subtitulo">
+
         Informe seu nome para entrar na fila.
+
       </div>
 
 
@@ -321,67 +729,85 @@ button:disabled {
 
 
 
+      <!-- PRIMEIRA ENTRADA -->
+
       <div id="dadosPrimeiraEntrada">
 
+
         <div class="aviso-primeira">
-          📋 Primeira entrada do dia. Informe também sua Bag e Máquina.
+
+          📋 Primeira entrada do dia.
+
+          Informe também sua Bag e Máquina.
+
         </div>
 
 
         <div class="campo-grupo">
 
           <label for="bag">
+
             Nº da Bag
+
           </label>
+
 
           <input
             id="bag"
             type="text"
-            inputmode="text"
-            placeholder="Ex.: 12"
+            placeholder="Ex.: B12"
             autocomplete="off"
             maxlength="20"
           >
 
         </div>
+
 
 
         <div class="campo-grupo">
 
           <label for="maquina">
-            Máquina
+
+            Nº da Máquina
+
           </label>
+
 
           <input
             id="maquina"
             type="text"
-            inputmode="text"
-            placeholder="Ex.: 03"
+            placeholder="Ex.: M03"
             autocomplete="off"
             maxlength="20"
           >
 
         </div>
 
+
       </div>
+
 
 
       <button
         id="botao"
         onclick="acaoPrincipal()"
       >
+
         CONTINUAR
+
       </button>
+
 
     </div>
 
 
 
     <!-- ===============================================
-         CELULAR JÁ RECONHECIDO
+         MOTOBOY RECONHECIDO
          =============================================== -->
 
     <div id="areaReconhecido">
+
 
       <div
         id="nomeReconhecido"
@@ -402,56 +828,128 @@ button:disabled {
         class="botao-retorno"
         onclick="retornarMotoboyReconhecido()"
       >
+
         RETORNAR À FILA
+
       </button>
+
+
+
+      <!-- =============================================
+           NOTIFICAÇÕES
+           ============================================= -->
+
+      <div id="areaNotificacoes">
+
+
+        <div class="notificacao-titulo">
+
+          🔔 Aviso de chamada
+
+        </div>
+
+
+        <div class="notificacao-texto">
+
+          Ative as notificações para receber
+          um aviso quando chegar sua vez.
+
+        </div>
+
+
+        <button
+          id="botaoAtivarNotificacao"
+          class="botao-notificacao"
+          onclick="ativarNotificacoes()"
+        >
+
+          🔔 ATIVAR NOTIFICAÇÕES
+
+        </button>
+
+
+        <button
+          id="botaoTestarNotificacao"
+          class="botao-teste"
+          onclick="testarNotificacao()"
+        >
+
+          🔔 TESTAR NOTIFICAÇÃO
+
+        </button>
+
+
+        <div id="statusNotificacao">
+        </div>
+
+
+      </div>
+
 
 
       <button
         class="botao-trocar"
         onclick="naoSouEsteMotoboy()"
       >
+
         NÃO SOU ESTE MOTOBOY
+
       </button>
+
 
     </div>
 
 
-    <div id="mensagem"></div>
+
+    <div id="mensagem">
+    </div>
+
 
   </div>
 
 
 
-  <!-- =================================================
-       FILA ATUAL
-       ================================================= -->
+  <!-- ===============================================
+       FILA
+       =============================================== -->
 
   <div class="card fila-card">
 
+
     <div class="fila-titulo">
+
 
       <h2>
         🟢 Fila atual
       </h2>
 
+
       <span
         id="contadorFila"
         class="contador"
       >
+
         0
+
       </span>
+
 
     </div>
 
 
     <div id="fila">
+
       Carregando fila...
+
     </div>
 
 
     <div class="atualizando">
+
       A fila é atualizada automaticamente.
+
     </div>
+
 
   </div>
 
@@ -507,12 +1005,13 @@ let motoboyReconhecido =
   null;
 
 
+let registroServiceWorker =
+  null;
+
+
 
 /* =====================================================
    NORMALIZAR NOME
-
-   João, Joao, JOÃO etc.
-   são tratados como iguais.
    ===================================================== */
 
 function normalizarNome(
@@ -523,23 +1022,23 @@ function normalizarNome(
     nome || ""
   )
 
-    .trim()
+  .trim()
 
-    .replace(
-      /\s+/g,
-      " "
-    )
+  .replace(
+    /\s+/g,
+    " "
+  )
 
-    .normalize(
-      "NFD"
-    )
+  .normalize(
+    "NFD"
+  )
 
-    .replace(
-      /[\u0300-\u036f]/g,
-      ""
-    )
+  .replace(
+    /[\u0300-\u036f]/g,
+    ""
+  )
 
-    .toLowerCase();
+  .toLowerCase();
 
 }
 
@@ -557,12 +1056,12 @@ function formatarNome(
     nome || ""
   )
 
-    .trim()
+  .trim()
 
-    .replace(
-      /\s+/g,
-      " "
-    );
+  .replace(
+    /\s+/g,
+    " "
+  );
 
 }
 
@@ -593,7 +1092,7 @@ function esc(
 
 
 /* =====================================================
-   MENSAGEM
+   MENSAGENS
    ===================================================== */
 
 function mostrarMensagem(
@@ -638,12 +1137,405 @@ function limparMensagem() {
 
 
 /* =====================================================
-   IDENTIFICAÇÃO LOCAL DO CELULAR
+   SERVICE WORKER
+   ===================================================== */
+
+async function registrarServiceWorker() {
+
+
+  if (
+    !(
+      "serviceWorker"
+      in navigator
+    )
+  ) {
+
+
+    console.log(
+      "Service Worker não suportado."
+    );
+
+
+    return null;
+
+  }
+
+
+  try {
+
+
+    registroServiceWorker =
+      await navigator
+        .serviceWorker
+        .register(
+          "/sw.js"
+        );
+
+
+    console.log(
+      "Service Worker registrado:",
+      registroServiceWorker
+    );
+
+
+    return registroServiceWorker;
+
+
+  } catch (erro) {
+
+
+    console.error(
+      "Erro ao registrar Service Worker:",
+      erro
+    );
+
+
+    return null;
+
+  }
+
+}
+
+
+
+/* =====================================================
+   PREPARAR ÁREA DE NOTIFICAÇÃO
+   ===================================================== */
+
+async function atualizarAreaNotificacoes() {
+
+
+  const area =
+    document.getElementById(
+      "areaNotificacoes"
+    );
+
+
+  const ativar =
+    document.getElementById(
+      "botaoAtivarNotificacao"
+    );
+
+
+  const testar =
+    document.getElementById(
+      "botaoTestarNotificacao"
+    );
+
+
+  const status =
+    document.getElementById(
+      "statusNotificacao"
+    );
+
+
+
+  if (
+    !(
+      "Notification"
+      in window
+    )
+  ) {
+
+
+    area.style.display =
+      "none";
+
+
+    return;
+
+  }
+
+
+
+  area.style.display =
+    "block";
+
+
+
+  if (
+    Notification.permission ===
+    "granted"
+  ) {
+
+
+    ativar.style.display =
+      "none";
+
+
+    testar.style.display =
+      "block";
+
+
+    status.innerText =
+      "✅ Notificações ativadas.";
+
+
+    return;
+
+  }
+
+
+
+  if (
+    Notification.permission ===
+    "denied"
+  ) {
+
+
+    ativar.style.display =
+      "none";
+
+
+    testar.style.display =
+      "none";
+
+
+    status.innerText =
+      "🚫 As notificações estão bloqueadas neste navegador.";
+
+
+    return;
+
+  }
+
+
+
+  ativar.style.display =
+    "block";
+
+
+  testar.style.display =
+    "none";
+
+
+  status.innerText =
+    "Notificações ainda não ativadas.";
+
+}
+
+
+
+/* =====================================================
+   ATIVAR NOTIFICAÇÕES
+
+   O pedido é feito após o clique
+   do motoboy.
+   ===================================================== */
+
+async function ativarNotificacoes() {
+
+
+  if (
+    !(
+      "Notification"
+      in window
+    )
+  ) {
+
+
+    alert(
+      "Este navegador não suporta notificações."
+    );
+
+
+    return;
+
+  }
+
+
+
+  try {
+
+
+    if (
+      !registroServiceWorker
+    ) {
+
+
+      registroServiceWorker =
+        await registrarServiceWorker();
+
+    }
+
+
+
+    const permissao =
+      await Notification
+        .requestPermission();
+
+
+
+    if (
+      permissao ===
+      "granted"
+    ) {
+
+
+      localStorage.setItem(
+        "notificacoes_ativas",
+        "sim"
+      );
+
+
+      await atualizarAreaNotificacoes();
+
+
+      /*
+        Já envia uma notificação
+        para confirmar que funcionou.
+      */
+
+      await testarNotificacao();
+
+
+    } else {
+
+
+      localStorage.removeItem(
+        "notificacoes_ativas"
+      );
+
+
+      await atualizarAreaNotificacoes();
+
+    }
+
+
+
+  } catch (erro) {
+
+
+    console.error(
+      erro
+    );
+
+
+    alert(
+      "Não foi possível ativar as notificações."
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   TESTAR NOTIFICAÇÃO
+   ===================================================== */
+
+async function testarNotificacao() {
+
+
+  if (
+    Notification.permission !==
+    "granted"
+  ) {
+
+
+    alert(
+      "Primeiro permita as notificações."
+    );
+
+
+    return;
+
+  }
+
+
+
+  try {
+
+
+    if (
+      !registroServiceWorker
+    ) {
+
+
+      registroServiceWorker =
+        await navigator
+          .serviceWorker
+          .ready;
+
+    }
+
+
+
+    let nome =
+      "Motoboy";
+
+
+    if (
+      motoboyReconhecido
+    ) {
+
+
+      nome =
+        motoboyReconhecido.nome;
+
+    }
+
+
+
+    await registroServiceWorker
+      .showNotification(
+
+        "🛵 Pizzaria Di Roma",
+
+        {
+
+          body:
+            nome +
+            ", notificações ativadas com sucesso!",
+
+          vibrate:
+            [
+              200,
+              100,
+              200
+            ],
+
+          data: {
+
+            url:
+              "/"
+
+          }
+
+        }
+
+      );
+
+
+
+  } catch (erro) {
+
+
+    console.error(
+      "Erro na notificação:",
+      erro
+    );
+
+
+    alert(
+      "Não foi possível mostrar a notificação."
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   IDENTIFICAÇÃO LOCAL
    ===================================================== */
 
 function salvarIdentificacao(
   moto
 ) {
+
 
   localStorage.setItem(
     "motoboy_id",
@@ -661,6 +1553,7 @@ function salvarIdentificacao(
 
 
 function limparIdentificacao() {
+
 
   localStorage.removeItem(
     "motoboy_id"
@@ -684,7 +1577,7 @@ function limparIdentificacao() {
 
 
 /* =====================================================
-   MOSTRAR ENTRADA
+   MOSTRAR ÁREA DE ENTRADA
    ===================================================== */
 
 function mostrarAreaEntrada() {
@@ -753,10 +1646,6 @@ async function mostrarAreaReconhecido(
 
 
 
-  /* =================================================
-     ESTÁ EM ENTREGA
-     ================================================= */
-
   if (
     moto.status ===
     "em_entrega"
@@ -785,17 +1674,7 @@ async function mostrarAreaReconhecido(
       ", RETORNAR À FILA";
 
 
-    return;
-
-  }
-
-
-
-  /* =================================================
-     ESTÁ DISPONÍVEL
-     ================================================= */
-
-  if (
+  } else if (
     moto.status ===
     "disponivel"
   ) {
@@ -832,15 +1711,11 @@ async function mostrarAreaReconhecido(
     botao.style.display =
       "none";
 
-
-    return;
-
   }
 
 
 
-  botao.style.display =
-    "none";
+  await atualizarAreaNotificacoes();
 
 }
 
@@ -859,9 +1734,7 @@ function naoSouEsteMotoboy() {
     );
 
 
-  if (
-    !confirmar
-  ) {
+  if (!confirmar) {
 
     return;
 
@@ -906,7 +1779,8 @@ async function carregarFila() {
         .order(
           "posicao",
           {
-            ascending: true
+            ascending:
+              true
           }
         );
 
@@ -914,6 +1788,7 @@ async function carregarFila() {
     if (
       resposta.error
     ) {
+
 
       throw resposta.error;
 
@@ -962,7 +1837,10 @@ async function carregarFila() {
 
 
     fila.forEach(
-      (moto, index) => {
+      (
+        moto,
+        index
+      ) => {
 
 
         const ehUsuarioAtual =
@@ -982,7 +1860,9 @@ async function carregarFila() {
           >
 
             <div class="posicao">
+
               ${index + 1}º
+
             </div>
 
 
@@ -1004,7 +1884,6 @@ async function carregarFila() {
 
         `;
 
-
       }
     );
 
@@ -1013,7 +1892,6 @@ async function carregarFila() {
 
 
     console.error(
-      "Erro ao carregar fila:",
       erro
     );
 
@@ -1024,7 +1902,7 @@ async function carregarFila() {
 
 
 /* =====================================================
-   DESCOBRIR POSIÇÃO
+   POSIÇÃO
    ===================================================== */
 
 async function descobrirPosicaoPorId(
@@ -1045,7 +1923,8 @@ async function descobrirPosicaoPorId(
       .order(
         "posicao",
         {
-          ascending: true
+          ascending:
+            true
         }
       );
 
@@ -1053,6 +1932,7 @@ async function descobrirPosicaoPorId(
   if (
     resposta.error
   ) {
+
 
     throw resposta.error;
 
@@ -1074,6 +1954,7 @@ async function descobrirPosicaoPorId(
   if (
     indice === -1
   ) {
+
 
     return null;
 
@@ -1113,7 +1994,7 @@ async function acaoPrincipal() {
 
 
 /* =====================================================
-   VERIFICAR NOME
+   VERIFICAR MOTOBOY
    ===================================================== */
 
 async function verificarMotoboy() {
@@ -1191,6 +2072,7 @@ async function verificarMotoboy() {
       resposta.error
     ) {
 
+
       throw resposta.error;
 
     }
@@ -1211,12 +2093,6 @@ async function verificarMotoboy() {
       );
 
 
-
-    /* =================================================
-       JÁ EXISTE
-
-       VINCULA ESTE CELULAR AO MOTOBOY.
-       ================================================= */
 
     if (
       ativo
@@ -1263,10 +2139,6 @@ async function verificarMotoboy() {
     }
 
 
-
-    /* =================================================
-       PRIMEIRA ENTRADA DO DIA
-       ================================================= */
 
     nomePendente =
       nome;
@@ -1401,7 +2273,7 @@ async function cadastrarPrimeiraEntrada() {
 
 
     mostrarMensagem(
-      "Informe a Máquina.",
+      "Informe o número da Máquina.",
       "erro"
     );
 
@@ -1427,10 +2299,6 @@ async function cadastrarPrimeiraEntrada() {
   try {
 
 
-    /*
-      VERIFICA DUPLICIDADE NOVAMENTE.
-    */
-
     const verificacao =
       await supabaseClient
         .from("motoboys")
@@ -1447,6 +2315,7 @@ async function cadastrarPrimeiraEntrada() {
     if (
       verificacao.error
     ) {
+
 
       throw verificacao.error;
 
@@ -1506,14 +2375,12 @@ async function cadastrarPrimeiraEntrada() {
 
 
 
-    /* =================================================
-       DESCOBRE A ÚLTIMA POSIÇÃO
-       ================================================= */
-
     const maiorPosicao =
       await supabaseClient
         .from("motoboys")
-        .select("posicao")
+        .select(
+          "posicao"
+        )
         .eq(
           "status",
           "disponivel"
@@ -1521,7 +2388,8 @@ async function cadastrarPrimeiraEntrada() {
         .order(
           "posicao",
           {
-            ascending: false
+            ascending:
+              false
           }
         )
         .limit(1)
@@ -1533,6 +2401,7 @@ async function cadastrarPrimeiraEntrada() {
       maiorPosicao.error
     ) {
 
+
       throw maiorPosicao.error;
 
     }
@@ -1540,14 +2409,11 @@ async function cadastrarPrimeiraEntrada() {
 
 
     const ultimaPosicao =
-      maiorPosicao.data?.posicao ||
+      maiorPosicao.data
+        ?.posicao ||
       0;
 
 
-
-    /* =================================================
-       CRIA O REGISTRO
-       ================================================= */
 
     const novo =
       await supabaseClient
@@ -1564,7 +2430,8 @@ async function cadastrarPrimeiraEntrada() {
             ultimaPosicao + 1,
 
           primeira_chegada:
-            new Date().toISOString(),
+            new Date()
+              .toISOString(),
 
           bag:
             bag,
@@ -1582,17 +2449,12 @@ async function cadastrarPrimeiraEntrada() {
       novo.error
     ) {
 
+
       throw novo.error;
 
     }
 
 
-
-    /* =================================================
-       ESSENCIAL:
-
-       GUARDA O ID DO MOTOBOY NESTE CELULAR.
-       ================================================= */
 
     salvarIdentificacao(
       novo.data
@@ -1666,6 +2528,7 @@ async function retornarMotoboyReconhecido() {
     !motoboyReconhecido
   ) {
 
+
     return;
 
   }
@@ -1692,10 +2555,6 @@ async function retornarMotoboyReconhecido() {
   try {
 
 
-    /*
-      CONFERE O STATUS ATUAL NO BANCO.
-    */
-
     const busca =
       await supabaseClient
         .from("motoboys")
@@ -1711,6 +2570,7 @@ async function retornarMotoboyReconhecido() {
     if (
       busca.error
     ) {
+
 
       throw busca.error;
 
@@ -1732,21 +2592,11 @@ async function retornarMotoboyReconhecido() {
       mostrarAreaEntrada();
 
 
-      mostrarMensagem(
-        "Seu registro não existe mais. Faça uma nova entrada.",
-        "erro"
-      );
-
-
       return;
 
     }
 
 
-
-    /*
-      JÁ ESTÁ NA FILA.
-    */
 
     if (
       moto.status ===
@@ -1763,35 +2613,6 @@ async function retornarMotoboyReconhecido() {
       );
 
 
-      mostrarMensagem(
-        "Você já está na fila.",
-        "erro"
-      );
-
-
-      return;
-
-    }
-
-
-
-    /*
-      SOMENTE QUEM ESTÁ EM ENTREGA
-      PODE RETORNAR.
-    */
-
-    if (
-      moto.status !==
-      "em_entrega"
-    ) {
-
-
-      mostrarMensagem(
-        "Não foi possível realizar o retorno.",
-        "erro"
-      );
-
-
       return;
 
     }
@@ -1801,7 +2622,9 @@ async function retornarMotoboyReconhecido() {
     const maiorPosicao =
       await supabaseClient
         .from("motoboys")
-        .select("posicao")
+        .select(
+          "posicao"
+        )
         .eq(
           "status",
           "disponivel"
@@ -1809,7 +2632,8 @@ async function retornarMotoboyReconhecido() {
         .order(
           "posicao",
           {
-            ascending: false
+            ascending:
+              false
           }
         )
         .limit(1)
@@ -1821,6 +2645,7 @@ async function retornarMotoboyReconhecido() {
       maiorPosicao.error
     ) {
 
+
       throw maiorPosicao.error;
 
     }
@@ -1828,7 +2653,8 @@ async function retornarMotoboyReconhecido() {
 
 
     const ultimaPosicao =
-      maiorPosicao.data?.posicao ||
+      maiorPosicao.data
+        ?.posicao ||
       0;
 
 
@@ -1857,6 +2683,7 @@ async function retornarMotoboyReconhecido() {
     if (
       retorno.error
     ) {
+
 
       throw retorno.error;
 
@@ -1992,9 +2819,7 @@ function limparFormulario() {
 
 
 /* =====================================================
-   VERIFICAÇÃO AUTOMÁTICA DO CELULAR
-
-   Esta é a parte principal deste ajuste.
+   IDENTIFICAÇÃO SALVA
    ===================================================== */
 
 async function verificarIdentificacaoSalva() {
@@ -2005,10 +2830,6 @@ async function verificarIdentificacaoSalva() {
       "motoboy_id"
     );
 
-
-  /*
-    ESTE CELULAR AINDA NÃO ESTÁ VINCULADO.
-  */
 
   if (!idSalvo) {
 
@@ -2041,6 +2862,7 @@ async function verificarIdentificacaoSalva() {
       resposta.error
     ) {
 
+
       throw resposta.error;
 
     }
@@ -2051,11 +2873,6 @@ async function verificarIdentificacaoSalva() {
       resposta.data;
 
 
-
-    /*
-      SE O DIA FOI ENCERRADO,
-      O REGISTRO NÃO EXISTE MAIS.
-    */
 
     if (!moto) {
 
@@ -2071,12 +2888,6 @@ async function verificarIdentificacaoSalva() {
     }
 
 
-
-    /*
-      CELULAR RECONHECIDO.
-
-      NÃO MOSTRA CAMPO DE NOME.
-    */
 
     motoboyReconhecido =
       moto;
@@ -2098,7 +2909,6 @@ async function verificarIdentificacaoSalva() {
 
 
     console.error(
-      "Erro ao reconhecer celular:",
       erro
     );
 
@@ -2112,7 +2922,7 @@ async function verificarIdentificacaoSalva() {
 
 
 /* =====================================================
-   ATUALIZAR STATUS DO MOTOBOY RECONHECIDO
+   ATUALIZAR MOTOBOY RECONHECIDO
    ===================================================== */
 
 async function atualizarMotoboyReconhecido() {
@@ -2121,6 +2931,7 @@ async function atualizarMotoboyReconhecido() {
   if (
     !motoboyReconhecido
   ) {
+
 
     return;
 
@@ -2147,15 +2958,12 @@ async function atualizarMotoboyReconhecido() {
       resposta.error
     ) {
 
+
       return;
 
     }
 
 
-
-    /*
-      DIA ENCERRADO.
-    */
 
     if (
       !resposta.data
@@ -2198,7 +3006,7 @@ async function atualizarMotoboyReconhecido() {
 
 
 /* =====================================================
-   TECLA ENTER
+   ENTER
    ===================================================== */
 
 document
@@ -2339,7 +3147,7 @@ setInterval(
 
 
 /* =====================================================
-   AO VOLTAR PARA A ABA
+   VOLTAR PARA ABA
    ===================================================== */
 
 document.addEventListener(
@@ -2365,37 +3173,12 @@ document.addEventListener(
 
 
 
-window.addEventListener(
-  "focus",
-  async function() {
-
-
-    await carregarFila();
-
-
-    await atualizarMotoboyReconhecido();
-
-  }
-);
-
-
-
 /* =====================================================
    INICIAR
-
-   ANTES DE MOSTRAR O CAMPO DE NOME,
-   VERIFICA SE O CELULAR JÁ ESTÁ
-   VINCULADO A ALGUM MOTOBOY.
    ===================================================== */
 
 async function iniciar() {
 
-
-  /*
-    Evita o campo de nome aparecer
-    por alguns segundos antes da
-    identificação terminar.
-  */
 
   document
     .getElementById(
@@ -2413,8 +3196,23 @@ async function iniciar() {
     "none";
 
 
+  /*
+    Registra o Service Worker.
+  */
+
+  await registrarServiceWorker();
+
+
+  /*
+    Carrega a fila.
+  */
+
   await carregarFila();
 
+
+  /*
+    Verifica quem é o motoboy.
+  */
 
   await verificarIdentificacaoSalva();
 
