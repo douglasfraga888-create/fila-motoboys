@@ -35,7 +35,9 @@ body {
 header {
   background: #111827;
   color: white;
-  min-height: 110px;
+
+  min-height: 100px;
+
   padding: 15px 24px;
 
   display: flex;
@@ -46,57 +48,36 @@ header {
 }
 
 
-/* CAIXA DO LOGO */
+/* MOTINHA */
 
-.logo-box {
+.icone-topo {
   position: absolute;
+
   left: 24px;
 
-  width: 84px;
-  height: 84px;
+  font-size: 48px;
+  line-height: 1;
 
-  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  border-radius: 16px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 3px 10px
-    rgba(0,0,0,.25);
+  background: transparent;
 }
 
 
-/* LOGO COM ZOOM */
-
-.logo-topo {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-
-  object-position:
-    center center;
-
-  transform:
-    scale(2.15);
-}
-
-
-/* TÍTULO CENTRAL */
+/* TÍTULO */
 
 header h1 {
   margin: 0;
 
   width: 100%;
 
-  padding:
-    0 130px;
+  padding: 0 120px;
 
   text-align: center;
 
   font-size: 27px;
-
   font-weight: bold;
 }
 
@@ -109,7 +90,6 @@ header h1 {
   right: 24px;
 
   font-size: 18px;
-
   font-weight: bold;
 }
 
@@ -120,15 +100,22 @@ header h1 {
 
 .container {
   max-width: 1200px;
+
   margin: auto;
+
   padding: 20px;
 }
 
+
 .grid-principal {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap: 20px;
 }
+
 
 .card {
   background: white;
@@ -144,9 +131,11 @@ header h1 {
     rgba(0,0,0,.08);
 }
 
+
 h2 {
   margin-top: 0;
 }
+
 
 .contador {
   background: #e5e7eb;
@@ -177,10 +166,13 @@ h2 {
   gap: 10px;
 }
 
+
 .esquerda {
   display: flex;
+
   align-items: center;
 }
+
 
 .posicao {
   width: 50px;
@@ -190,11 +182,13 @@ h2 {
   font-weight: bold;
 }
 
+
 .nome {
   font-size: 18px;
 
   font-weight: bold;
 }
+
 
 .info {
   margin-top: 5px;
@@ -203,6 +197,7 @@ h2 {
 
   font-size: 14px;
 }
+
 
 .status {
   padding: 6px 10px;
@@ -218,11 +213,13 @@ h2 {
   white-space: nowrap;
 }
 
+
 .status.entrega {
   background: #fef3c7;
 
   color: #92400e;
 }
+
 
 .vazio {
   color: #6b7280;
@@ -232,7 +229,7 @@ h2 {
 
 
 /* =====================================================
-   BOTÕES PRINCIPAIS
+   BOTÕES
    ===================================================== */
 
 button {
@@ -249,15 +246,18 @@ button {
   cursor: pointer;
 }
 
+
 button:hover {
   opacity: .9;
 }
+
 
 button:disabled {
   opacity: .35;
 
   cursor: not-allowed;
 }
+
 
 .chamar {
   width: 100%;
@@ -267,6 +267,7 @@ button:disabled {
   color: white;
 }
 
+
 .atualizar {
   width: 100%;
 
@@ -274,6 +275,7 @@ button:disabled {
 
   color: white;
 }
+
 
 .encerrar {
   width: 100%;
@@ -300,6 +302,7 @@ button:disabled {
   font-weight: bold;
 }
 
+
 #mensagem.sucesso {
   display: block;
 
@@ -308,6 +311,7 @@ button:disabled {
   color: #166534;
 }
 
+
 #mensagem.erro {
   display: block;
 
@@ -315,6 +319,7 @@ button:disabled {
 
   color: #991b1b;
 }
+
 
 #chamado {
   display: none;
@@ -349,11 +354,13 @@ button:disabled {
   gap: 10px;
 }
 
+
 .acoes-fila {
   display: flex;
 
   gap: 5px;
 }
+
 
 .acoes-fila button {
   padding: 8px 10px;
@@ -363,12 +370,14 @@ button:disabled {
   border-radius: 8px;
 }
 
+
 .botao-subir,
 .botao-descer {
   background: #374151;
 
   color: white;
 }
+
 
 .botao-excluir {
   background: #b91c1c;
@@ -389,11 +398,13 @@ button:disabled {
   gap: 10px;
 }
 
+
 .acoes-entrega {
   display: flex;
 
   gap: 5px;
 }
+
 
 .acoes-entrega button {
   padding: 8px 10px;
@@ -402,6 +413,7 @@ button:disabled {
 
   border-radius: 8px;
 }
+
 
 .botao-retornar-manual {
   background: #2563eb;
@@ -440,6 +452,7 @@ button:disabled {
   margin-bottom: 5px;
 }
 
+
 .grid-item {
   display: grid;
 
@@ -459,13 +472,16 @@ button:disabled {
     1px solid #e5e7eb;
 }
 
+
 .grid-nome {
   font-weight: bold;
 }
 
+
 .grid-horario {
   color: #6b7280;
 }
+
 
 .campo-grid {
   width: 100%;
@@ -482,11 +498,13 @@ button:disabled {
   background: white;
 }
 
+
 .campo-grid:focus {
   outline: none;
 
   border-color: #2563eb;
 }
+
 
 .salvo {
   border-color: #15803d;
@@ -496,7 +514,7 @@ button:disabled {
 
 
 /* =====================================================
-   RESPONSIVO
+   TABLET
    ===================================================== */
 
 @media (max-width: 750px) {
@@ -508,30 +526,34 @@ button:disabled {
 }
 
 
+/* =====================================================
+   CELULAR
+   ===================================================== */
+
 @media (max-width: 650px) {
 
   header {
-    min-height: 190px;
+    min-height: 165px;
 
     padding:
-      108px 15px
+      85px 15px
       15px;
 
     flex-direction: column;
   }
 
 
-  .logo-box {
-    top: 12px;
+  .icone-topo {
+    position: absolute;
+
+    top: 18px;
 
     left: 50%;
 
     transform:
       translateX(-50%);
 
-    width: 84px;
-
-    height: 84px;
+    font-size: 48px;
   }
 
 
@@ -604,17 +626,14 @@ button:disabled {
 <body>
 
 
+<!-- ===================================================
+     TOPO
+     =================================================== -->
+
 <header>
 
-
-  <div class="logo-box">
-
-    <img
-      class="logo-topo"
-      alt="Pizzaria Di Roma"
-      src="data:image/jpeg;base64,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"
-    >
-
+  <div class="icone-topo">
+    🛵
   </div>
 
 
@@ -627,7 +646,6 @@ button:disabled {
     --:--
   </div>
 
-
 </header>
 
 
@@ -637,12 +655,19 @@ button:disabled {
 
   <div id="mensagem"></div>
 
+
   <div id="chamado"></div>
 
 
 
+  <!-- =================================================
+       DISPONÍVEIS / EM ENTREGA
+       ================================================= -->
+
   <div class="grid-principal">
 
+
+    <!-- DISPONÍVEIS -->
 
     <div class="card">
 
@@ -667,6 +692,8 @@ button:disabled {
     </div>
 
 
+
+    <!-- EM ENTREGA -->
 
     <div class="card">
 
@@ -694,6 +721,10 @@ button:disabled {
   </div>
 
 
+
+  <!-- =================================================
+       CONTROLE DA LOJA
+       ================================================= -->
 
   <div class="card">
 
@@ -731,10 +762,13 @@ button:disabled {
       🌙 ENCERRAR DIA
     </button>
 
-
   </div>
 
 
+
+  <!-- =================================================
+       GRID
+       ================================================= -->
 
   <div class="card">
 
@@ -745,26 +779,21 @@ button:disabled {
 
     <div class="grid-cabecalho">
 
-
       <div>
         Motoboy
       </div>
-
 
       <div>
         Chegada
       </div>
 
-
       <div>
         Nº Bag
       </div>
 
-
       <div>
         Máquina
       </div>
-
 
     </div>
 
@@ -772,7 +801,6 @@ button:disabled {
     <div id="historico">
       Carregando...
     </div>
-
 
   </div>
 
@@ -783,6 +811,10 @@ button:disabled {
 
 <script>
 
+
+/* =====================================================
+   SUPABASE
+   ===================================================== */
 
 const SUPABASE_URL =
   "https://nmkkabthynytwevadthq.supabase.co";
@@ -799,8 +831,7 @@ const supabaseClient =
   );
 
 
-let carregandoDados =
-  false;
+let carregandoDados = false;
 
 
 
@@ -850,7 +881,7 @@ function esconderMensagem() {
 
 
 /* =====================================================
-   HORÁRIO
+   FORMATAR HORÁRIO
    ===================================================== */
 
 function formatarHorario(
@@ -878,6 +909,10 @@ function formatarHorario(
 }
 
 
+
+/* =====================================================
+   RELÓGIO
+   ===================================================== */
 
 function atualizarRelogio() {
 
@@ -913,7 +948,7 @@ atualizarRelogio();
 
 
 /* =====================================================
-   HTML SEGURO
+   PROTEGER TEXTO HTML
    ===================================================== */
 
 function esc(
@@ -941,7 +976,6 @@ function esc(
    ===================================================== */
 
 async function carregarDados() {
-
 
   if (
     carregandoDados
@@ -978,6 +1012,7 @@ async function carregarDados() {
       resposta.data || [];
 
 
+    /* FILA DISPONÍVEL */
 
     const fila =
       todos
@@ -995,14 +1030,36 @@ async function carregarDados() {
         );
 
 
+    /* EM ENTREGA */
 
     const entregas =
-      todos.filter(
-        moto =>
-          moto.status ===
-          "em_entrega"
-      );
+      todos
 
+        .filter(
+          moto =>
+            moto.status ===
+            "em_entrega"
+        )
+
+        .sort(
+          (a,b) => {
+
+            const dataA =
+              a.ultima_saida
+                ? new Date(a.ultima_saida)
+                : new Date(0);
+
+
+            const dataB =
+              b.ultima_saida
+                ? new Date(b.ultima_saida)
+                : new Date(0);
+
+
+            return dataA - dataB;
+
+          }
+        );
 
 
     mostrarFila(
@@ -1048,13 +1105,14 @@ async function carregarDados() {
 
 
 /* =====================================================
-   DISPONÍVEIS
+   MOSTRAR DISPONÍVEIS
+
+   NÃO MOSTRA HORÁRIO.
    ===================================================== */
 
 function mostrarFila(
   fila
 ) {
-
 
   const elemento =
     document.getElementById(
@@ -1074,11 +1132,9 @@ function mostrarFila(
     fila.length;
 
 
-
   if (
     fila.length === 0
   ) {
-
 
     elemento.innerHTML =
       '<div class="vazio">' +
@@ -1089,7 +1145,6 @@ function mostrarFila(
     return;
 
   }
-
 
 
   fila.forEach(
@@ -1106,7 +1161,6 @@ function mostrarFila(
       const podeDescer =
         index <
         fila.length - 1;
-
 
 
       elemento.innerHTML += `
@@ -1150,7 +1204,7 @@ function mostrarFila(
 
               <button
                 class="botao-subir"
-                title="Subir"
+                title="Subir uma posição"
                 ${podeSubir ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', -1)"
               >
@@ -1162,7 +1216,7 @@ function mostrarFila(
 
               <button
                 class="botao-descer"
-                title="Descer"
+                title="Descer uma posição"
                 ${podeDescer ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', 1)"
               >
@@ -1174,7 +1228,7 @@ function mostrarFila(
 
               <button
                 class="botao-excluir"
-                title="Remover"
+                title="Remover da fila"
                 onclick="excluirDaFila('${moto.id}')"
               >
 
@@ -1202,13 +1256,15 @@ function mostrarFila(
 
 
 /* =====================================================
-   EM ENTREGA
+   MOSTRAR EM ENTREGA
+
+   ÚNICO LOCAL ONDE APARECE
+   A ÚLTIMA SAÍDA.
    ===================================================== */
 
 function mostrarEntregas(
   entregas
 ) {
-
 
   const elemento =
     document.getElementById(
@@ -1228,11 +1284,9 @@ function mostrarEntregas(
     entregas.length;
 
 
-
   if (
     entregas.length === 0
   ) {
-
 
     elemento.innerHTML =
       '<div class="vazio">' +
@@ -1243,7 +1297,6 @@ function mostrarEntregas(
     return;
 
   }
-
 
 
   entregas.forEach(
@@ -1298,7 +1351,7 @@ function mostrarEntregas(
 
               <button
                 class="botao-retornar-manual"
-                title="Retornar para a fila"
+                title="Retornar para o final da fila"
                 onclick="retornarEntregaManual('${moto.id}')"
               >
 
@@ -1309,7 +1362,7 @@ function mostrarEntregas(
 
               <button
                 class="botao-excluir"
-                title="Remover"
+                title="Remover de Em entrega"
                 onclick="excluirEmEntrega('${moto.id}')"
               >
 
@@ -1337,13 +1390,15 @@ function mostrarEntregas(
 
 
 /* =====================================================
-   GRID
+   MOSTRAR GRID
+
+   O HORÁRIO DE CHEGADA APARECE
+   SOMENTE AQUI.
    ===================================================== */
 
 function mostrarGrid(
   motoboys
 ) {
-
 
   const elemento =
     document.getElementById(
@@ -1353,7 +1408,6 @@ function mostrarGrid(
 
   elemento.innerHTML =
     "";
-
 
 
   const lista =
@@ -1375,11 +1429,9 @@ function mostrarGrid(
       );
 
 
-
   if (
     lista.length === 0
   ) {
-
 
     elemento.innerHTML =
       '<div class="vazio">' +
@@ -1390,7 +1442,6 @@ function mostrarGrid(
     return;
 
   }
-
 
 
   lista.forEach(
@@ -1472,7 +1523,6 @@ async function salvarBagMaquina(
   id
 ) {
 
-
   const campoBag =
     document.getElementById(
       "bag-" + id
@@ -1493,7 +1543,6 @@ async function salvarBagMaquina(
     return;
 
   }
-
 
 
   try {
@@ -1526,7 +1575,6 @@ async function salvarBagMaquina(
     }
 
 
-
     campoBag.classList.add(
       "salvo"
     );
@@ -1540,7 +1588,6 @@ async function salvarBagMaquina(
     setTimeout(
       function() {
 
-
         campoBag.classList.remove(
           "salvo"
         );
@@ -1549,7 +1596,6 @@ async function salvarBagMaquina(
         campoMaquina.classList.remove(
           "salvo"
         );
-
 
       },
       1000
@@ -1576,7 +1622,6 @@ async function salvarBagMaquina(
    ===================================================== */
 
 async function reorganizarFila() {
-
 
   const resposta =
     await supabaseClient
@@ -1607,7 +1652,6 @@ async function reorganizarFila() {
 
   const fila =
     resposta.data || [];
-
 
 
   for (
@@ -1659,14 +1703,13 @@ async function reorganizarFila() {
 
 
 /* =====================================================
-   MOVER FILA
+   MOVER NA FILA
    ===================================================== */
 
 async function moverNaFila(
   id,
   direcao
 ) {
-
 
   esconderMensagem();
 
@@ -1675,7 +1718,6 @@ async function moverNaFila(
 
 
     await reorganizarFila();
-
 
 
     const resposta =
@@ -1705,7 +1747,6 @@ async function moverNaFila(
     }
 
 
-
     const fila =
       resposta.data || [];
 
@@ -1727,7 +1768,6 @@ async function moverNaFila(
     }
 
 
-
     const destino =
       indice +
       direcao;
@@ -1743,7 +1783,6 @@ async function moverNaFila(
     }
 
 
-
     const atual =
       fila[indice];
 
@@ -1752,8 +1791,12 @@ async function moverNaFila(
       fila[destino];
 
 
+    /*
+      POSIÇÃO TEMPORÁRIA PARA EVITAR
+      CONFLITO DURANTE A TROCA.
+    */
 
-    const p1 =
+    const passo1 =
       await supabaseClient
         .from("motoboys")
         .update({
@@ -1769,16 +1812,15 @@ async function moverNaFila(
 
 
     if (
-      p1.error
+      passo1.error
     ) {
 
-      throw p1.error;
+      throw passo1.error;
 
     }
 
 
-
-    const p2 =
+    const passo2 =
       await supabaseClient
         .from("motoboys")
         .update({
@@ -1794,16 +1836,15 @@ async function moverNaFila(
 
 
     if (
-      p2.error
+      passo2.error
     ) {
 
-      throw p2.error;
+      throw passo2.error;
 
     }
 
 
-
-    const p3 =
+    const passo3 =
       await supabaseClient
         .from("motoboys")
         .update({
@@ -1819,13 +1860,12 @@ async function moverNaFila(
 
 
     if (
-      p3.error
+      passo3.error
     ) {
 
-      throw p3.error;
+      throw passo3.error;
 
     }
-
 
 
     await carregarDados();
@@ -1847,13 +1887,14 @@ async function moverNaFila(
 
 
 /* =====================================================
-   EXCLUIR DISPONÍVEL
+   EXCLUIR DA FILA
+
+   NÃO APAGA O GRID.
    ===================================================== */
 
 async function excluirDaFila(
   id
 ) {
-
 
   esconderMensagem();
 
@@ -1892,20 +1933,22 @@ async function excluirDaFila(
     }
 
 
-
-    if (
-      !confirm(
+    const confirmar =
+      confirm(
         "Remover " +
         moto.nome +
         " da fila?\n\n" +
         "O histórico continuará no Grid."
-      )
+      );
+
+
+    if (
+      !confirmar
     ) {
 
       return;
 
     }
-
 
 
     const resposta =
@@ -1935,7 +1978,6 @@ async function excluirDaFila(
     }
 
 
-
     await reorganizarFila();
 
 
@@ -1958,13 +2000,12 @@ async function excluirDaFila(
 
 
 /* =====================================================
-   RETORNO MANUAL
+   RETORNAR MANUALMENTE PARA FILA
    ===================================================== */
 
 async function retornarEntregaManual(
   id
 ) {
-
 
   esconderMensagem();
 
@@ -2002,7 +2043,6 @@ async function retornarEntregaManual(
       "em_entrega"
     ) {
 
-
       await carregarDados();
 
       return;
@@ -2010,19 +2050,21 @@ async function retornarEntregaManual(
     }
 
 
-
-    if (
-      !confirm(
+    const confirmar =
+      confirm(
         "Retornar " +
         moto.nome +
         " para o final da fila?"
-      )
+      );
+
+
+    if (
+      !confirmar
     ) {
 
       return;
 
     }
-
 
 
     const maior =
@@ -2054,11 +2096,9 @@ async function retornarEntregaManual(
     }
 
 
-
     const ultimaPosicao =
       maior.data?.posicao ||
       0;
-
 
 
     const retorno =
@@ -2088,7 +2128,6 @@ async function retornarEntregaManual(
     }
 
 
-
     await carregarDados();
 
 
@@ -2109,12 +2148,13 @@ async function retornarEntregaManual(
 
 /* =====================================================
    EXCLUIR EM ENTREGA
+
+   NÃO APAGA O GRID.
    ===================================================== */
 
 async function excluirEmEntrega(
   id
 ) {
-
 
   esconderMensagem();
 
@@ -2153,20 +2193,22 @@ async function excluirEmEntrega(
     }
 
 
-
-    if (
-      !confirm(
+    const confirmar =
+      confirm(
         "Remover " +
         moto.nome +
         " de Em entrega?\n\n" +
         "O histórico continuará no Grid."
-      )
+      );
+
+
+    if (
+      !confirmar
     ) {
 
       return;
 
     }
-
 
 
     const resposta =
@@ -2196,7 +2238,6 @@ async function excluirEmEntrega(
     }
 
 
-
     await carregarDados();
 
 
@@ -2217,10 +2258,11 @@ async function excluirEmEntrega(
 
 /* =====================================================
    CHAMAR PRÓXIMO
+
+   GRAVA O HORÁRIO DA ÚLTIMA SAÍDA.
    ===================================================== */
 
 async function chamarProximo() {
-
 
   esconderMensagem();
 
@@ -2255,13 +2297,11 @@ async function chamarProximo() {
     }
 
 
-
     const moto =
       resposta.data;
 
 
     if (!moto) {
-
 
       alert(
         "Não há motoboys disponíveis."
@@ -2273,11 +2313,9 @@ async function chamarProximo() {
     }
 
 
-
     const agora =
       new Date()
         .toISOString();
-
 
 
     const atualizacao =
@@ -2310,9 +2348,7 @@ async function chamarProximo() {
     }
 
 
-
     await reorganizarFila();
-
 
 
     const chamado =
@@ -2337,15 +2373,12 @@ async function chamarProximo() {
     setTimeout(
       function() {
 
-
         chamado.style.display =
           "none";
-
 
       },
       5000
     );
-
 
 
     await carregarDados();
@@ -2367,11 +2400,10 @@ async function chamarProximo() {
 
 
 /* =====================================================
-   ATUALIZAR
+   ATUALIZAÇÃO MANUAL
    ===================================================== */
 
 async function atualizarListaManual() {
-
 
   esconderMensagem();
 
@@ -2395,11 +2427,10 @@ async function atualizarListaManual() {
 
 
 /* =====================================================
-   LIMPAR TELA
+   LIMPAR TELA AO ENCERRAR
    ===================================================== */
 
 function limparTelaEncerramento() {
-
 
   document
     .getElementById(
@@ -2452,10 +2483,12 @@ function limparTelaEncerramento() {
 
 /* =====================================================
    ENCERRAR DIA
+
+   ESTE É O ÚNICO MOMENTO EM QUE
+   O GRID É APAGADO.
    ===================================================== */
 
 async function encerrarDia() {
-
 
   const confirmar =
     confirm(
@@ -2465,7 +2498,9 @@ async function encerrarDia() {
     );
 
 
-  if (!confirmar) {
+  if (
+    !confirmar
+  ) {
 
     return;
 
@@ -2477,6 +2512,11 @@ async function encerrarDia() {
 
   try {
 
+
+    /*
+      BUSCA TODOS OS REGISTROS,
+      INDEPENDENTEMENTE DO STATUS.
+    */
 
     const busca =
       await supabaseClient
@@ -2493,7 +2533,6 @@ async function encerrarDia() {
     }
 
 
-
     const registros =
       busca.data || [];
 
@@ -2501,7 +2540,6 @@ async function encerrarDia() {
     if (
       registros.length === 0
     ) {
-
 
       limparTelaEncerramento();
 
@@ -2516,7 +2554,6 @@ async function encerrarDia() {
     }
 
 
-
     const ids =
       registros.map(
         registro =>
@@ -2524,6 +2561,9 @@ async function encerrarDia() {
       );
 
 
+    /*
+      APAGA TODOS OS REGISTROS.
+    */
 
     const apagar =
       await supabaseClient
@@ -2544,10 +2584,17 @@ async function encerrarDia() {
     }
 
 
+    /*
+      LIMPA A TELA IMEDIATAMENTE.
+    */
 
     limparTelaEncerramento();
 
 
+    /*
+      CONFERE NO SUPABASE SE
+      REALMENTE FOI ZERADO.
+    */
 
     const conferencia =
       await supabaseClient
@@ -2564,19 +2611,16 @@ async function encerrarDia() {
     }
 
 
-
     if (
       conferencia.data &&
       conferencia.data.length > 0
     ) {
-
 
       throw new Error(
         "Ainda existem registros após o encerramento."
       );
 
     }
-
 
 
     alert(
@@ -2591,6 +2635,7 @@ async function encerrarDia() {
 
 
     console.error(
+      "Erro ao encerrar:",
       erro
     );
 
@@ -2608,7 +2653,7 @@ async function encerrarDia() {
 
 
 /* =====================================================
-   REALTIME
+   REALTIME SUPABASE
    ===================================================== */
 
 supabaseClient
@@ -2634,7 +2679,6 @@ supabaseClient
 
     function() {
 
-
       carregarDados();
 
     }
@@ -2646,7 +2690,9 @@ supabaseClient
 
 
 /* =====================================================
-   ATUALIZAÇÃO AUTOMÁTICA
+   ATUALIZAÇÃO AUTOMÁTICA DE SEGURANÇA
+
+   A CADA 3 SEGUNDOS.
    ===================================================== */
 
 setInterval(
@@ -2656,17 +2702,19 @@ setInterval(
 
 
 
+/* =====================================================
+   ATUALIZAR QUANDO VOLTAR PARA ABA
+   ===================================================== */
+
 document.addEventListener(
   "visibilitychange",
 
   function() {
 
-
     if (
       document.visibilityState ===
       "visible"
     ) {
-
 
       carregarDados();
 
@@ -2677,6 +2725,10 @@ document.addEventListener(
 
 
 
+/* =====================================================
+   ATUALIZAR QUANDO A JANELA GANHAR FOCO
+   ===================================================== */
+
 window.addEventListener(
   "focus",
   carregarDados
@@ -2685,7 +2737,7 @@ window.addEventListener(
 
 
 /* =====================================================
-   INICIAR
+   INICIAR SISTEMA
    ===================================================== */
 
 carregarDados();
