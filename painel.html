@@ -10,7 +10,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Controle Motoboys Pizzaria Di Roma</title>
+<title>Controle motoboys Di Roma</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -27,13 +27,33 @@ body {
   color: #111827;
 }
 
+
+/* =====================================================
+   TOPO
+   ===================================================== */
+
 header {
   background: #111827;
   color: white;
-  padding: 18px 24px;
+  padding: 14px 22px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
+}
+
+.header-esquerda {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: white;
 }
 
 header h1 {
@@ -45,6 +65,11 @@ header h1 {
   font-size: 18px;
   font-weight: bold;
 }
+
+
+/* =====================================================
+   ESTRUTURA
+   ===================================================== */
 
 .container {
   max-width: 1200px;
@@ -76,6 +101,11 @@ h2 {
   border-radius: 20px;
   font-size: 13px;
 }
+
+
+/* =====================================================
+   ITENS
+   ===================================================== */
 
 .item {
   display: flex;
@@ -127,6 +157,11 @@ h2 {
   padding: 15px 0;
 }
 
+
+/* =====================================================
+   BOTÕES
+   ===================================================== */
+
 button {
   border: 0;
   border-radius: 10px;
@@ -144,11 +179,6 @@ button:disabled {
   opacity: .35;
   cursor: not-allowed;
 }
-
-
-/* =====================================================
-   BOTÕES PRINCIPAIS
-   ===================================================== */
 
 .chamar {
   width: 100%;
@@ -192,11 +222,6 @@ button:disabled {
   background: #fee2e2;
   color: #991b1b;
 }
-
-
-/* =====================================================
-   CHAMADO
-   ===================================================== */
 
 #chamado {
   display: none;
@@ -245,7 +270,7 @@ button:disabled {
 
 
 /* =====================================================
-   CONTROLES EM ENTREGA
+   EM ENTREGA
    ===================================================== */
 
 .direita-entrega {
@@ -281,7 +306,6 @@ button:disabled {
     2fr
     1fr
     1fr
-    1fr
     1fr;
   gap: 10px;
   padding: 10px;
@@ -299,7 +323,6 @@ button:disabled {
     2fr
     1fr
     1fr
-    1fr
     1fr;
   gap: 10px;
   align-items: center;
@@ -313,12 +336,6 @@ button:disabled {
 
 .grid-horario {
   color: #6b7280;
-}
-
-.grid-entregas {
-  text-align: center;
-  font-weight: bold;
-  color: #1d4ed8;
 }
 
 .campo-grid {
@@ -353,8 +370,11 @@ button:disabled {
 
   header {
     flex-direction: column;
-    gap: 8px;
     text-align: center;
+  }
+
+  .header-esquerda {
+    flex-direction: column;
   }
 
 }
@@ -402,9 +422,19 @@ button:disabled {
 
 <header>
 
-  <h1>
-    🛵 Controle Motoboys Pizzaria Di Roma
-  </h1>
+  <div class="header-esquerda">
+
+    <img
+      class="logo"
+      alt="Di Roma Pizza"
+      src="data:image/jpeg;base64,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"
+    >
+
+    <h1>
+      Controle motoboys Di Roma
+    </h1>
+
+  </div>
 
   <div id="relogio">
     --:--
@@ -414,7 +444,6 @@ button:disabled {
 
 
 <div class="container">
-
 
   <div id="mensagem"></div>
 
@@ -427,7 +456,6 @@ button:disabled {
     <div class="card">
 
       <h2>
-
         🟢 Disponíveis
 
         <span
@@ -436,7 +464,6 @@ button:disabled {
         >
           0
         </span>
-
       </h2>
 
       <div id="fila">
@@ -449,7 +476,6 @@ button:disabled {
     <div class="card">
 
       <h2>
-
         🛵 Em entrega
 
         <span
@@ -458,7 +484,6 @@ button:disabled {
         >
           0
         </span>
-
       </h2>
 
       <div id="entregas">
@@ -477,7 +502,6 @@ button:disabled {
       🚀 Controle da loja
     </h2>
 
-
     <button
       class="chamar"
       onclick="chamarProximo()"
@@ -485,9 +509,7 @@ button:disabled {
       CHAMAR PRÓXIMO
     </button>
 
-
     <br><br>
-
 
     <button
       class="atualizar"
@@ -496,9 +518,7 @@ button:disabled {
       🔄 ATUALIZAR LISTA
     </button>
 
-
     <br><br>
-
 
     <button
       class="encerrar"
@@ -535,10 +555,6 @@ button:disabled {
         Máquina
       </div>
 
-      <div>
-        Entregas
-      </div>
-
     </div>
 
 
@@ -552,13 +568,8 @@ button:disabled {
 </div>
 
 
-
 <script>
 
-
-/* =====================================================
-   SUPABASE
-   ===================================================== */
 
 const SUPABASE_URL =
   "https://nmkkabthynytwevadthq.supabase.co";
@@ -580,10 +591,6 @@ let carregandoDados =
 
 
 
-/* =====================================================
-   MENSAGENS
-   ===================================================== */
-
 function mostrarMensagem(
   texto,
   tipo
@@ -594,15 +601,14 @@ function mostrarMensagem(
       "mensagem"
     );
 
-
   elemento.innerText =
     texto;
-
 
   elemento.className =
     tipo;
 
 }
+
 
 
 function esconderMensagem() {
@@ -612,10 +618,8 @@ function esconderMensagem() {
       "mensagem"
     );
 
-
   elemento.innerText =
     "";
-
 
   elemento.className =
     "";
@@ -624,9 +628,30 @@ function esconderMensagem() {
 
 
 
-/* =====================================================
-   RELÓGIO
-   ===================================================== */
+function formatarHorario(
+  data
+) {
+
+  if (!data) {
+
+    return "--:--";
+
+  }
+
+  return new Date(
+    data
+  )
+  .toLocaleTimeString(
+    "pt-BR",
+    {
+      hour: "2-digit",
+      minute: "2-digit"
+    }
+  );
+
+}
+
+
 
 function atualizarRelogio() {
 
@@ -661,10 +686,6 @@ atualizarRelogio();
 
 
 
-/* =====================================================
-   SEGURANÇA HTML
-   ===================================================== */
-
 function esc(
   texto
 ) {
@@ -674,10 +695,8 @@ function esc(
       "div"
     );
 
-
   div.textContent =
     texto ?? "";
-
 
   return div.innerHTML;
 
@@ -743,13 +762,11 @@ async function carregarDados() {
 
 
     const entregas =
-      todos
-
-        .filter(
-          moto =>
-            moto.status ===
-            "em_entrega"
-        );
+      todos.filter(
+        moto =>
+          moto.status ===
+          "em_entrega"
+      );
 
 
     mostrarFila(
@@ -784,7 +801,6 @@ async function carregarDados() {
 
   } finally {
 
-
     carregandoDados =
       false;
 
@@ -795,7 +811,7 @@ async function carregarDados() {
 
 
 /* =====================================================
-   FILA
+   DISPONÍVEIS
    ===================================================== */
 
 function mostrarFila(
@@ -829,7 +845,6 @@ function mostrarFila(
       'Nenhum motoboy disponível.' +
       '</div>';
 
-
     return;
 
   }
@@ -842,25 +857,10 @@ function mostrarFila(
     ) => {
 
 
-      const horario =
-        moto.primeira_chegada
-
-          ?
-
-          new Date(
-            moto.primeira_chegada
-          )
-          .toLocaleTimeString(
-            "pt-BR",
-            {
-              hour: "2-digit",
-              minute: "2-digit"
-            }
-          )
-
-          :
-
-          "--:--";
+      const ultimaSaida =
+        formatarHorario(
+          moto.ultima_saida
+        );
 
 
       const podeSubir =
@@ -882,15 +882,17 @@ function mostrarFila(
               ${index + 1}º
             </div>
 
+
             <div>
 
               <div class="nome">
                 ${esc(moto.nome)}
               </div>
 
+
               <div class="info">
-                Primeira chegada:
-                ${horario}
+                Última saída:
+                ${ultimaSaida}
               </div>
 
             </div>
@@ -899,7 +901,6 @@ function mostrarFila(
 
 
           <div class="direita-fila">
-
 
             <div class="status">
               Disponível
@@ -943,7 +944,6 @@ function mostrarFila(
 
       `;
 
-
     }
   );
 
@@ -986,7 +986,6 @@ function mostrarEntregas(
       'Nenhum motoboy em entrega.' +
       '</div>';
 
-
     return;
 
   }
@@ -996,31 +995,15 @@ function mostrarEntregas(
     moto => {
 
 
-      const horario =
-        moto.primeira_chegada
-
-          ?
-
-          new Date(
-            moto.primeira_chegada
-          )
-          .toLocaleTimeString(
-            "pt-BR",
-            {
-              hour: "2-digit",
-              minute: "2-digit"
-            }
-          )
-
-          :
-
-          "--:--";
+      const ultimaSaida =
+        formatarHorario(
+          moto.ultima_saida
+        );
 
 
       elemento.innerHTML += `
 
         <div class="item item-entrega">
-
 
           <div>
 
@@ -1028,16 +1011,16 @@ function mostrarEntregas(
               🛵 ${esc(moto.nome)}
             </div>
 
+
             <div class="info">
-              Primeira chegada:
-              ${horario}
+              Saiu às:
+              ${ultimaSaida}
             </div>
 
           </div>
 
 
           <div class="direita-entrega">
-
 
             <div class="status entrega">
               Em entrega
@@ -1065,14 +1048,11 @@ function mostrarEntregas(
 
             </div>
 
-
           </div>
-
 
         </div>
 
       `;
-
 
     }
   );
@@ -1127,7 +1107,6 @@ function mostrarGrid(
       'Nenhum motoboy registrado hoje.' +
       '</div>';
 
-
     return;
 
   }
@@ -1137,16 +1116,9 @@ function mostrarGrid(
     moto => {
 
 
-      const horario =
-        new Date(
+      const chegada =
+        formatarHorario(
           moto.primeira_chegada
-        )
-        .toLocaleTimeString(
-          "pt-BR",
-          {
-            hour: "2-digit",
-            minute: "2-digit"
-          }
         );
 
 
@@ -1164,7 +1136,7 @@ function mostrarGrid(
 
           <div class="grid-horario">
 
-            🕐 ${horario}
+            🕐 ${chegada}
 
           </div>
 
@@ -1199,17 +1171,9 @@ function mostrarGrid(
           </div>
 
 
-          <div class="grid-entregas">
-
-            ${moto.entregas_dia || 0}
-
-          </div>
-
-
         </div>
 
       `;
-
 
     }
   );
@@ -1219,7 +1183,7 @@ function mostrarGrid(
 
 
 /* =====================================================
-   SALVAR BAG / MÁQUINA
+   SALVAR BAG E MÁQUINA
    ===================================================== */
 
 async function salvarBagMaquina(
@@ -1372,14 +1336,13 @@ async function reorganizarFila() {
       novaPosicao
     ) {
 
+
       const atualizacao =
         await supabaseClient
           .from("motoboys")
           .update({
-
             posicao:
               novaPosicao
-
           })
           .eq(
             "id",
@@ -1724,9 +1687,9 @@ async function retornarEntregaManual(
 
     if (
       !confirm(
-        "Concluir a entrega de " +
+        "Retornar " +
         moto.nome +
-        " e retornar para a fila?"
+        " para o final da fila?"
       )
     ) {
 
@@ -1769,13 +1732,6 @@ async function retornarEntregaManual(
       0;
 
 
-    const novasEntregas =
-      (
-        moto.entregas_dia ||
-        0
-      ) + 1;
-
-
     const retorno =
       await supabaseClient
         .from("motoboys")
@@ -1785,10 +1741,7 @@ async function retornarEntregaManual(
             "disponivel",
 
           posicao:
-            ultimaPosicao + 1,
-
-          entregas_dia:
-            novasEntregas
+            ultimaPosicao + 1
 
         })
         .eq(
@@ -1871,7 +1824,7 @@ async function excluirEmEntrega(
         "Remover " +
         moto.nome +
         " de Em entrega?\n\n" +
-        "Não será contabilizada uma entrega e o Grid será mantido."
+        "O Grid será mantido."
       )
     ) {
 
@@ -1974,10 +1927,14 @@ async function chamarProximo() {
         "Não há motoboys disponíveis."
       );
 
-
       return;
 
     }
+
+
+    const agora =
+      new Date()
+        .toISOString();
 
 
     const atualizacao =
@@ -1989,7 +1946,10 @@ async function chamarProximo() {
             "em_entrega",
 
           posicao:
-            null
+            null,
+
+          ultima_saida:
+            agora
 
         })
         .eq(
@@ -2019,7 +1979,10 @@ async function chamarProximo() {
     chamado.innerText =
       "🛵 " +
       moto.nome +
-      " foi chamado para entrega!";
+      " saiu para entrega às " +
+      formatarHorario(
+        agora
+      );
 
 
     chamado.style.display =
@@ -2139,9 +2102,6 @@ function limparTelaEncerramento() {
 
 /* =====================================================
    ENCERRAR DIA
-
-   APAGA TODOS OS REGISTROS
-   INDEPENDENTEMENTE DO STATUS.
    ===================================================== */
 
 async function encerrarDia() {
@@ -2166,8 +2126,6 @@ async function encerrarDia() {
 
   try {
 
-
-    /* BUSCA TODOS OS IDs */
 
     const busca =
       await supabaseClient
@@ -2212,8 +2170,6 @@ async function encerrarDia() {
       );
 
 
-    /* APAGA TODOS */
-
     const apagar =
       await supabaseClient
         .from("motoboys")
@@ -2233,12 +2189,8 @@ async function encerrarDia() {
     }
 
 
-    /* LIMPA A TELA IMEDIATAMENTE */
-
     limparTelaEncerramento();
 
-
-    /* CONFERE O BANCO */
 
     const conferencia =
       await supabaseClient
@@ -2255,18 +2207,13 @@ async function encerrarDia() {
     }
 
 
-    /*
-      Se alguma linha continuar existindo,
-      o painel informa o problema.
-    */
-
     if (
       conferencia.data &&
       conferencia.data.length > 0
     ) {
 
       throw new Error(
-        "Ainda existem registros na tabela após o encerramento."
+        "Ainda existem registros após o encerramento."
       );
 
     }
@@ -2284,7 +2231,6 @@ async function encerrarDia() {
 
 
     console.error(
-      "Erro ao encerrar dia:",
       erro
     );
 
@@ -2349,10 +2295,6 @@ setInterval(
 
 
 
-/* =====================================================
-   VOLTAR PARA ABA
-   ===================================================== */
-
 document.addEventListener(
   "visibilitychange",
   function() {
@@ -2377,10 +2319,6 @@ window.addEventListener(
 );
 
 
-
-/* =====================================================
-   INICIAR
-   ===================================================== */
 
 carregarDados();
 
