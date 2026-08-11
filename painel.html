@@ -35,33 +35,46 @@ body {
 header {
   background: #111827;
   color: white;
-  padding: 14px 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-}
+  min-height: 100px;
+  padding: 14px 24px;
 
-.header-esquerda {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+
+  position: relative;
 }
 
-.logo {
-  width: 72px;
-  height: 72px;
+.logo-topo {
+  position: absolute;
+  left: 24px;
+
+  width: 76px;
+  height: 76px;
+
   object-fit: cover;
+
   border-radius: 14px;
+
   background: white;
+
+  border: 2px solid rgba(255,255,255,.25);
 }
 
 header h1 {
   margin: 0;
-  font-size: 24px;
+  padding: 0 110px;
+
+  width: 100%;
+
+  font-size: 26px;
+  text-align: center;
 }
 
 #relogio {
+  position: absolute;
+  right: 24px;
+
   font-size: 18px;
   font-weight: bold;
 }
@@ -85,10 +98,16 @@ header h1 {
 
 .card {
   background: white;
+
   border-radius: 14px;
+
   padding: 20px;
+
   margin-bottom: 20px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+
+  box-shadow:
+    0 3px 12px
+    rgba(0,0,0,.08);
 }
 
 h2 {
@@ -97,8 +116,11 @@ h2 {
 
 .contador {
   background: #e5e7eb;
+
   padding: 5px 10px;
+
   border-radius: 20px;
+
   font-size: 13px;
 }
 
@@ -109,10 +131,15 @@ h2 {
 
 .item {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
+
   padding: 15px 5px;
-  border-bottom: 1px solid #e5e7eb;
+
+  border-bottom:
+    1px solid #e5e7eb;
+
   gap: 10px;
 }
 
@@ -123,6 +150,7 @@ h2 {
 
 .posicao {
   width: 50px;
+
   font-size: 22px;
   font-weight: bold;
 }
@@ -133,17 +161,23 @@ h2 {
 }
 
 .info {
-  margin-top: 4px;
+  margin-top: 5px;
+
   color: #6b7280;
-  font-size: 13px;
+
+  font-size: 14px;
 }
 
 .status {
   padding: 6px 10px;
+
   border-radius: 20px;
+
   font-size: 12px;
+
   background: #dcfce7;
   color: #166534;
+
   white-space: nowrap;
 }
 
@@ -154,6 +188,7 @@ h2 {
 
 .vazio {
   color: #6b7280;
+
   padding: 15px 0;
 }
 
@@ -164,10 +199,14 @@ h2 {
 
 button {
   border: 0;
+
   border-radius: 10px;
+
   padding: 15px;
+
   font-size: 16px;
   font-weight: bold;
+
   cursor: pointer;
 }
 
@@ -177,24 +216,31 @@ button:hover {
 
 button:disabled {
   opacity: .35;
+
   cursor: not-allowed;
 }
 
 .chamar {
   width: 100%;
+
   background: #15803d;
+
   color: white;
 }
 
 .atualizar {
   width: 100%;
+
   background: #2563eb;
+
   color: white;
 }
 
 .encerrar {
   width: 100%;
+
   background: #b91c1c;
+
   color: white;
 }
 
@@ -205,32 +251,47 @@ button:disabled {
 
 #mensagem {
   display: none;
+
   padding: 15px;
+
   border-radius: 10px;
+
   margin-bottom: 20px;
+
   font-weight: bold;
 }
 
 #mensagem.sucesso {
   display: block;
+
   background: #dcfce7;
+
   color: #166534;
 }
 
 #mensagem.erro {
   display: block;
+
   background: #fee2e2;
+
   color: #991b1b;
 }
 
 #chamado {
   display: none;
+
   background: #dcfce7;
+
   color: #166534;
+
   padding: 20px;
+
   border-radius: 12px;
+
   margin-bottom: 20px;
+
   text-align: center;
+
   font-size: 22px;
   font-weight: bold;
 }
@@ -242,56 +303,69 @@ button:disabled {
 
 .direita-fila {
   display: flex;
+
   align-items: center;
+
   gap: 10px;
 }
 
 .acoes-fila {
   display: flex;
+
   gap: 5px;
 }
 
 .acoes-fila button {
   padding: 8px 10px;
+
   font-size: 14px;
+
   border-radius: 8px;
 }
 
 .botao-subir,
 .botao-descer {
   background: #374151;
+
   color: white;
 }
 
 .botao-excluir {
   background: #b91c1c;
+
   color: white;
 }
 
 
 /* =====================================================
-   EM ENTREGA
+   CONTROLES EM ENTREGA
    ===================================================== */
 
 .direita-entrega {
   display: flex;
+
   align-items: center;
+
   gap: 10px;
 }
 
 .acoes-entrega {
   display: flex;
+
   gap: 5px;
 }
 
 .acoes-entrega button {
   padding: 8px 10px;
+
   font-size: 14px;
+
   border-radius: 8px;
 }
 
 .botao-retornar-manual {
   background: #2563eb;
+
   color: white;
 }
 
@@ -302,32 +376,46 @@ button:disabled {
 
 .grid-cabecalho {
   display: grid;
+
   grid-template-columns:
     2fr
     1fr
     1fr
     1fr;
+
   gap: 10px;
+
   padding: 10px;
+
   background: #111827;
+
   color: white;
+
   border-radius: 10px;
+
   font-size: 13px;
   font-weight: bold;
+
   margin-bottom: 5px;
 }
 
 .grid-item {
   display: grid;
+
   grid-template-columns:
     2fr
     1fr
     1fr
     1fr;
+
   gap: 10px;
+
   align-items: center;
+
   padding: 12px 10px;
-  border-bottom: 1px solid #e5e7eb;
+
+  border-bottom:
+    1px solid #e5e7eb;
 }
 
 .grid-nome {
@@ -340,20 +428,28 @@ button:disabled {
 
 .campo-grid {
   width: 100%;
+
   padding: 9px;
-  border: 1px solid #d1d5db;
+
+  border:
+    1px solid #d1d5db;
+
   border-radius: 8px;
+
   font-size: 15px;
+
   background: white;
 }
 
 .campo-grid:focus {
   outline: none;
+
   border-color: #2563eb;
 }
 
 .salvo {
   border-color: #15803d;
+
   background: #f0fdf4;
 }
 
@@ -368,28 +464,58 @@ button:disabled {
     grid-template-columns: 1fr;
   }
 
-  header {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .header-esquerda {
-    flex-direction: column;
-  }
-
 }
 
+
 @media (max-width: 650px) {
+
+  header {
+    min-height: 170px;
+
+    padding:
+      92px 15px
+      15px;
+  }
+
+  .logo-topo {
+    top: 10px;
+
+    left: 50%;
+
+    transform:
+      translateX(-50%);
+
+    width: 72px;
+    height: 72px;
+  }
+
+  header h1 {
+    padding: 0;
+
+    font-size: 22px;
+  }
+
+  #relogio {
+    position: static;
+
+    margin-top: 8px;
+  }
+
+  header {
+    flex-direction: column;
+  }
 
   .item-fila,
   .item-entrega {
     align-items: flex-start;
+
     flex-direction: column;
   }
 
   .direita-fila,
   .direita-entrega {
     width: 100%;
+
     justify-content: space-between;
   }
 
@@ -398,15 +524,23 @@ button:disabled {
   }
 
   .grid-item {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
+
     background: #f9fafb;
+
     border-radius: 10px;
+
     margin-bottom: 10px;
-    border: 1px solid #e5e7eb;
+
+    border:
+      1px solid #e5e7eb;
   }
 
   .grid-nome {
-    grid-column: 1 / 3;
+    grid-column:
+      1 / 3;
+
     font-size: 17px;
   }
 
@@ -422,19 +556,19 @@ button:disabled {
 
 <header>
 
-  <div class="header-esquerda">
+  <!-- LOGO EMBUTIDO -->
 
-    <img
-      class="logo"
-      alt="Di Roma Pizza"
-      src="data:image/jpeg;base64,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"
-    >
+  <img
+    class="logo-topo"
+    alt="Pizzaria Di Roma"
+    src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAC0ALQDASIAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAAAAcFBgIDBAgB/8QARRAAAQMDAQQHBQUFBQgDAAAAAQIDBAAFEQYSITFBBxNRYXGBkRQiobHBIzJCUtEVJDNichZDgsLhNERTVGNzk7KSouL/xAAbAQABBQEBAAAAAAAAAAAAAAAEAgMFBgcBAP/EADkRAAEDAgMFBQcDAwUBAAAAAAEAAgMEEQUhMQYSE0FRImFxgZEUMqGxwdHwI+HxNEJSFkNEcoKS/9oADAMBAAIRAxEAPwC9xuk2yuLCX2JjIP4igKHwOas9rvNuu7ZXbpbT4HEJPvJ8RxFee62R33YzyXo7q2nUHKVoVgjzqPbVuHvZq8VGzNO5v6Li09+Y+6fNz03aLnlUqE2XD/eI9xXqKq8/o2ZVlVvnLR2IeTtD1GPlXNpHpC6xSIV/UlKjuRLAwD/WOXjTGSoKAKSCDvBFFNMcouFScRwYQyblQzPr180n52iL7EJKYyZCR+JhYPwODUDJiSYi9iVHdZV2OIKfnT4nTI8CKuTLdS0ygZUo1EW3U1lvj5hsubbhBw283jbHdnjXHRNva6gJsKpw4Na+xPIpM18p0TtI2KbkrgNtqP4mSUH4bqr0/o2ZVk2+etB5IeTtD1GPlSDC4ISTCKhvu2KXFFWG46MvcDKvZfaGx+OOdr4cfhUAtCkKKVpKVDcUqGCKbII1UdJDJEbPaQsaKKK4m1a+jiemHqAMuHCZTZbH9XEfIjzptV59acW04lxtRStBCkqHEEcDTo0pfG75a0PZAkN+6+gcldvgeNEQuy3VYcHqAWmE66hLLpPWtWrXgv7qWWwjwxn5k1U6Y/S5alB2Jdm05TjqHSOR4pPzHpS4oGcESG62bBpWyUMZbyFvMIoooppSiYnRFciiRMta1e6tIebHeNyvhj0rHpQjKbvbEjHuvMAZ70k5+YqsaLm+waotz2cJU6G1eCvd+tM7pFt3ttgU+hOXIiusH9PBX6+VHQnehI6LMttKLtuc3+4A+Y1+CU1FFFIWYJu6SsMKPYIpfjNOuvIDq1LQCcqGceQxRUZp3W9sj2aNHuC3W32UBs4QVAgbgd3dRRbXMsrdBPSCJo3hoOiUtFFFRK25FMLo41Yph5uzXF3LKzsxnFH7h/Ie48vSl7X0EpIKSQRvBHKlxvLHXCDrqOOshMT/ACPQ9U8dc2mTeLGWYXvPNuBwIzjbwCMfGqVpLTF2F9jSJEV2MzHcC1LcGznHIduav+k7kq66dhTHf4i28OHtUDgn4ZqRjS40rb9mfad2DhXVrCsHvxUluteQ5ZFV4cw1N5D2mm1vBfZUhmJHckSXEtstpKlrUdwApZXbpOlqkqTaYrKY6ThK3wSpffgEYro6WbyrLFmZXhJAefxz/KPgT6UtqGqJ3B261XvBMGhkhE9QL30Hd1802tL9ITFzkIh3VpEV9ZwhxJ+zWezfwNWi62W3XZvZnRW3DyXjCh4Eb68+04ejbUK7tbVQpayqXEAG0TvWjkfEcD5UqCff7D0LjuCRQs40Q7PMa271XtR6ElW9KpFsUqVHG8t4+0QP83lVOr0JVG1vo9MpDlytbezJHvOspG5wdo/m+fjTj4ubVnVdhQAMkPp9ks6ldOXp6x3JEprKmz7rrefvp/XsqLr5TANjcKEY90bg5uoTzktQtRWRTe0HYstvcocuw+IPxFIu82yRZ7k9BlJw40dyuS08lDuNXPo91F+z5Ytspf7tIV9monc2s/Q/OrZrnTCdQQOsYATPYBLKvzjmg9x+BpyVnGZvDULTNmMcaw2eey7XuPXw/OSSdFZOtracW06hSHEKKVJUMFJHEGsaAWlggi4WSHFNLS4g4UghQ8Rvr0Qypu4W1ClAKaksgkdoUP8AWvOtPDo+me26TgknKmUllX+E4HwxRdIe0QqttTDvQxydCR6/wlTdIa7fcZENz7zLhTntHI+lctXvpOs6m5Td2ZQS24A28RyUOB8xu8qolKe3dNli1XAYJnM9PBFFFFJQy4W21uuJbbQpa1HCUpGST2AVdLJ0cXOclLtycTBaO/YI2nD5cBV70ppOFp9gKAD01Q+0kKG/wT2CpS7XiBZ4/XXGShlJ+6CclXgOJpUdMALvW1Vu0Msr+FRjztcnwCrsTo4sLKQHkyJCuZW6R8E4rKR0c6fdHuNSGT2tvH65qMm9KURCymDbnngPxOrCM+W+uZrpU977a0HZ/kf3/FNL3qcZZIcU+OO7d3f/AF9Lq7x7NHiWJVohqW0z1Sm0qzlQ2s5Oe3JzULo3SciwSpEiRKQ51iNhKWwcYznJzzrXA6SLFJwJHtEVX/UbyPVOa233XNnjWp9cCa3IlKQQ023knaPAnsApzfi1vooWXCKqWoa6SN2/fXPn36JXaqnG46iuEnaylTxSj+lPuj4ComjfxJ8TVu0roWbekokzCqJCO8KI99wfyjkO81HBrpHZLSJJoKGAcQ2AFvRVNCFOLCEJKlncEpGSfKr30e2G+wb4xOcguMxClSHS6QklJG73ePECmFZdP2uythMCKhC8b3Ve8tXio76lKMjpd0hxKqmIbRGdjoomdk5XOvpy+KKKKKLVYVD1holyZKM2zpQHHDl5knZBP5h9RVEuFouFtVidDdZH5lJ90+fCnvWLjaHEFDiUqSRgpUMg006IHNRdRhUUri5psT6Lz7wpzaJui7tYGXXiS80S04o/iI5+hFcF30Fa57odiqVCUT7wbGUnyPDyqds9siWO3pixiUtpJUpazvUTxJNcjY5pzTWH0U9NKS49myqvSDo/9poVc7Y3++oH2jaR/GSP8w+NKcggkEEEbiDyr0OLlAKtgToxV2B5OfnVJ17osTA5dbO2DIxtPMJ/vR+ZP83z8eLNRBvdpq0HAsbDLU8x7PI9O493y8NFbTD6Jbwhp+TaXl4609aznmoDCh6YPkaXpGDvGD2Vky64w8h5lam3UKCkLScFJHMUJG/ccHK019I2sp3RHnp4r0ZIYaksrZfbS40sYUhQyCKq7/R9ZHHCtHtLQJ+6hzd8Qaq1t6T5zDIRPgtSVAY6xC+rJ8RgitsjpTkqH7ta2kHtceKvkBRxnhcM1QptmauV1nxA253H3urKOj6xgb/aT3l3/SiqO50j6gWslJiIH5Qzn5mikceHolDY6X/Bv55JmaqvjdgtDk1adtzOw03+ZZ4eXPypG3O4y7pMXLnPKdeXzPADsA5CnHr3T7+oLU23DWkSGHOsQlRwF7sEZ5Up5OnL3FWUvWqWCOaWioeoyKTVb5dbkpzZw0jIi4uHEJ5627lFUVIN2O7unDdrmqP/AGFfpUjF0TqKTjZtq2x2urSj5nNChjjoFY31lPH70gHmFXqKvsLowuLmDNmxmBzDYKz9BVitfRvaIbrb0l6RKWhQVsrISgkdoA3+tOtppDyUdNj9DEMnbx7h9dFD6B0UlxLd2vLWUnCo8dY3EclKHyFMsDHCgDAwK+1IRxhgsFRq2tlrJTJIfAdEUUUUtCIooory8iiiivLyKj73aIt6gqiy0nB3pWnig9oqQorxF0lzQ4FrhkUi79ZpNknqiyk55tuAblp7RXRYdS3Gyup6h0uR8+8w4cpI7uw+FNPVNjavtsWwQA+jKmV/lV2eBpLPNLZdW06kocQopUk8QRxFCPaWG4VWrKd9FLvRmwOn2V3v2nomqoJvunQEyj/Hjbhtq5+CvnS5cQptakOJUhaThSVDBB7DVu0RelWi8tpcURFkkNujO4divI/DNX3VOjYF/Be/2abjc+gfe7lDn86Q+HiDebqtE2b2oJhEdTmBlfp+3ySSoqy3HQ2oILpSIRko5OR1BQPlxHpW606Avc9wGSyILH4lvEbXkkb/AFxQ3Cfe1ldziVGGb/FFvH6aqqUU0mYuhbQ2IclTMp5H33VoLhJ8QMDwFFPezHm4KAftjQNcR9R91yR+k59y7IQqC2IK3AgYUesAJxns8qZlVGJp7Sq5j94YaA9leV1m0VBttad5Oyd270qs6n1tLuDi49rWqPEG7bG5bnfnkO6iWucwEvN1Vcar6CHd4LC02zB1J/OaYNzv9qteRNmtIWP7sHaV6DfVamdJEFskQ4T73eshA+ppZkkkk7yeJNFJMzjoqlLjE7vcAHxV1e6Rbq+sIiQ4zZUcJB2lkn1FMiEH0xGRLWFyNgdYpIwCrngUodCwhN1NESoZQ0S8r/Dw+OKctOxEkXKkcLklla6SR1+SKKjL5eWrU22OrU/JfVsssI4rP0FQ13m3eGiOlB2p9zdS0gYy1FGPid/HnillwClYv1ZeEzXn0HirOuSyh9thTiQ64CUI5kDifCttQMZi36dbVKnzVOynRhch9W0tYH4UjkO4VXLz0lMtFTdsjhah+Nzf8B+vlSXStYO0UdDQS1DrQNLh10CYNan5MeOMvvttDtWsJ+dJK46yvc8kLmONoP4Wzsj4Y+NQi33XF7bqisnmrfQ7qxvIKah2YmIvI8Dwz+yfDupbGycOXaED3PJNYI1TYFnCbvDz3ugUjEynE8EtebST8xW5E9PCRBhvJ/7ewfVOKR7YeiJOzDAPeJ9Pz4p/RpsSWMxZLLw7W3Ar5VhOuEaCEGSsp2zhOEk/LxpDhNpc+1iPybdJTvAK9pPkoYNTmndYu+2sW/UTomwysJRIKjttZ5kjeU8M5304yqBNio6fAZGAujJNtQRY+WoKcqVBaQpJykjIPbSw6TLSI1ybuDScIlDC8fnHPzHyNM9ACUgJwABgYqA13CE3TUrdlbIDyf8ADx+GaIkbdqqWIQiWncOYzHkk3innp2UqbY4Mhe9a2ElR7TjBpIx2HZL6GGEFbriglCRxJNPGyQv2daYkMnJZaSlRHM8/jTUF7lReCB2+88l0TJTEOM5IlOJbabGVKVypVao1hKu61x4ilR4PDZBwpz+ru7qz15qFV0nqhxl/ucdWNx3OLHE+A5VVK5JJc2CRiOIue4xRnLn3/siiiimVCpj9J12Uwwza2VbJeHWPY/KDuHmR8KXFX7pC0/cpl1ROhR1yGlNBBDe8oIzy7KrsXSF+kn3betsdrqgj5mnZA4u0UriEc8tS7sk9MuSgqKukbo4ua8GRKitdwKlH5CpFno0bH8e5rP8AQyB8zSRE/omW4bVO/t+S4uipkKuc14jehkJHmf8ASmZUDpnTMfTyn1MSHXS8EhXWAbsZ4Y8anqJjaWtsVY6CF0MAY7XNcUq2RpNwiznEnr42dgg8iCMH1qC1JqhqE6IMDq1yyrZ2lYwhXYO1XyzzO6pPVdxXa7HIkNKCXTsttqPJSiEg+Wc+VI1m5J/brE2RtqZaeCgkbyEg5HHieZ7TmmZ5dzsjmrLhGFio3pSMh8TZSN4duFwUqS7KQ8hTvVOYWRsK34C9oA43Hu3HhUUx1CX0+1FZZSTt9VxUByGe3trsh3BqI4Eo61bKlFbiyAFKVsqSCBnAxtE8a5C405Ib2kFEdJSnZG8hIO/xPGgHWOavELXMaY92zbZWy/CrJcIMeAp5Mu3x24Jj/ZugKDnXFAISk7RKsKIzndjPCou3WRUoRxIlsxFSwfZUOAkunOBw+6knIya6ZV0Mt25LkQHn4MyQXWd5QW1gkJIODy90jn5Vg3PXiFLMB9UuE2llpY/hEpJ2CRjOQTwzvIpRfGTqgo/aGR2vn1uOnedb5H8to/YE1LXWvlhpAe6pZLoVsYBJUdnO4AeNbZmnnojVxW5KZ/cjuTg5dG2EFQ7Bk438cHsrGNOeiwfYXYjqv3tMyQSMFaABu4bhnfnwrNV+TIdurk6KXvbloWlKXNkI2VEhJ3b079+McK4OERknS+tLrixA6WzFx1PS/P46c8PT5myGozkxDEl1rrg2ptStlvG1lRHA4347xwzUE4haYqpOyeqCtkKO7JxnFWWTq1pm5Ce3BShTqAmWlTm50BGxspwPdTzxv347K36JsL+sLuxKejCNYoKvdbGdlZBzsgn7xJ+8f9KWGB1g1Dy1stOHST5Cw6a53GXlbu9E5bQXTaoRfz1pjo28/m2Rn41sms+0w32N32rakb+8YreN1FSiz53avfmqxpLSTFjSJEhSX5xGCvHuoHYn9a6dbXQ2qwPraVsvPfZNnsJ4nyGanqXPSrKJkwIgPupQpwjvJwPkabdZjMlH1O7SUjhGLfuqFRRQaEVSRRXyivLyfsGU3NhsymTlt5AWk9xGao+rukEQZDkGzIbdeQdlx9e9KT2Acz38Knbp1mntDuoYVl2JEDaVj82AnPqc0j6cqJnMAA1Wx4HhcFS98r82tNgOvip1/WGoXlFSrq+nPJsBI+AoZ1hqFlQKbq+ruXhXzFQVFBcR/Uq3ew0trcNtvAJoaF1pcLvdU265BhW22pSHUJ2VEjfg8uGaYVee7HPNrvEScODLoUodqeB+BNegm3EutpcbUFIUAUkcwaPppC9pB1CpW0FEymna6NtmuHxGv0Vb6R4UmdpGYiEhS32ih5KE8VbKgTjyzSGYdQ8RsqAzxzyr0/VD1X0YWq9PrlwHDb5izlRbTltZ7SnkfCvTwl+YXMHxVtIDHJoc7pcR7NKfZDkVTUjtS24CfSud6HKYVsvxnmz/ADNkVLS+jHVkJZMRceUkcFNvbJ9FYrQNMdILXuJiy8fyyEY/9qC4DxyVkjxeE/7gPw+v0XO1KkJajttsK2WsbWE71gL28E43DPyr4uSzsJQ7HXvdLjqQ6AHN/A7sjA3etdSdDa6ln7ZgpB5uyUfqakofRFe5GDcbpGZSeIQVOH6CkijJ0CbfilE3MuHkfsoH9usRXnHNhKi4obYWvJ2QMbICcYG/4Coph2VcpAjWiG8+6o+6lKSo48vnTbtHRJYIZC5zkicscQtWwj0Tv+NXa3WyDbGAxbojMZofhaQE58e2n4qENNyoybaCNl+A38/PBKzS3RTIkOImapd2U8REbVkn+pQ4eA9abMSMxDjNxorSGWG07KG0DASO4Vtoo5kbWCwVdqauapdvSFFYOutsoK3VpQgcVKOAKzql9J9xDFqagJPvyV7Sh/Inf88eldcd0XQFRMIYnSHkroN/ClX0nk/2ibzw9mTj/wCSqmejO9OyW3rZJWVllIWyVHJ2eBHlu9a4elWOUz4MnG5bSkE94Of81NvO9HcKMrpRUUPEb3Ki18r7XyhlW0UVNWnS90u8T2qG0ktbRSCpWMkUUoMceSIbSTuAc1hsm/dYLdytsmE8cIfbKCezPOkVebFcbNJUzNjLAB911KSULHaDTZma7sUYkIedkEf8Fs49TgVFu9JMPOEW59Q/mWkfrTkzGSanNaBh+0kWGkjeDgeX8XSrSy6v7jTivBJNfVR3kjKmXEjtKCKarHSPAKgHoEhtPahSVfpVmtF9tt6QfYZCVqAyptQwoeINMimadHKai21ilNmMB/8AX7JAU3OjG+ifa/2a+v8AeYYwnPFTfI+XD0qavulbTeWVB+Kht4j3X2khK0n6+BpRLE/SOoyEqAkxV7j+FxB+hFcDXU7g45hSLqiHHKd0TRuyDMX+/TkU+aKjNP3qLfbciZEVx3ONk721cwak6PBBFwqY9jo3FjxYhFFFFdSEUUUV5eRRRRXl5FFFFeXli4tLTanHFBKEglSjwAHOknqi7qvV4elDPVD3GQeSBw9ePnVj6RdVCQtVktrmUA/vTqTu3fgH19O2qOeNCyyBx3QonaBj4WRscc3Z2525E+Oas/Rw4UaoZSD99paT6Z+lXbpBtirhp9a2k5diq61OOY/EPTf5VQdBL2NVwe/bH/0NOMgKBBAIO4g0uIXYQm8MYJqN0Z5k/ILz5RVj1np1dknqcZQTBeUS0ofgP5T9O6oGMnaktJPArSPjQ5BBsVAyQuikMbtU8LFCTAs8OKkY6tpIPjjJ+OaK7xuFFHgWV2a0NaGjkvPdFFMSx6FhTdPsvyluolyEdYlaTuQDwGOe7FAtaXaKmU9LJUOLWcku66IMx+BLalRVlDrStpJHy8KzukB+2T3ocpOHGlYOOBHIjuNc7LS33m2WxlbiglI7STgVzMFNWcx9tCE+4b4kxGZAGA62lYHiM0sOl2OlF2gyAMKdYUlXfsn/APVM+IyI8Rlgbw02lA8hiofVmmI2pY7KHnVsOskltxIzjPEEcxuFFTML2WGq0rCKptLVMlk05+Y+6UukbhcoF7jC1HLj60tqaO9LgJ5+HHPKnwOFVrTGjYGn3DIQtciWRjrnABsjsSOVWRSkpSVKIAG8knhSYI3MbZyIxquhrJw6EZDn1X2ioKZrDT8NZQ7c2VKHENZX/wCoNa4mttPSl7CLihB/6yVIHqRinOIy9roAUVSW7wjdbwKsNFaI82LJx7NJZdzw6twK+Vb6WhyCDYoooory4sXHENIUtxaUISMlSjgAUvNXa461K4NlWdg+65JG7Pcn9fSsek5i5tutPKkuLtznuhsbghffjjnkTVAdUUNkjjwFDyykXCiJ6ionqW0cAs5xAv4/IL4Vtt7sgdwFZJWlf3TmuKvoJByOIoESFXOo2BhkhJEzjL1NrE+GvxPmrDph8RtQ291RwA+kHwO7608K89trPuuIODxHcae1juCLpao0xBH2rYKu5XAj1zR0ByIVJwneidJTvFnA6fAromRWJsdceU0l1pYwpChkGqvH0BbI9ybloefLbawtLCiCMjhv44q3UU+Wg6qUkgilIL23IRRRRXU8kLc7fKtkpcWa0W3U9vAjtB5indZ07FohJIxiO2MdnuitkuDEmBIlxmXwg5T1iArB7s10AY4U2yPdJUfR0IpXuINwUvulSAnZh3FKcKyWVnt5j61XtAwxM1NG2hlLALx8uHxIq6dJxSNOJB4mQjHoahOiloGdPePFLSUjzJP0ptw/VUfPC04k0dbH0/hMZTzSXUtKcQHFDKUFQyR3Cs6rt5scA3uPqObMWx7EjeCoBG7OMnz4c67rTqG03hxbdumtvOIGSjBBx24I3ing7OxVodBdgfHci2eWQPS623u6xrLbnZsxRDaBuSOKlHgB3mkxqPVNyv7yvaHC1Fz7kZs4SB3/AJj41Z+l6W4ZcCECQ0lCnSO0k4HyPrS8oGplJdujRXDZ/DYmwCpeLuOncEUUUUIrMsmlqacS40pSFpOQpJwQfGmDpDpBdbcRCvy9ts7kSjxT/X2jv9aXlFOMkcw3CDrKGCsZuSjwPML0ilQWkKSQUkZBB3GvtK/o41YWHG7NcXMsqOIzij9w/kPceXpTQqTjkEjbhZzXUUlHMYn+R6hcF9tyLraZMJYGXEHZJ5KG8H1xSIltqQlaFjCkKwoHkRuNehqT2vrd7DqKRspw1JHWp8+PxBpuobcXUJUSeyVMNaB7jhfwuqdRX0gpJB4ivlRq2pj2yND2m4OYXRGVuKD4irx0e6iTbpJt0xezGfVlCidyF/oaoCVFKgocq7QQpII4GiIX2WS7YYfJh2ICuiHZk1/7cx56+N16EopYaX105AaREuyVvMJ3IeTvWgdh7R8auzGqrE+gLTc2EjsWrZPoaPbI0oOCugmbcOsehUzRUC7rGwNrKTcWye1KVKHqBRXd5vVOe0wf5j1CnqKj518tcBJMucw3j8O2Cr0G+qVqLpBLra49kQpGdxkrGD/hHLxNec9rdUmeshgF3O8ua5+k28IlTGbawoKTGJU6R+c8vIfOsOi6ahi7SIq1AGQ0CjPMpPD0J9KpilFSipRJUTkknJJrNh11h5DzC1IcbO0lSeKSOdC7/a3lWfbXGq45H8JpdKESTK0yTGClBl5LjqU80AEZ8iQfKlvolqU9qiAYAUVIdCnFJ4JR+LPdjIq42npGKWkt3aIXCBgusEb/ABSf1qXia1000CWkrj7W9QEfGT37Ndcxj3h91faDaenho3U+Wd9cteo5rbrfSZ1G0w5HeS1LYyElYOypJ5HHCqvE6Lpit8y4sNjsabKz8cVbP7daf/5tf/hX+lH9utP/APNr/wDCv9KW6OJzt4pFPtFJTxcKOYADwUQx0X2xI+3nzHD/AC7Kfoa2q6MbKR7smcD29Yk/5alE640+r/fVDxZX+ldDWrbA7gJubI/rBT8xXeHD0C9/qGocf6j4hVKb0WpwTBuageSX2wR6j9Kqd50herOFOSIvWsDi8wdtI8eY8xTqjXGDLx7LMju55IcBrq40l1NG7TJSNNtHWRm7iHjv+4/debR2inH0e6n/AGzB9jmL/f46d5PF1HJXjyP+tfNUaDg3ZK5EAJiTeOUjCHD/ADD6j40sdm56YvSFLQqPMjq2hngofVJpgB9O650U7JJTY3TljMpBmAdR9wU/qpvSZbDKtDc5tOXIqve/oO4+hx8antOXuNfrY3LjHCuDrZO9tXMGpCQy3JYcYeSFNuJKVJPMHjRxs9uSodZTFzXwyCx08154ko3hY57jWip6/wBqctFzfgvAlKTlCj+JB4GoNaChWyfXtqLlaQVZ9i8Y40BoJj+pHp3t/bTwssa2MubBwfun4VropsGxurdXUMFdTup5xdp/LjvC7uIyDkUVyNuKRw4dhrcl9B4ginxIDqsexTYzEaOQ8FvEZyI18xr6XC20VrL6O/0opW+3qosbO4sf+O70WyiiilKFRV96KcKfuSFJSQUIO8b+JoopcXvhH4Z/VN8/kVv6RLFb40D9oxmAy+XAlQb3JVnmR2+FUa1RUTbixGdKghxWCUnfRRXZAN9OYixoq7AdFzvoDb60DOEqIGe41hRRTajTqiiiiuLiBuORuPbUtb9SXi3EezTndgfgcO2n0NFFdBI0TkT3McC02TW0rc37taG5UoNhxRIOwCB8616us8K7Wh8TGsrZbU404ncpBAzuP0ooow5szV8oHua+NwOdwlToW5yrfqKIiM5huS4lp1B4KB+o5GnlRRTFIewVYNpmgVbSBqPqVTek2Cw7ZkzVI+3ZcCUqHYeINKp5IU2SeI3iiik1GpVHicY8bgLDY7zdO82+WS5KKKKAW5oq0ai07Dtlgt8+O4+p6QBthagU7xnduoopbRkUHUucJYwDqfoqvRRRSUYv/9k="
+  >
 
-    <h1>
-      Controle motoboys Di Roma
-    </h1>
 
-  </div>
+  <h1>
+    Controle motoboys Di Roma
+  </h1>
+
 
   <div id="relogio">
     --:--
@@ -443,19 +577,29 @@ button:disabled {
 </header>
 
 
+
 <div class="container">
+
 
   <div id="mensagem"></div>
 
   <div id="chamado"></div>
 
 
+
+  <!-- =================================================
+       DISPONÍVEIS E EM ENTREGA
+       ================================================= -->
+
   <div class="grid-principal">
 
+
+    <!-- DISPONÍVEIS -->
 
     <div class="card">
 
       <h2>
+
         🟢 Disponíveis
 
         <span
@@ -464,7 +608,9 @@ button:disabled {
         >
           0
         </span>
+
       </h2>
+
 
       <div id="fila">
         Carregando...
@@ -473,9 +619,13 @@ button:disabled {
     </div>
 
 
+
+    <!-- EM ENTREGA -->
+
     <div class="card">
 
       <h2>
+
         🛵 Em entrega
 
         <span
@@ -484,7 +634,9 @@ button:disabled {
         >
           0
         </span>
+
       </h2>
+
 
       <div id="entregas">
         Carregando...
@@ -496,11 +648,17 @@ button:disabled {
   </div>
 
 
+
+  <!-- =================================================
+       CONTROLE
+       ================================================= -->
+
   <div class="card">
 
     <h2>
       🚀 Controle da loja
     </h2>
+
 
     <button
       class="chamar"
@@ -509,7 +667,9 @@ button:disabled {
       CHAMAR PRÓXIMO
     </button>
 
+
     <br><br>
+
 
     <button
       class="atualizar"
@@ -518,7 +678,9 @@ button:disabled {
       🔄 ATUALIZAR LISTA
     </button>
 
+
     <br><br>
+
 
     <button
       class="encerrar"
@@ -530,6 +692,11 @@ button:disabled {
   </div>
 
 
+
+  <!-- =================================================
+       GRID
+       ================================================= -->
+
   <div class="card">
 
     <h2>
@@ -539,21 +706,26 @@ button:disabled {
 
     <div class="grid-cabecalho">
 
+
       <div>
         Motoboy
       </div>
+
 
       <div>
         Chegada
       </div>
 
+
       <div>
         Nº Bag
       </div>
 
+
       <div>
         Máquina
       </div>
+
 
     </div>
 
@@ -562,14 +734,20 @@ button:disabled {
       Carregando...
     </div>
 
+
   </div>
 
 
 </div>
 
 
+
 <script>
 
+
+/* =====================================================
+   SUPABASE
+   ===================================================== */
 
 const SUPABASE_URL =
   "https://nmkkabthynytwevadthq.supabase.co";
@@ -591,6 +769,10 @@ let carregandoDados =
 
 
 
+/* =====================================================
+   MENSAGENS
+   ===================================================== */
+
 function mostrarMensagem(
   texto,
   tipo
@@ -601,8 +783,10 @@ function mostrarMensagem(
       "mensagem"
     );
 
+
   elemento.innerText =
     texto;
+
 
   elemento.className =
     tipo;
@@ -618,8 +802,10 @@ function esconderMensagem() {
       "mensagem"
     );
 
+
   elemento.innerText =
     "";
+
 
   elemento.className =
     "";
@@ -627,6 +813,10 @@ function esconderMensagem() {
 }
 
 
+
+/* =====================================================
+   FORMATAR HORÁRIO
+   ===================================================== */
 
 function formatarHorario(
   data
@@ -637,6 +827,7 @@ function formatarHorario(
     return "--:--";
 
   }
+
 
   return new Date(
     data
@@ -652,6 +843,10 @@ function formatarHorario(
 }
 
 
+
+/* =====================================================
+   RELÓGIO
+   ===================================================== */
 
 function atualizarRelogio() {
 
@@ -686,6 +881,10 @@ atualizarRelogio();
 
 
 
+/* =====================================================
+   SEGURANÇA HTML
+   ===================================================== */
+
 function esc(
   texto
 ) {
@@ -695,8 +894,10 @@ function esc(
       "div"
     );
 
+
   div.textContent =
     texto ?? "";
+
 
   return div.innerHTML;
 
@@ -709,6 +910,7 @@ function esc(
    ===================================================== */
 
 async function carregarDados() {
+
 
   if (
     carregandoDados
@@ -745,6 +947,7 @@ async function carregarDados() {
       resposta.data || [];
 
 
+
     const fila =
       todos
 
@@ -761,12 +964,14 @@ async function carregarDados() {
         );
 
 
+
     const entregas =
       todos.filter(
         moto =>
           moto.status ===
           "em_entrega"
       );
+
 
 
     mostrarFila(
@@ -801,6 +1006,7 @@ async function carregarDados() {
 
   } finally {
 
+
     carregandoDados =
       false;
 
@@ -812,6 +1018,9 @@ async function carregarDados() {
 
 /* =====================================================
    DISPONÍVEIS
+
+   NÃO MOSTRA HORÁRIO DE CHEGADA
+   NEM HORÁRIO DE ÚLTIMA SAÍDA.
    ===================================================== */
 
 function mostrarFila(
@@ -836,6 +1045,7 @@ function mostrarFila(
     fila.length;
 
 
+
   if (
     fila.length === 0
   ) {
@@ -845,9 +1055,11 @@ function mostrarFila(
       'Nenhum motoboy disponível.' +
       '</div>';
 
+
     return;
 
   }
+
 
 
   fila.forEach(
@@ -855,12 +1067,6 @@ function mostrarFila(
       moto,
       index
     ) => {
-
-
-      const ultimaSaida =
-        formatarHorario(
-          moto.ultima_saida
-        );
 
 
       const podeSubir =
@@ -872,38 +1078,44 @@ function mostrarFila(
         fila.length - 1;
 
 
+
       elemento.innerHTML += `
 
         <div class="item item-fila">
 
+
           <div class="esquerda">
 
+
             <div class="posicao">
+
               ${index + 1}º
+
             </div>
 
 
             <div>
 
               <div class="nome">
+
                 ${esc(moto.nome)}
-              </div>
 
-
-              <div class="info">
-                Última saída:
-                ${ultimaSaida}
               </div>
 
             </div>
 
+
           </div>
+
 
 
           <div class="direita-fila">
 
+
             <div class="status">
+
               Disponível
+
             </div>
 
 
@@ -912,37 +1124,49 @@ function mostrarFila(
 
               <button
                 class="botao-subir"
+                title="Subir uma posição"
                 ${podeSubir ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', -1)"
               >
+
                 ▲
+
               </button>
 
 
               <button
                 class="botao-descer"
+                title="Descer uma posição"
                 ${podeDescer ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', 1)"
               >
+
                 ▼
+
               </button>
 
 
               <button
                 class="botao-excluir"
+                title="Remover da fila"
                 onclick="excluirDaFila('${moto.id}')"
               >
+
                 🗑️
+
               </button>
 
 
             </div>
 
+
           </div>
+
 
         </div>
 
       `;
+
 
     }
   );
@@ -953,6 +1177,9 @@ function mostrarFila(
 
 /* =====================================================
    EM ENTREGA
+
+   ÚNICO LOCAL QUE MOSTRA
+   O HORÁRIO DA ÚLTIMA SAÍDA.
    ===================================================== */
 
 function mostrarEntregas(
@@ -977,6 +1204,7 @@ function mostrarEntregas(
     entregas.length;
 
 
+
   if (
     entregas.length === 0
   ) {
@@ -986,9 +1214,11 @@ function mostrarEntregas(
       'Nenhum motoboy em entrega.' +
       '</div>';
 
+
     return;
 
   }
+
 
 
   entregas.forEach(
@@ -1005,25 +1235,36 @@ function mostrarEntregas(
 
         <div class="item item-entrega">
 
+
           <div>
 
+
             <div class="nome">
+
               🛵 ${esc(moto.nome)}
+
             </div>
 
 
             <div class="info">
-              Saiu às:
+
+              Última saída:
               ${ultimaSaida}
+
             </div>
+
 
           </div>
 
 
+
           <div class="direita-entrega">
 
+
             <div class="status entrega">
+
               Em entrega
+
             </div>
 
 
@@ -1032,27 +1273,36 @@ function mostrarEntregas(
 
               <button
                 class="botao-retornar-manual"
+                title="Retornar para fila"
                 onclick="retornarEntregaManual('${moto.id}')"
               >
+
                 ↩
+
               </button>
 
 
               <button
                 class="botao-excluir"
+                title="Remover"
                 onclick="excluirEmEntrega('${moto.id}')"
               >
+
                 🗑️
+
               </button>
 
 
             </div>
 
+
           </div>
+
 
         </div>
 
       `;
+
 
     }
   );
@@ -1063,6 +1313,9 @@ function mostrarEntregas(
 
 /* =====================================================
    GRID
+
+   ÚNICO LOCAL QUE MOSTRA
+   O HORÁRIO DE CHEGADA.
    ===================================================== */
 
 function mostrarGrid(
@@ -1077,6 +1330,7 @@ function mostrarGrid(
 
   elemento.innerHTML =
     "";
+
 
 
   const lista =
@@ -1098,6 +1352,7 @@ function mostrarGrid(
       );
 
 
+
   if (
     lista.length === 0
   ) {
@@ -1107,9 +1362,11 @@ function mostrarGrid(
       'Nenhum motoboy registrado hoje.' +
       '</div>';
 
+
     return;
 
   }
+
 
 
   lista.forEach(
@@ -1175,6 +1432,7 @@ function mostrarGrid(
 
       `;
 
+
     }
   );
 
@@ -1212,6 +1470,7 @@ async function salvarBagMaquina(
   }
 
 
+
   try {
 
 
@@ -1240,6 +1499,7 @@ async function salvarBagMaquina(
       throw resposta.error;
 
     }
+
 
 
     campoBag.classList.add(
@@ -1290,6 +1550,7 @@ async function salvarBagMaquina(
 
 async function reorganizarFila() {
 
+
   const resposta =
     await supabaseClient
       .from("motoboys")
@@ -1321,11 +1582,13 @@ async function reorganizarFila() {
     resposta.data || [];
 
 
+
   for (
     let i = 0;
     i < fila.length;
     i++
   ) {
+
 
     const novaPosicao =
       i + 1;
@@ -1341,8 +1604,10 @@ async function reorganizarFila() {
         await supabaseClient
           .from("motoboys")
           .update({
+
             posicao:
               novaPosicao
+
           })
           .eq(
             "id",
@@ -1375,10 +1640,15 @@ async function moverNaFila(
   direcao
 ) {
 
+
+  esconderMensagem();
+
+
   try {
 
 
     await reorganizarFila();
+
 
 
     const resposta =
@@ -1408,6 +1678,7 @@ async function moverNaFila(
     }
 
 
+
     const fila =
       resposta.data || [];
 
@@ -1429,6 +1700,7 @@ async function moverNaFila(
     }
 
 
+
     const destino =
       indice +
       direcao;
@@ -1444,6 +1716,7 @@ async function moverNaFila(
     }
 
 
+
     const atual =
       fila[indice];
 
@@ -1452,11 +1725,15 @@ async function moverNaFila(
       fila[destino];
 
 
-    const p1 =
+
+    const passo1 =
       await supabaseClient
         .from("motoboys")
         .update({
-          posicao: -999999
+
+          posicao:
+            -999999
+
         })
         .eq(
           "id",
@@ -1465,20 +1742,23 @@ async function moverNaFila(
 
 
     if (
-      p1.error
+      passo1.error
     ) {
 
-      throw p1.error;
+      throw passo1.error;
 
     }
 
 
-    const p2 =
+
+    const passo2 =
       await supabaseClient
         .from("motoboys")
         .update({
+
           posicao:
             atual.posicao
+
         })
         .eq(
           "id",
@@ -1487,20 +1767,23 @@ async function moverNaFila(
 
 
     if (
-      p2.error
+      passo2.error
     ) {
 
-      throw p2.error;
+      throw passo2.error;
 
     }
 
 
-    const p3 =
+
+    const passo3 =
       await supabaseClient
         .from("motoboys")
         .update({
+
           posicao:
             outro.posicao
+
         })
         .eq(
           "id",
@@ -1509,10 +1792,10 @@ async function moverNaFila(
 
 
     if (
-      p3.error
+      passo3.error
     ) {
 
-      throw p3.error;
+      throw passo3.error;
 
     }
 
@@ -1536,12 +1819,18 @@ async function moverNaFila(
 
 
 /* =====================================================
-   REMOVER DA FILA
+   REMOVER DE DISPONÍVEIS
+
+   NÃO APAGA O GRID.
    ===================================================== */
 
 async function excluirDaFila(
   id
 ) {
+
+
+  esconderMensagem();
+
 
   try {
 
@@ -1577,18 +1866,22 @@ async function excluirDaFila(
     }
 
 
-    if (
-      !confirm(
+
+    const confirmar =
+      confirm(
         "Remover " +
         moto.nome +
         " da fila?\n\n" +
-        "O Grid será mantido."
-      )
-    ) {
+        "O histórico continuará no Grid."
+      );
+
+
+    if (!confirmar) {
 
       return;
 
     }
+
 
 
     const resposta =
@@ -1640,12 +1933,16 @@ async function excluirDaFila(
 
 
 /* =====================================================
-   RETORNO MANUAL
+   RETORNO MANUAL DE EM ENTREGA
    ===================================================== */
 
 async function retornarEntregaManual(
   id
 ) {
+
+
+  esconderMensagem();
+
 
   try {
 
@@ -1680,22 +1977,28 @@ async function retornarEntregaManual(
       "em_entrega"
     ) {
 
+      await carregarDados();
+
       return;
 
     }
 
 
-    if (
-      !confirm(
+
+    const confirmar =
+      confirm(
         "Retornar " +
         moto.nome +
         " para o final da fila?"
-      )
-    ) {
+      );
+
+
+    if (!confirmar) {
 
       return;
 
     }
+
 
 
     const maior =
@@ -1727,9 +2030,11 @@ async function retornarEntregaManual(
     }
 
 
+
     const ultimaPosicao =
       maior.data?.posicao ||
       0;
+
 
 
     const retorno =
@@ -1778,12 +2083,18 @@ async function retornarEntregaManual(
 
 
 /* =====================================================
-   REMOVER EM ENTREGA
+   REMOVER DE EM ENTREGA
+
+   NÃO APAGA O GRID.
    ===================================================== */
 
 async function excluirEmEntrega(
   id
 ) {
+
+
+  esconderMensagem();
+
 
   try {
 
@@ -1819,18 +2130,22 @@ async function excluirEmEntrega(
     }
 
 
-    if (
-      !confirm(
+
+    const confirmar =
+      confirm(
         "Remover " +
         moto.nome +
         " de Em entrega?\n\n" +
-        "O Grid será mantido."
-      )
-    ) {
+        "O histórico continuará no Grid."
+      );
+
+
+    if (!confirmar) {
 
       return;
 
     }
+
 
 
     const resposta =
@@ -1880,9 +2195,12 @@ async function excluirEmEntrega(
 
 /* =====================================================
    CHAMAR PRÓXIMO
+
+   GRAVA O HORÁRIO DA ÚLTIMA SAÍDA.
    ===================================================== */
 
 async function chamarProximo() {
+
 
   esconderMensagem();
 
@@ -1917,24 +2235,33 @@ async function chamarProximo() {
     }
 
 
+
     const moto =
       resposta.data;
 
 
     if (!moto) {
 
+
       alert(
         "Não há motoboys disponíveis."
       );
+
 
       return;
 
     }
 
 
+
+    /*
+      HORÁRIO DA SAÍDA.
+    */
+
     const agora =
       new Date()
         .toISOString();
+
 
 
     const atualizacao =
@@ -1967,7 +2294,9 @@ async function chamarProximo() {
     }
 
 
+
     await reorganizarFila();
+
 
 
     const chamado =
@@ -2019,10 +2348,11 @@ async function chamarProximo() {
 
 
 /* =====================================================
-   ATUALIZAR
+   ATUALIZAR LISTA
    ===================================================== */
 
 async function atualizarListaManual() {
+
 
   esconderMensagem();
 
@@ -2050,6 +2380,7 @@ async function atualizarListaManual() {
    ===================================================== */
 
 function limparTelaEncerramento() {
+
 
   document
     .getElementById(
@@ -2102,9 +2433,12 @@ function limparTelaEncerramento() {
 
 /* =====================================================
    ENCERRAR DIA
+
+   ÚNICO MOMENTO QUE O GRID É APAGADO.
    ===================================================== */
 
 async function encerrarDia() {
+
 
   const confirmar =
     confirm(
@@ -2126,6 +2460,11 @@ async function encerrarDia() {
 
   try {
 
+
+    /*
+      BUSCA TODOS OS REGISTROS,
+      INDEPENDENTEMENTE DO STATUS.
+    */
 
     const busca =
       await supabaseClient
@@ -2150,6 +2489,7 @@ async function encerrarDia() {
       registros.length === 0
     ) {
 
+
       limparTelaEncerramento();
 
 
@@ -2163,12 +2503,18 @@ async function encerrarDia() {
     }
 
 
+
     const ids =
       registros.map(
         registro =>
           registro.id
       );
 
+
+
+    /*
+      APAGA TODOS.
+    */
 
     const apagar =
       await supabaseClient
@@ -2189,8 +2535,14 @@ async function encerrarDia() {
     }
 
 
+
     limparTelaEncerramento();
 
+
+
+    /*
+      CONFERE SE REALMENTE ZEROU.
+    */
 
     const conferencia =
       await supabaseClient
@@ -2207,16 +2559,19 @@ async function encerrarDia() {
     }
 
 
+
     if (
       conferencia.data &&
       conferencia.data.length > 0
     ) {
+
 
       throw new Error(
         "Ainda existem registros após o encerramento."
       );
 
     }
+
 
 
     alert(
@@ -2231,6 +2586,7 @@ async function encerrarDia() {
 
 
     console.error(
+      "Erro ao encerrar:",
       erro
     );
 
@@ -2274,6 +2630,7 @@ supabaseClient
 
     function() {
 
+
       carregarDados();
 
     }
@@ -2295,14 +2652,21 @@ setInterval(
 
 
 
+/* =====================================================
+   QUANDO VOLTAR PARA A ABA
+   ===================================================== */
+
 document.addEventListener(
   "visibilitychange",
+
   function() {
+
 
     if (
       document.visibilityState ===
       "visible"
     ) {
+
 
       carregarDados();
 
@@ -2319,6 +2683,10 @@ window.addEventListener(
 );
 
 
+
+/* =====================================================
+   INICIAR
+   ===================================================== */
 
 carregarDados();
 
