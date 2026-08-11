@@ -10,7 +10,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Entrada de Motoboy</title>
+<title>Entrada de Motoboy - Pizzaria Di Roma</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -51,12 +51,12 @@ body {
 
 h1 {
   margin: 0 0 10px;
-  font-size: 28px;
+  font-size: 27px;
   color: #111827;
 }
 
 h2 {
-  margin: 0 0 18px;
+  margin: 0;
   font-size: 22px;
   color: #111827;
 }
@@ -64,6 +64,20 @@ h2 {
 .subtitulo {
   color: #6b7280;
   margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+.campo-grupo {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.campo-grupo label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #374151;
 }
 
 input {
@@ -73,7 +87,6 @@ input {
   border: 1px solid #d1d5db;
   border-radius: 10px;
   outline: none;
-  margin-bottom: 15px;
 }
 
 input:focus {
@@ -95,6 +108,22 @@ button {
 button:disabled {
   opacity: .6;
   cursor: not-allowed;
+}
+
+#dadosPrimeiraEntrada {
+  display: none;
+  margin-top: 5px;
+}
+
+.aviso-primeira {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: left;
 }
 
 #mensagem {
@@ -132,10 +161,6 @@ button:disabled {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
-}
-
-.fila-titulo h2 {
-  margin: 0;
 }
 
 .contador {
@@ -227,28 +252,88 @@ button:disabled {
     </div>
 
     <h1>
-      Entrada de Motoboy
+      Pizzaria Di Roma
     </h1>
 
     <div class="subtitulo">
-      Digite seu nome para entrar ou retornar à fila.
+      Informe seu nome para entrar ou retornar à fila.
     </div>
 
 
-    <input
-      id="nome"
-      type="text"
-      placeholder="Seu nome"
-      autocomplete="off"
-      maxlength="50"
-    >
+    <div class="campo-grupo">
+
+      <label for="nome">
+        Nome
+      </label>
+
+      <input
+        id="nome"
+        type="text"
+        placeholder="Digite seu nome"
+        autocomplete="off"
+        maxlength="50"
+      >
+
+    </div>
+
+
+
+    <!-- ===============================================
+         APARECE SOMENTE NA PRIMEIRA ENTRADA
+         =============================================== -->
+
+    <div id="dadosPrimeiraEntrada">
+
+      <div class="aviso-primeira">
+        📋 Como esta é sua primeira entrada de hoje,
+        informe também o número da Bag e da Máquina.
+      </div>
+
+
+      <div class="campo-grupo">
+
+        <label for="bag">
+          Nº da Bag
+        </label>
+
+        <input
+          id="bag"
+          type="text"
+          inputmode="numeric"
+          placeholder="Ex.: 12"
+          autocomplete="off"
+          maxlength="20"
+        >
+
+      </div>
+
+
+      <div class="campo-grupo">
+
+        <label for="maquina">
+          Máquina
+        </label>
+
+        <input
+          id="maquina"
+          type="text"
+          inputmode="numeric"
+          placeholder="Ex.: 03"
+          autocomplete="off"
+          maxlength="20"
+        >
+
+      </div>
+
+    </div>
+
 
 
     <button
       id="botao"
-      onclick="entrarNaFila()"
+      onclick="acaoPrincipal()"
     >
-      ENTRAR NA FILA
+      CONTINUAR
     </button>
 
 
@@ -259,7 +344,7 @@ button:disabled {
 
 
   <!-- =================================================
-       FILA VISÍVEL
+       FILA ATUAL
        ================================================= -->
 
   <div class="card fila-card">
@@ -320,11 +405,20 @@ const supabaseClient =
 
 
 /* =====================================================
-   NOME DO MOTOBOY ATUAL
-
-   Usado somente para destacar
-   a posição dele na tela.
+   VARIÁVEIS
    ===================================================== */
+
+let primeiroCadastroPendente =
+  false;
+
+
+let nomePendente =
+  "";
+
+
+let nomeNormalizadoPendente =
+  "";
+
 
 let ultimoNomeNormalizado =
   "";
@@ -334,17 +428,12 @@ let ultimoNomeNormalizado =
 /* =====================================================
    NORMALIZAR NOME
 
-   Exemplos:
-
    João
    JOÃO
-   joao
    Joao
-    joão
-
-   Todos viram:
-
    joao
+
+   serão considerados iguais.
    ===================================================== */
 
 function normalizarNome(
@@ -353,27 +442,22 @@ function normalizarNome(
 
   return nome
 
-    /* remove espaços do começo/fim */
     .trim()
 
-    /* junta espaços repetidos */
     .replace(
       /\s+/g,
       " "
     )
 
-    /* separa letras dos acentos */
     .normalize(
       "NFD"
     )
 
-    /* remove acentos */
     .replace(
       /[\u0300-\u036f]/g,
       ""
     )
 
-    /* deixa tudo minúsculo */
     .toLowerCase();
 
 }
@@ -382,9 +466,6 @@ function normalizarNome(
 
 /* =====================================================
    FORMATAR NOME
-
-   Corrige espaços extras sem remover
-   acentos digitados pelo motoboy.
    ===================================================== */
 
 function formatarNome(
@@ -452,6 +533,25 @@ function mostrarMensagem(
 
 
 
+function limparMensagem() {
+
+  const mensagem =
+    document.getElementById(
+      "mensagem"
+    );
+
+
+  mensagem.innerText =
+    "";
+
+
+  mensagem.className =
+    "";
+
+}
+
+
+
 /* =====================================================
    CARREGAR FILA
    ===================================================== */
@@ -508,10 +608,10 @@ async function carregarFila() {
       fila.length;
 
 
+
     if (
       fila.length === 0
     ) {
-
 
       elemento.innerHTML =
         '<div class="vazio">' +
@@ -528,6 +628,7 @@ async function carregarFila() {
       "";
 
 
+
     fila.forEach(
       (moto, index) => {
 
@@ -542,6 +643,7 @@ async function carregarFila() {
           ultimoNomeNormalizado &&
           nomeNormalizado ===
           ultimoNomeNormalizado;
+
 
 
         elemento.innerHTML += `
@@ -596,12 +698,13 @@ async function carregarFila() {
 
 
 /* =====================================================
-   DESCOBRIR POSIÇÃO DO MOTOBOY
+   DESCOBRIR POSIÇÃO
    ===================================================== */
 
 async function descobrirPosicao(
   nomeNormalizado
 ) {
+
 
   const resposta =
     await supabaseClient
@@ -660,13 +763,50 @@ async function descobrirPosicao(
 
 
 /* =====================================================
-   ENTRAR NA FILA
+   BOTÃO PRINCIPAL
+
+   Primeiro verifica o nome.
+
+   Se for primeira entrada:
+   mostra Bag e Máquina.
+
+   Se já existir:
+   processa retorno ou duplicidade.
    ===================================================== */
 
-async function entrarNaFila() {
+async function acaoPrincipal() {
 
 
-  const campo =
+  if (
+    primeiroCadastroPendente
+  ) {
+
+
+    await cadastrarPrimeiraEntrada();
+
+
+  } else {
+
+
+    await verificarMotoboy();
+
+  }
+
+}
+
+
+
+/* =====================================================
+   VERIFICAR MOTOBOY
+   ===================================================== */
+
+async function verificarMotoboy() {
+
+
+  limparMensagem();
+
+
+  const campoNome =
     document.getElementById(
       "nome"
     );
@@ -678,19 +818,11 @@ async function entrarNaFila() {
     );
 
 
-  /*
-    Nome mostrado na tela.
-  */
-
   const nome =
     formatarNome(
-      campo.value
+      campoNome.value
     );
 
-
-  /*
-    Nome usado para comparação.
-  */
 
   const nomeComparacao =
     normalizarNome(
@@ -708,7 +840,7 @@ async function entrarNaFila() {
     );
 
 
-    campo.focus();
+    campoNome.focus();
 
 
     return;
@@ -716,11 +848,6 @@ async function entrarNaFila() {
   }
 
 
-
-  /*
-    Evita nomes que depois da limpeza
-    fiquem vazios.
-  */
 
   if (!nomeComparacao) {
 
@@ -731,7 +858,314 @@ async function entrarNaFila() {
     );
 
 
-    campo.focus();
+    return;
+
+  }
+
+
+
+  botao.disabled =
+    true;
+
+
+  botao.innerText =
+    "VERIFICANDO...";
+
+
+
+  try {
+
+
+    /*
+      Busca todos que estão ativos no dia.
+
+      A comparação é feita no navegador
+      ignorando acentos e letras maiúsculas.
+    */
+
+    const resposta =
+      await supabaseClient
+        .from("motoboys")
+        .select("*")
+        .in(
+          "status",
+          [
+            "disponivel",
+            "em_entrega"
+          ]
+        );
+
+
+    if (
+      resposta.error
+    ) {
+
+      throw resposta.error;
+
+    }
+
+
+    const registros =
+      resposta.data || [];
+
+
+
+    const ativo =
+      registros.find(
+        moto =>
+          normalizarNome(
+            moto.nome
+          ) ===
+          nomeComparacao
+      );
+
+
+
+    /* =================================================
+       MOTOBOY JÁ EXISTE
+       ================================================= */
+
+    if (
+      ativo
+    ) {
+
+
+      ultimoNomeNormalizado =
+        nomeComparacao;
+
+
+
+      /* ===============================================
+         ESTAVA EM ENTREGA = RETORNO
+         =============================================== */
+
+      if (
+        ativo.status ===
+        "em_entrega"
+      ) {
+
+
+        await retornarParaFila(
+          ativo,
+          nomeComparacao
+        );
+
+
+      } else {
+
+
+        /*
+          Já está disponível.
+          Não deixa duplicar.
+        */
+
+        await carregarFila();
+
+
+        const posicao =
+          await descobrirPosicao(
+            nomeComparacao
+          );
+
+
+        mostrarMensagem(
+          "⚠️ " +
+          ativo.nome +
+          " já está na fila." +
+          (
+            posicao
+              ?
+              "\n\nSua posição atual: " +
+              posicao +
+              "º"
+              :
+              ""
+          ),
+          "erro"
+        );
+
+
+        campoNome.value =
+          "";
+
+      }
+
+
+
+      botao.disabled =
+        false;
+
+
+      botao.innerText =
+        "CONTINUAR";
+
+
+      return;
+
+    }
+
+
+
+    /* =================================================
+       NÃO EXISTE
+
+       É A PRIMEIRA ENTRADA DO DIA.
+       Mostra Bag e Máquina.
+       ================================================= */
+
+    nomePendente =
+      nome;
+
+
+    nomeNormalizadoPendente =
+      nomeComparacao;
+
+
+    primeiroCadastroPendente =
+      true;
+
+
+
+    document
+      .getElementById(
+        "dadosPrimeiraEntrada"
+      )
+      .style.display =
+      "block";
+
+
+    /*
+      Trava o nome para ele não ser
+      alterado entre uma etapa e outra.
+    */
+
+    campoNome.disabled =
+      true;
+
+
+
+    botao.disabled =
+      false;
+
+
+    botao.innerText =
+      "ENTRAR NA FILA";
+
+
+    mostrarMensagem(
+      "Primeira entrada de hoje.\n\nInforme sua Bag e Máquina.",
+      "sucesso"
+    );
+
+
+    document
+      .getElementById(
+        "bag"
+      )
+      .focus();
+
+
+
+  } catch (erro) {
+
+
+    console.error(
+      erro
+    );
+
+
+    mostrarMensagem(
+      "Não foi possível verificar seu cadastro.\n\n" +
+      erro.message,
+      "erro"
+    );
+
+
+    botao.disabled =
+      false;
+
+
+    botao.innerText =
+      "CONTINUAR";
+
+  }
+
+}
+
+
+
+/* =====================================================
+   PRIMEIRA ENTRADA
+
+   Salva:
+   nome
+   bag
+   maquina
+   horário
+   posição
+   ===================================================== */
+
+async function cadastrarPrimeiraEntrada() {
+
+
+  limparMensagem();
+
+
+  const campoBag =
+    document.getElementById(
+      "bag"
+    );
+
+
+  const campoMaquina =
+    document.getElementById(
+      "maquina"
+    );
+
+
+  const botao =
+    document.getElementById(
+      "botao"
+    );
+
+
+  const bag =
+    campoBag.value.trim();
+
+
+  const maquina =
+    campoMaquina.value.trim();
+
+
+
+  if (!bag) {
+
+
+    mostrarMensagem(
+      "Informe o número da Bag.",
+      "erro"
+    );
+
+
+    campoBag.focus();
+
+
+    return;
+
+  }
+
+
+
+  if (!maquina) {
+
+
+    mostrarMensagem(
+      "Informe a Máquina.",
+      "erro"
+    );
+
+
+    campoMaquina.focus();
 
 
     return;
@@ -752,17 +1186,16 @@ async function entrarNaFila() {
   try {
 
 
-    /* =================================================
-       BUSCA TODOS OS MOTOBOYS ATIVOS
+    /*
+      Faz uma segunda verificação antes
+      de inserir.
 
-       Não usamos mais ilike(nome,nome),
-       porque isso não trata acentos.
+      Isso ajuda a evitar duas entradas
+      caso o botão seja acionado em
+      situações muito próximas.
+    */
 
-       A comparação será feita após
-       normalizar os nomes.
-       ================================================= */
-
-    const existente =
+    const verificacao =
       await supabaseClient
         .from("motoboys")
         .select("*")
@@ -776,201 +1209,59 @@ async function entrarNaFila() {
 
 
     if (
-      existente.error
+      verificacao.error
     ) {
 
-      throw existente.error;
+      throw verificacao.error;
 
     }
 
 
-    const registros =
-      existente.data || [];
 
-
-
-    /* =================================================
-       PROCURA O MESMO NOME IGNORANDO:
-
-       - acento
-       - maiúsculas/minúsculas
-       - espaços extras
-       ================================================= */
-
-    const ativo =
-      registros.find(
+    const duplicado =
+      (
+        verificacao.data ||
+        []
+      )
+      .find(
         moto =>
           normalizarNome(
             moto.nome
           ) ===
-          nomeComparacao
+          nomeNormalizadoPendente
       );
 
 
 
-    /* =================================================
-       JÁ EXISTE
-       ================================================= */
-
     if (
-      ativo
+      duplicado
     ) {
 
 
-      /*
-        Salva o nome para destacar
-        a posição na fila.
-      */
-
-      ultimoNomeNormalizado =
-        nomeComparacao;
+      primeiroCadastroPendente =
+        false;
 
 
-
-      /* ===============================================
-         ESTAVA EM ENTREGA
-
-         Significa que retornou da tele.
-         Vai para o final da fila.
-         =============================================== */
-
-      if (
-        ativo.status ===
-        "em_entrega"
-      ) {
+      document
+        .getElementById(
+          "dadosPrimeiraEntrada"
+        )
+        .style.display =
+        "none";
 
 
-        const maiorPosicao =
-          await supabaseClient
-            .from("motoboys")
-            .select("posicao")
-            .eq(
-              "status",
-              "disponivel"
-            )
-            .order(
-              "posicao",
-              {
-                ascending: false
-              }
-            )
-            .limit(1)
-            .maybeSingle();
+      document
+        .getElementById(
+          "nome"
+        )
+        .disabled =
+        false;
 
 
-        if (
-          maiorPosicao.error
-        ) {
-
-          throw maiorPosicao.error;
-
-        }
-
-
-        const ultimaPosicao =
-          maiorPosicao.data?.posicao ||
-          0;
-
-
-
-        const retorno =
-          await supabaseClient
-            .from("motoboys")
-            .update({
-
-              status:
-                "disponivel",
-
-              posicao:
-                ultimaPosicao + 1
-
-            })
-            .eq(
-              "id",
-              ativo.id
-            );
-
-
-        if (
-          retorno.error
-        ) {
-
-          throw retorno.error;
-
-        }
-
-
-
-        await carregarFila();
-
-
-
-        const posicao =
-          await descobrirPosicao(
-            nomeComparacao
-          );
-
-
-
-        mostrarMensagem(
-          "🔄 " +
-          ativo.nome +
-          " retornou para a fila!" +
-          (
-            posicao
-              ?
-              "\n\nSua posição atual: " +
-              posicao +
-              "º"
-              :
-              ""
-          ),
-          "sucesso"
-        );
-
-
-      } else {
-
-
-        /*
-          Já estava disponível.
-          Não cria duplicidade.
-        */
-
-
-        await carregarFila();
-
-
-
-        const posicao =
-          await descobrirPosicao(
-            nomeComparacao
-          );
-
-
-
-        mostrarMensagem(
-          "⚠️ " +
-          ativo.nome +
-          " já está na fila." +
-          (
-            posicao
-              ?
-              "\n\nSua posição atual: " +
-              posicao +
-              "º"
-              :
-              ""
-          ),
-          "erro"
-        );
-
-      }
-
-
-
-      campo.value =
-        "";
+      mostrarMensagem(
+        "⚠️ Esse motoboy já foi registrado.",
+        "erro"
+      );
 
 
       botao.disabled =
@@ -978,7 +1269,7 @@ async function entrarNaFila() {
 
 
       botao.innerText =
-        "ENTRAR NA FILA";
+        "CONTINUAR";
 
 
       return;
@@ -987,19 +1278,9 @@ async function entrarNaFila() {
 
 
 
-    /* =================================================
-       PRIMEIRA CHEGADA
-       ================================================= */
-
-    const agora =
-      new Date()
-        .toISOString();
-
-
-
-    /*
-      Descobre a última posição.
-    */
+    /* ===============================================
+       ÚLTIMA POSIÇÃO DA FILA
+       =============================================== */
 
     const maiorPosicao =
       await supabaseClient
@@ -1019,6 +1300,7 @@ async function entrarNaFila() {
         .maybeSingle();
 
 
+
     if (
       maiorPosicao.error
     ) {
@@ -1035,9 +1317,15 @@ async function entrarNaFila() {
 
 
 
-    /* =================================================
-       CRIA O MOTOBOY
-       ================================================= */
+    const agora =
+      new Date()
+        .toISOString();
+
+
+
+    /* ===============================================
+       CRIA REGISTRO
+       =============================================== */
 
     const novo =
       await supabaseClient
@@ -1045,7 +1333,7 @@ async function entrarNaFila() {
         .insert({
 
           nome:
-            nome,
+            nomePendente,
 
           status:
             "disponivel",
@@ -1054,7 +1342,13 @@ async function entrarNaFila() {
             ultimaPosicao + 1,
 
           primeira_chegada:
-            agora
+            agora,
+
+          bag:
+            bag,
+
+          maquina:
+            maquina
 
         })
         .select()
@@ -1073,7 +1367,7 @@ async function entrarNaFila() {
 
 
     ultimoNomeNormalizado =
-      nomeComparacao;
+      nomeNormalizadoPendente;
 
 
 
@@ -1083,15 +1377,19 @@ async function entrarNaFila() {
 
     const posicao =
       await descobrirPosicao(
-        nomeComparacao
+        nomeNormalizadoPendente
       );
 
 
 
     mostrarMensagem(
       "✅ " +
-      nome +
+      nomePendente +
       " entrou na fila!" +
+      "\n\nBag: " +
+      bag +
+      " | Máquina: " +
+      maquina +
       (
         posicao
           ?
@@ -1106,8 +1404,7 @@ async function entrarNaFila() {
 
 
 
-    campo.value =
-      "";
+    limparFormulario();
 
 
 
@@ -1125,8 +1422,202 @@ async function entrarNaFila() {
       "erro"
     );
 
+
+    botao.disabled =
+      false;
+
+
+    botao.innerText =
+      "ENTRAR NA FILA";
+
   }
 
+}
+
+
+
+/* =====================================================
+   RETORNO DA ENTREGA
+
+   NÃO pede Bag e Máquina novamente.
+   ===================================================== */
+
+async function retornarParaFila(
+  ativo,
+  nomeComparacao
+) {
+
+
+  const campoNome =
+    document.getElementById(
+      "nome"
+    );
+
+
+
+  const maiorPosicao =
+    await supabaseClient
+      .from("motoboys")
+      .select("posicao")
+      .eq(
+        "status",
+        "disponivel"
+      )
+      .order(
+        "posicao",
+        {
+          ascending: false
+        }
+      )
+      .limit(1)
+      .maybeSingle();
+
+
+
+  if (
+    maiorPosicao.error
+  ) {
+
+    throw maiorPosicao.error;
+
+  }
+
+
+
+  const ultimaPosicao =
+    maiorPosicao.data?.posicao ||
+    0;
+
+
+
+  const retorno =
+    await supabaseClient
+      .from("motoboys")
+      .update({
+
+        status:
+          "disponivel",
+
+        posicao:
+          ultimaPosicao + 1
+
+      })
+      .eq(
+        "id",
+        ativo.id
+      );
+
+
+
+  if (
+    retorno.error
+  ) {
+
+    throw retorno.error;
+
+  }
+
+
+
+  await carregarFila();
+
+
+
+  const posicao =
+    await descobrirPosicao(
+      nomeComparacao
+    );
+
+
+
+  mostrarMensagem(
+    "🔄 " +
+    ativo.nome +
+    " retornou para a fila!" +
+    (
+      posicao
+        ?
+        "\n\nSua posição atual: " +
+        posicao +
+        "º"
+        :
+        ""
+    ),
+    "sucesso"
+  );
+
+
+
+  campoNome.value =
+    "";
+
+}
+
+
+
+/* =====================================================
+   LIMPAR FORMULÁRIO
+   ===================================================== */
+
+function limparFormulario() {
+
+
+  document
+    .getElementById(
+      "nome"
+    )
+    .value =
+    "";
+
+
+  document
+    .getElementById(
+      "nome"
+    )
+    .disabled =
+    false;
+
+
+  document
+    .getElementById(
+      "bag"
+    )
+    .value =
+    "";
+
+
+  document
+    .getElementById(
+      "maquina"
+    )
+    .value =
+    "";
+
+
+  document
+    .getElementById(
+      "dadosPrimeiraEntrada"
+    )
+    .style.display =
+    "none";
+
+
+  primeiroCadastroPendente =
+    false;
+
+
+  nomePendente =
+    "";
+
+
+  nomeNormalizadoPendente =
+    "";
+
+
+  const botao =
+    document.getElementById(
+      "botao"
+    );
 
 
   botao.disabled =
@@ -1134,7 +1625,7 @@ async function entrarNaFila() {
 
 
   botao.innerText =
-    "ENTRAR NA FILA";
+    "CONTINUAR";
 
 }
 
@@ -1159,7 +1650,59 @@ document
       ) {
 
 
-        entrarNaFila();
+        acaoPrincipal();
+
+      }
+
+    }
+  );
+
+
+
+document
+  .getElementById(
+    "bag"
+  )
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+
+        document
+          .getElementById(
+            "maquina"
+          )
+          .focus();
+
+      }
+
+    }
+  );
+
+
+
+document
+  .getElementById(
+    "maquina"
+  )
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+
+        cadastrarPrimeiraEntrada();
 
       }
 
@@ -1170,11 +1713,6 @@ document
 
 /* =====================================================
    REALTIME
-
-   Quando o painel chamar alguém,
-   quando outro motoboy entrar,
-   ou quando alguém retornar,
-   atualiza a fila.
    ===================================================== */
 
 supabaseClient
@@ -1212,27 +1750,18 @@ supabaseClient
 
 
 /* =====================================================
-   ATUALIZAÇÃO AUTOMÁTICA DE SEGURANÇA
-
-   Atualiza a lista a cada 3 segundos
-   mesmo se o Realtime não funcionar.
+   ATUALIZAÇÃO AUTOMÁTICA
    ===================================================== */
 
 setInterval(
-  function() {
-
-
-    carregarFila();
-
-
-  },
+  carregarFila,
   3000
 );
 
 
 
 /* =====================================================
-   QUANDO VOLTAR PARA A TELA
+   QUANDO VOLTAR PARA A ABA
    ===================================================== */
 
 document.addEventListener(
