@@ -136,17 +136,6 @@ button {
   cursor: pointer;
 }
 
-.chamar {
-  width: 100%;
-  background: #15803d;
-  color: white;
-}
-
-.encerrar {
-  background: #b91c1c;
-  color: white;
-}
-
 button:hover {
   opacity: .9;
 }
@@ -155,6 +144,34 @@ button:disabled {
   opacity: .35;
   cursor: not-allowed;
 }
+
+
+/* =====================================================
+   BOTÕES PRINCIPAIS
+   ===================================================== */
+
+.atualizar {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+}
+
+.chamar {
+  width: 100%;
+  background: #15803d;
+  color: white;
+}
+
+.encerrar {
+  width: 100%;
+  background: #b91c1c;
+  color: white;
+}
+
+
+/* =====================================================
+   MENSAGENS
+   ===================================================== */
 
 #mensagem {
   display: none;
@@ -176,6 +193,11 @@ button:disabled {
   color: #991b1b;
 }
 
+
+/* =====================================================
+   MOTOboy CHAMADO
+   ===================================================== */
+
 #chamado {
   display: none;
   background: #dcfce7;
@@ -187,6 +209,11 @@ button:disabled {
   font-size: 22px;
   font-weight: bold;
 }
+
+
+/* =====================================================
+   HISTÓRICO
+   ===================================================== */
 
 .historico-item {
   padding: 12px 5px;
@@ -204,7 +231,9 @@ button:disabled {
 }
 
 
-/* CONTROLES DA FILA */
+/* =====================================================
+   CONTROLES DA FILA
+   ===================================================== */
 
 .direita-fila {
   display: flex;
@@ -234,6 +263,10 @@ button:disabled {
   color: white;
 }
 
+
+/* =====================================================
+   RESPONSIVO
+   ===================================================== */
 
 @media (max-width: 750px) {
 
@@ -287,12 +320,17 @@ button:disabled {
 
 <div class="container">
 
+
   <div id="mensagem"></div>
+
 
   <div id="chamado"></div>
 
 
-  <!-- FILA E ENTREGAS -->
+
+  <!-- =================================================
+       FILA E ENTREGAS
+       ================================================= -->
 
   <div class="grid">
 
@@ -351,13 +389,26 @@ button:disabled {
 
 
 
-  <!-- CONTROLE -->
+  <!-- =================================================
+       CONTROLE
+       ================================================= -->
 
   <div class="card">
 
     <h2>
       🚀 Controle da loja
     </h2>
+
+
+    <button
+      class="atualizar"
+      onclick="atualizarListaManual()"
+    >
+      🔄 ATUALIZAR LISTA
+    </button>
+
+
+    <br><br>
 
 
     <button
@@ -382,7 +433,9 @@ button:disabled {
 
 
 
-  <!-- HISTÓRICO -->
+  <!-- =================================================
+       HISTÓRICO
+       ================================================= -->
 
   <div class="card">
 
@@ -396,6 +449,7 @@ button:disabled {
     </div>
 
   </div>
+
 
 </div>
 
@@ -425,6 +479,18 @@ const supabaseClient =
 
 
 /* =====================================================
+   CONTROLE DE CARREGAMENTO
+
+   Evita várias atualizações acontecendo
+   ao mesmo tempo.
+   ===================================================== */
+
+let carregandoDados =
+  false;
+
+
+
+/* =====================================================
    MENSAGENS
    ===================================================== */
 
@@ -447,6 +513,7 @@ function mostrarMensagem(
     tipo;
 
 }
+
 
 
 function esconderMensagem() {
@@ -509,7 +576,9 @@ atualizarRelogio();
    SEGURANÇA HTML
    ===================================================== */
 
-function esc(texto) {
+function esc(
+  texto
+) {
 
   const div =
     document.createElement(
@@ -528,10 +597,28 @@ function esc(texto) {
 
 
 /* =====================================================
-   CARREGAR DADOS
+   CARREGAR TODOS OS DADOS
    ===================================================== */
 
 async function carregarDados() {
+
+
+  /*
+    Impede duas atualizações ao mesmo tempo.
+  */
+
+  if (
+    carregandoDados
+  ) {
+
+    return;
+
+  }
+
+
+  carregandoDados =
+    true;
+
 
   try {
 
@@ -542,7 +629,9 @@ async function carregarDados() {
         .select("*");
 
 
-    if (resposta.error) {
+    if (
+      resposta.error
+    ) {
 
       throw resposta.error;
 
@@ -558,11 +647,13 @@ async function carregarDados() {
 
     const fila =
       todos
+
         .filter(
           moto =>
             moto.status ===
             "disponivel"
         )
+
         .sort(
           (a,b) =>
             (a.posicao || 999999) -
@@ -574,11 +665,14 @@ async function carregarDados() {
     /* ENTREGAS */
 
     const entregas =
-      todos.filter(
-        moto =>
-          moto.status ===
-          "em_entrega"
-      );
+      todos
+
+        .filter(
+          moto =>
+            moto.status ===
+            "em_entrega"
+        );
+
 
 
     mostrarFila(
@@ -600,7 +694,7 @@ async function carregarDados() {
 
 
     console.error(
-      "Erro ao carregar:",
+      "Erro ao carregar dados:",
       erro
     );
 
@@ -610,6 +704,13 @@ async function carregarDados() {
       erro.message,
       "erro"
     );
+
+
+  } finally {
+
+
+    carregandoDados =
+      false;
 
   }
 
@@ -644,6 +745,7 @@ function mostrarFila(
     fila.length;
 
 
+
   if (
     fila.length === 0
   ) {
@@ -667,7 +769,9 @@ function mostrarFila(
 
       const horario =
         moto.primeira_chegada
+
           ?
+
           new Date(
             moto.primeira_chegada
           )
@@ -678,8 +782,11 @@ function mostrarFila(
               minute: "2-digit"
             }
           )
+
           :
+
           "--:--";
+
 
 
       const podeSubir =
@@ -850,7 +957,9 @@ function mostrarEntregas(
 
       const horario =
         moto.primeira_chegada
+
           ?
+
           new Date(
             moto.primeira_chegada
           )
@@ -861,7 +970,9 @@ function mostrarEntregas(
               minute: "2-digit"
             }
           )
+
           :
+
           "--:--";
 
 
@@ -1119,9 +1230,9 @@ async function moverNaFila(
   try {
 
 
-    /*
-      Busca a fila atual.
-    */
+    await reorganizarFila();
+
+
 
     const resposta =
       await supabaseClient
@@ -1150,7 +1261,7 @@ async function moverNaFila(
     }
 
 
-    let fila =
+    const fila =
       resposta.data || [];
 
 
@@ -1174,104 +1285,35 @@ async function moverNaFila(
     }
 
 
-    const novoIndice =
+
+    const destino =
       indice + direcao;
 
 
+
     if (
-      novoIndice < 0 ||
-      novoIndice >= fila.length
+      destino < 0 ||
+      destino >= fila.length
     ) {
 
       return;
 
     }
 
-
-
-    /*
-      Primeiro reorganiza a fila.
-    */
-
-    await reorganizarFila();
-
-
-
-    /*
-      Busca novamente para pegar
-      as posições atualizadas.
-    */
-
-    const novaResposta =
-      await supabaseClient
-        .from("motoboys")
-        .select(
-          "id,nome,posicao"
-        )
-        .eq(
-          "status",
-          "disponivel"
-        )
-        .order(
-          "posicao",
-          {
-            ascending: true
-          }
-        );
-
-
-    if (
-      novaResposta.error
-    ) {
-
-      throw novaResposta.error;
-
-    }
-
-
-    fila =
-      novaResposta.data || [];
-
-
-    const novoIndiceAtual =
-      fila.findIndex(
-        moto =>
-          String(moto.id) ===
-          String(id)
-      );
-
-
-    const destinoIndice =
-      novoIndiceAtual +
-      direcao;
-
-
-    if (
-      destinoIndice < 0 ||
-      destinoIndice >= fila.length
-    ) {
-
-      return;
-
-    }
 
 
     const atual =
-      fila[
-        novoIndiceAtual
-      ];
+      fila[indice];
 
 
     const outro =
-      fila[
-        destinoIndice
-      ];
+      fila[destino];
 
 
 
     /*
-      Coloca temporariamente o atual
-      numa posição negativa.
+      Usa posição temporária para
+      fazer a troca.
     */
 
     const passo1 =
@@ -1299,11 +1341,6 @@ async function moverNaFila(
 
 
 
-    /*
-      O outro assume a posição
-      do motoboy selecionado.
-    */
-
     const passo2 =
       await supabaseClient
         .from("motoboys")
@@ -1328,11 +1365,6 @@ async function moverNaFila(
     }
 
 
-
-    /*
-      O selecionado assume a
-      posição do outro.
-    */
 
     const passo3 =
       await supabaseClient
@@ -1404,11 +1436,6 @@ async function excluirDaFila(
   try {
 
 
-    /*
-      Busca o motoboy para mostrar
-      o nome na confirmação.
-    */
-
     const busca =
       await supabaseClient
         .from("motoboys")
@@ -1435,6 +1462,7 @@ async function excluirDaFila(
       busca.data;
 
 
+
     if (!moto) {
 
       throw new Error(
@@ -1444,16 +1472,20 @@ async function excluirDaFila(
     }
 
 
+
     if (
       moto.status !==
       "disponivel"
     ) {
 
+
       alert(
         "Esse motoboy não está mais na fila de disponíveis."
       );
 
+
       await carregarDados();
+
 
       return;
 
@@ -1468,6 +1500,7 @@ async function excluirDaFila(
         " da fila?\n\n" +
         "Ele será removido da fila de disponíveis."
       );
+
 
 
     if (
@@ -1503,10 +1536,6 @@ async function excluirDaFila(
     }
 
 
-
-    /*
-      Corrige a ordem restante.
-    */
 
     await reorganizarFila();
 
@@ -1557,6 +1586,11 @@ async function chamarProximo() {
   try {
 
 
+    /*
+      Procura o primeiro motoboy
+      da fila.
+    */
+
     const resposta =
       await supabaseClient
         .from("motoboys")
@@ -1603,6 +1637,10 @@ async function chamarProximo() {
 
 
 
+    /*
+      Vai para EM ENTREGA.
+    */
+
     const atualizacao =
       await supabaseClient
         .from("motoboys")
@@ -1632,7 +1670,7 @@ async function chamarProximo() {
 
 
     /*
-      Reorganiza a fila restante.
+      Corrige a ordem restante.
     */
 
     await reorganizarFila();
@@ -1655,15 +1693,19 @@ async function chamarProximo() {
       "block";
 
 
+
     setTimeout(
       function() {
+
 
         chamado.style.display =
           "none";
 
+
       },
       5000
     );
+
 
 
     await carregarDados();
@@ -1707,6 +1749,7 @@ async function encerrarDia() {
     );
 
 
+
   if (
     !confirmar
   ) {
@@ -1714,6 +1757,7 @@ async function encerrarDia() {
     return;
 
   }
+
 
 
   try {
@@ -1827,36 +1871,179 @@ async function encerrarDia() {
 
 
 /* =====================================================
-   ATUALIZAÇÃO AUTOMÁTICA
+   BOTÃO ATUALIZAR LISTA
    ===================================================== */
 
-supabaseClient
-  .channel(
-    "painel-motoboys"
-  )
-  .on(
-    "postgres_changes",
-    {
+async function atualizarListaManual() {
 
-      event:
-        "*",
 
-      schema:
-        "public",
+  esconderMensagem();
 
-      table:
-        "motoboys"
 
-    },
+  try {
 
-    function() {
+
+    await carregarDados();
+
+
+
+    mostrarMensagem(
+      "🔄 Lista atualizada.",
+      "sucesso"
+    );
+
+
+
+    setTimeout(
+      function() {
+
+
+        esconderMensagem();
+
+
+      },
+      2000
+    );
+
+
+  } catch (erro) {
+
+
+    console.error(
+      "Erro ao atualizar manualmente:",
+      erro
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   REALTIME DO SUPABASE
+
+   Sempre que houver INSERT,
+   UPDATE ou DELETE na tabela
+   motoboys, recarrega o painel.
+   ===================================================== */
+
+const canalRealtime =
+  supabaseClient
+
+    .channel(
+      "painel-motoboys-realtime"
+    )
+
+    .on(
+      "postgres_changes",
+
+      {
+
+        event:
+          "*",
+
+        schema:
+          "public",
+
+        table:
+          "motoboys"
+
+      },
+
+      function(payload) {
+
+
+        console.log(
+          "Alteração detectada no Supabase:",
+          payload
+        );
+
+
+        carregarDados();
+
+      }
+
+    )
+
+    .subscribe(
+      function(status) {
+
+
+        console.log(
+          "Status Realtime:",
+          status
+        );
+
+      }
+    );
+
+
+
+/* =====================================================
+   ATUALIZAÇÃO AUTOMÁTICA DE SEGURANÇA
+
+   Mesmo se o Realtime não estiver
+   habilitado no Supabase, o painel
+   verifica sozinho a cada 3 segundos.
+   ===================================================== */
+
+setInterval(
+  function() {
+
+
+    carregarDados();
+
+
+  },
+  3000
+);
+
+
+
+/* =====================================================
+   ATUALIZA QUANDO VOLTA PARA A ABA
+
+   Útil se o painel estiver aberto
+   em celular, tablet ou computador
+   e a aba ficar em segundo plano.
+   ===================================================== */
+
+document.addEventListener(
+  "visibilitychange",
+
+  function() {
+
+
+    if (
+      document.visibilityState ===
+      "visible"
+    ) {
+
 
       carregarDados();
 
     }
 
-  )
-  .subscribe();
+  }
+);
+
+
+
+/* =====================================================
+   ATUALIZA QUANDO A JANELA RECEBE FOCO
+   ===================================================== */
+
+window.addEventListener(
+  "focus",
+
+  function() {
+
+
+    carregarDados();
+
+  }
+);
 
 
 
