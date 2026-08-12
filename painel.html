@@ -35,9 +35,7 @@ body {
 header {
   background: #111827;
   color: white;
-
   min-height: 100px;
-
   padding: 15px 24px;
 
   display: flex;
@@ -47,12 +45,8 @@ header {
   position: relative;
 }
 
-
-/* MOTINHA */
-
 .icone-topo {
   position: absolute;
-
   left: 24px;
 
   font-size: 48px;
@@ -61,18 +55,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: transparent;
 }
-
-
-/* TÍTULO */
 
 header h1 {
   margin: 0;
-
   width: 100%;
-
   padding: 0 120px;
 
   text-align: center;
@@ -81,12 +68,8 @@ header h1 {
   font-weight: bold;
 }
 
-
-/* RELÓGIO */
-
 #relogio {
   position: absolute;
-
   right: 24px;
 
   font-size: 18px;
@@ -100,30 +83,20 @@ header h1 {
 
 .container {
   max-width: 1200px;
-
   margin: auto;
-
   padding: 20px;
 }
-
 
 .grid-principal {
   display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-
 .card {
   background: white;
-
   border-radius: 14px;
-
   padding: 20px;
-
   margin-bottom: 20px;
 
   box-shadow:
@@ -131,19 +104,14 @@ header h1 {
     rgba(0,0,0,.08);
 }
 
-
 h2 {
   margin-top: 0;
 }
 
-
 .contador {
   background: #e5e7eb;
-
   padding: 5px 10px;
-
   border-radius: 20px;
-
   font-size: 13px;
 }
 
@@ -154,76 +122,56 @@ h2 {
 
 .item {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
 
   padding: 15px 5px;
 
-  border-bottom:
-    1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
 
   gap: 10px;
 }
 
-
 .esquerda {
   display: flex;
-
   align-items: center;
 }
 
-
 .posicao {
   width: 50px;
-
   font-size: 22px;
-
   font-weight: bold;
 }
-
 
 .nome {
   font-size: 18px;
-
   font-weight: bold;
 }
 
-
 .info {
   margin-top: 5px;
-
   color: #6b7280;
-
   font-size: 14px;
 }
 
-
 .status {
   padding: 6px 10px;
-
   border-radius: 20px;
-
   font-size: 12px;
 
   background: #dcfce7;
-
   color: #166534;
 
   white-space: nowrap;
 }
 
-
 .status.entrega {
   background: #fef3c7;
-
   color: #92400e;
 }
 
-
 .vazio {
   color: #6b7280;
-
   padding: 15px 0;
 }
 
@@ -234,54 +182,39 @@ h2 {
 
 button {
   border: 0;
-
   border-radius: 10px;
-
   padding: 15px;
 
   font-size: 16px;
-
   font-weight: bold;
 
   cursor: pointer;
 }
 
-
 button:hover {
   opacity: .9;
 }
 
-
 button:disabled {
   opacity: .35;
-
   cursor: not-allowed;
 }
 
-
 .chamar {
   width: 100%;
-
   background: #15803d;
-
   color: white;
 }
-
 
 .atualizar {
   width: 100%;
-
   background: #2563eb;
-
   color: white;
 }
 
-
 .encerrar {
   width: 100%;
-
   background: #b91c1c;
-
   color: white;
 }
 
@@ -294,130 +227,97 @@ button:disabled {
   display: none;
 
   padding: 15px;
-
   border-radius: 10px;
-
   margin-bottom: 20px;
 
   font-weight: bold;
 }
 
-
 #mensagem.sucesso {
   display: block;
-
   background: #dcfce7;
-
   color: #166534;
 }
 
-
 #mensagem.erro {
   display: block;
-
   background: #fee2e2;
-
   color: #991b1b;
 }
-
 
 #chamado {
   display: none;
 
   background: #dcfce7;
-
   color: #166534;
 
   padding: 20px;
-
   border-radius: 12px;
-
   margin-bottom: 20px;
 
   text-align: center;
 
   font-size: 22px;
-
   font-weight: bold;
 }
 
 
 /* =====================================================
-   CONTROLES DA FILA
+   FILA
    ===================================================== */
 
 .direita-fila {
   display: flex;
-
   align-items: center;
-
   gap: 10px;
 }
 
-
 .acoes-fila {
   display: flex;
-
   gap: 5px;
 }
 
-
 .acoes-fila button {
   padding: 8px 10px;
-
   font-size: 14px;
-
   border-radius: 8px;
 }
-
 
 .botao-subir,
 .botao-descer {
   background: #374151;
-
   color: white;
 }
 
-
 .botao-excluir {
   background: #b91c1c;
-
   color: white;
 }
 
 
 /* =====================================================
-   CONTROLES EM ENTREGA
+   EM ENTREGA
    ===================================================== */
 
 .direita-entrega {
   display: flex;
-
   align-items: center;
-
   gap: 10px;
 }
 
-
 .acoes-entrega {
   display: flex;
-
   gap: 5px;
 }
 
-
 .acoes-entrega button {
   padding: 8px 10px;
-
   font-size: 14px;
-
   border-radius: 8px;
 }
 
-
 .botao-retornar-manual {
   background: #2563eb;
-
   color: white;
 }
 
@@ -433,25 +333,23 @@ button:disabled {
     2fr
     1fr
     1fr
-    1fr;
+    1fr
+    1.3fr;
 
   gap: 10px;
 
   padding: 10px;
 
   background: #111827;
-
   color: white;
 
   border-radius: 10px;
 
   font-size: 13px;
-
   font-weight: bold;
 
   margin-bottom: 5px;
 }
-
 
 .grid-item {
   display: grid;
@@ -460,7 +358,8 @@ button:disabled {
     2fr
     1fr
     1fr
-    1fr;
+    1fr
+    1.3fr;
 
   gap: 10px;
 
@@ -468,29 +367,25 @@ button:disabled {
 
   padding: 12px 10px;
 
-  border-bottom:
-    1px solid #e5e7eb;
-}
+  border-bottom: 1px solid #e5e7eb;
 
+  transition: .2s;
+}
 
 .grid-nome {
   font-weight: bold;
 }
 
-
 .grid-horario {
   color: #6b7280;
 }
-
 
 .campo-grid {
   width: 100%;
 
   padding: 9px;
 
-  border:
-    1px solid #d1d5db;
-
+  border: 1px solid #d1d5db;
   border-radius: 8px;
 
   font-size: 15px;
@@ -498,18 +393,81 @@ button:disabled {
   background: white;
 }
 
-
 .campo-grid:focus {
   outline: none;
-
   border-color: #2563eb;
 }
 
-
 .salvo {
   border-color: #15803d;
-
   background: #f0fdf4;
+}
+
+
+/* =====================================================
+   BOTÃO FECHAR
+   ===================================================== */
+
+.acao-grid {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.botao-fechar {
+  background: #dc2626;
+  color: white;
+
+  padding: 9px 12px;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   FECHADO
+   ===================================================== */
+
+.grid-item.fechado {
+  background: #fee2e2;
+
+  border: 2px solid #ef4444;
+
+  border-radius: 10px;
+
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.grid-item.fechado .grid-nome {
+  color: #991b1b;
+}
+
+.grid-item.fechado .grid-horario {
+  color: #991b1b;
+}
+
+.grid-item.fechado .campo-grid {
+  border-color: #fca5a5;
+  background: #fff7f7;
+}
+
+.status-fechado {
+  display: inline-block;
+
+  padding: 7px 10px;
+
+  background: #b91c1c;
+  color: white;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  white-space: nowrap;
 }
 
 
@@ -534,28 +492,19 @@ button:disabled {
 
   header {
     min-height: 165px;
-
-    padding:
-      85px 15px
-      15px;
+    padding: 85px 15px 15px;
 
     flex-direction: column;
   }
 
-
   .icone-topo {
-    position: absolute;
-
     top: 18px;
-
     left: 50%;
 
-    transform:
-      translateX(-50%);
+    transform: translateX(-50%);
 
     font-size: 48px;
   }
-
 
   header h1 {
     padding: 0;
@@ -565,13 +514,11 @@ button:disabled {
     text-align: center;
   }
 
-
   #relogio {
     position: static;
 
     margin-top: 8px;
   }
-
 
   .item-fila,
   .item-entrega {
@@ -580,7 +527,6 @@ button:disabled {
     flex-direction: column;
   }
 
-
   .direita-fila,
   .direita-entrega {
     width: 100%;
@@ -588,15 +534,12 @@ button:disabled {
     justify-content: space-between;
   }
 
-
   .grid-cabecalho {
     display: none;
   }
 
-
   .grid-item {
-    grid-template-columns:
-      1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 
     background: #f9fafb;
 
@@ -604,16 +547,35 @@ button:disabled {
 
     margin-bottom: 10px;
 
-    border:
-      1px solid #e5e7eb;
+    border: 1px solid #e5e7eb;
   }
 
+  .grid-item.fechado {
+    background: #fee2e2;
+
+    border: 2px solid #ef4444;
+  }
 
   .grid-nome {
-    grid-column:
-      1 / 3;
+    grid-column: 1 / 3;
 
     font-size: 17px;
+  }
+
+  .acao-grid {
+    grid-column: 1 / 3;
+
+    justify-content: stretch;
+  }
+
+  .botao-fechar {
+    width: 100%;
+  }
+
+  .status-fechado {
+    width: 100%;
+
+    text-align: center;
   }
 
 }
@@ -626,21 +588,15 @@ button:disabled {
 <body>
 
 
-<!-- ===================================================
-     TOPO
-     =================================================== -->
-
 <header>
 
   <div class="icone-topo">
     🛵
   </div>
 
-
   <h1>
     Controle Motoboys Di Roma
   </h1>
-
 
   <div id="relogio">
     --:--
@@ -649,25 +605,18 @@ button:disabled {
 </header>
 
 
-
 <div class="container">
 
 
   <div id="mensagem"></div>
 
-
   <div id="chamado"></div>
 
 
-
-  <!-- =================================================
-       DISPONÍVEIS / EM ENTREGA
-       ================================================= -->
+  <!-- DISPONÍVEIS / EM ENTREGA -->
 
   <div class="grid-principal">
 
-
-    <!-- DISPONÍVEIS -->
 
     <div class="card">
 
@@ -684,16 +633,12 @@ button:disabled {
 
       </h2>
 
-
       <div id="fila">
         Carregando...
       </div>
 
     </div>
 
-
-
-    <!-- EM ENTREGA -->
 
     <div class="card">
 
@@ -710,7 +655,6 @@ button:disabled {
 
       </h2>
 
-
       <div id="entregas">
         Carregando...
       </div>
@@ -721,10 +665,7 @@ button:disabled {
   </div>
 
 
-
-  <!-- =================================================
-       CONTROLE DA LOJA
-       ================================================= -->
+  <!-- CONTROLE DA LOJA -->
 
   <div class="card">
 
@@ -765,10 +706,7 @@ button:disabled {
   </div>
 
 
-
-  <!-- =================================================
-       GRID
-       ================================================= -->
+  <!-- GRID -->
 
   <div class="card">
 
@@ -793,6 +731,10 @@ button:disabled {
 
       <div>
         Máquina
+      </div>
+
+      <div style="text-align:right;">
+        Fechamento
       </div>
 
     </div>
@@ -839,26 +781,18 @@ let carregandoDados = false;
    MENSAGENS
    ===================================================== */
 
-function mostrarMensagem(
-  texto,
-  tipo
-) {
+function mostrarMensagem(texto, tipo) {
 
   const elemento =
     document.getElementById(
       "mensagem"
     );
 
+  elemento.innerText = texto;
 
-  elemento.innerText =
-    texto;
-
-
-  elemento.className =
-    tipo;
+  elemento.className = tipo;
 
 }
-
 
 
 function esconderMensagem() {
@@ -868,25 +802,19 @@ function esconderMensagem() {
       "mensagem"
     );
 
+  elemento.innerText = "";
 
-  elemento.innerText =
-    "";
-
-
-  elemento.className =
-    "";
+  elemento.className = "";
 
 }
 
 
 
 /* =====================================================
-   FORMATAR HORÁRIO
+   HORÁRIO
    ===================================================== */
 
-function formatarHorario(
-  data
-) {
+function formatarHorario(data) {
 
   if (!data) {
 
@@ -895,16 +823,14 @@ function formatarHorario(
   }
 
 
-  return new Date(
-    data
-  )
-  .toLocaleTimeString(
-    "pt-BR",
-    {
-      hour: "2-digit",
-      minute: "2-digit"
-    }
-  );
+  return new Date(data)
+    .toLocaleTimeString(
+      "pt-BR",
+      {
+        hour: "2-digit",
+        minute: "2-digit"
+      }
+    );
 
 }
 
@@ -948,22 +874,18 @@ atualizarRelogio();
 
 
 /* =====================================================
-   PROTEGER TEXTO HTML
+   PROTEGER HTML
    ===================================================== */
 
-function esc(
-  texto
-) {
+function esc(texto) {
 
   const div =
     document.createElement(
       "div"
     );
 
-
   div.textContent =
     texto ?? "";
-
 
   return div.innerHTML;
 
@@ -977,17 +899,14 @@ function esc(
 
 async function carregarDados() {
 
-  if (
-    carregandoDados
-  ) {
+  if (carregandoDados) {
 
     return;
 
   }
 
 
-  carregandoDados =
-    true;
+  carregandoDados = true;
 
 
   try {
@@ -999,9 +918,7 @@ async function carregarDados() {
         .select("*");
 
 
-    if (
-      resposta.error
-    ) {
+    if (resposta.error) {
 
       throw resposta.error;
 
@@ -1012,15 +929,21 @@ async function carregarDados() {
       resposta.data || [];
 
 
-    /* FILA DISPONÍVEL */
+    /*
+      DISPONÍVEIS
+
+      Além do status, verificamos fechado
+      para garantir que nenhum motoboy
+      fechado apareça na fila.
+    */
 
     const fila =
       todos
 
         .filter(
           moto =>
-            moto.status ===
-            "disponivel"
+            moto.status === "disponivel" &&
+            moto.fechado !== true
         )
 
         .sort(
@@ -1030,15 +953,19 @@ async function carregarDados() {
         );
 
 
-    /* EM ENTREGA */
+    /*
+      EM ENTREGA
+
+      Motoboys fechados também não aparecem.
+    */
 
     const entregas =
       todos
 
         .filter(
           moto =>
-            moto.status ===
-            "em_entrega"
+            moto.status === "em_entrega" &&
+            moto.fechado !== true
         )
 
         .sort(
@@ -1062,27 +989,17 @@ async function carregarDados() {
         );
 
 
-    mostrarFila(
-      fila
-    );
+    mostrarFila(fila);
 
+    mostrarEntregas(entregas);
 
-    mostrarEntregas(
-      entregas
-    );
-
-
-    mostrarGrid(
-      todos
-    );
+    mostrarGrid(todos);
 
 
   } catch (erro) {
 
 
-    console.error(
-      erro
-    );
+    console.error(erro);
 
 
     mostrarMensagem(
@@ -1095,8 +1012,7 @@ async function carregarDados() {
   } finally {
 
 
-    carregandoDados =
-      false;
+    carregandoDados = false;
 
   }
 
@@ -1105,14 +1021,10 @@ async function carregarDados() {
 
 
 /* =====================================================
-   MOSTRAR DISPONÍVEIS
-
-   NÃO MOSTRA HORÁRIO.
+   MOSTRAR FILA
    ===================================================== */
 
-function mostrarFila(
-  fila
-) {
+function mostrarFila(fila) {
 
   const elemento =
     document.getElementById(
@@ -1120,8 +1032,7 @@ function mostrarFila(
     );
 
 
-  elemento.innerHTML =
-    "";
+  elemento.innerHTML = "";
 
 
   document
@@ -1132,15 +1043,12 @@ function mostrarFila(
     fila.length;
 
 
-  if (
-    fila.length === 0
-  ) {
+  if (fila.length === 0) {
 
     elemento.innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy disponível.' +
       '</div>';
-
 
     return;
 
@@ -1148,10 +1056,7 @@ function mostrarFila(
 
 
   fila.forEach(
-    (
-      moto,
-      index
-    ) => {
+    (moto, index) => {
 
 
       const podeSubir =
@@ -1172,30 +1077,23 @@ function mostrarFila(
 
 
             <div class="posicao">
-
               ${index + 1}º
-
             </div>
 
 
             <div class="nome">
-
               ${esc(moto.nome)}
-
             </div>
 
 
           </div>
 
 
-
           <div class="direita-fila">
 
 
             <div class="status">
-
               Disponível
-
             </div>
 
 
@@ -1208,9 +1106,7 @@ function mostrarFila(
                 ${podeSubir ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', -1)"
               >
-
                 ▲
-
               </button>
 
 
@@ -1220,9 +1116,7 @@ function mostrarFila(
                 ${podeDescer ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', 1)"
               >
-
                 ▼
-
               </button>
 
 
@@ -1231,9 +1125,7 @@ function mostrarFila(
                 title="Remover da fila"
                 onclick="excluirDaFila('${moto.id}')"
               >
-
                 🗑️
-
               </button>
 
 
@@ -1247,7 +1139,6 @@ function mostrarFila(
 
       `;
 
-
     }
   );
 
@@ -1257,14 +1148,9 @@ function mostrarFila(
 
 /* =====================================================
    MOSTRAR EM ENTREGA
-
-   ÚNICO LOCAL ONDE APARECE
-   A ÚLTIMA SAÍDA.
    ===================================================== */
 
-function mostrarEntregas(
-  entregas
-) {
+function mostrarEntregas(entregas) {
 
   const elemento =
     document.getElementById(
@@ -1272,8 +1158,7 @@ function mostrarEntregas(
     );
 
 
-  elemento.innerHTML =
-    "";
+  elemento.innerHTML = "";
 
 
   document
@@ -1284,15 +1169,12 @@ function mostrarEntregas(
     entregas.length;
 
 
-  if (
-    entregas.length === 0
-  ) {
+  if (entregas.length === 0) {
 
     elemento.innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy em entrega.' +
       '</div>';
-
 
     return;
 
@@ -1318,9 +1200,7 @@ function mostrarEntregas(
 
 
             <div class="nome">
-
               🛵 ${esc(moto.nome)}
-
             </div>
 
 
@@ -1335,14 +1215,11 @@ function mostrarEntregas(
           </div>
 
 
-
           <div class="direita-entrega">
 
 
             <div class="status entrega">
-
               Em entrega
-
             </div>
 
 
@@ -1354,9 +1231,7 @@ function mostrarEntregas(
                 title="Retornar para o final da fila"
                 onclick="retornarEntregaManual('${moto.id}')"
               >
-
                 ↩
-
               </button>
 
 
@@ -1365,9 +1240,7 @@ function mostrarEntregas(
                 title="Remover de Em entrega"
                 onclick="excluirEmEntrega('${moto.id}')"
               >
-
                 🗑️
-
               </button>
 
 
@@ -1381,7 +1254,6 @@ function mostrarEntregas(
 
       `;
 
-
     }
   );
 
@@ -1390,15 +1262,16 @@ function mostrarEntregas(
 
 
 /* =====================================================
-   MOSTRAR GRID
+   GRID
 
-   O HORÁRIO DE CHEGADA APARECE
-   SOMENTE AQUI.
+   ABERTOS:
+   ORDEM DE CHEGADA
+
+   FECHADOS:
+   SEMPRE NO FINAL
    ===================================================== */
 
-function mostrarGrid(
-  motoboys
-) {
+function mostrarGrid(motoboys) {
 
   const elemento =
     document.getElementById(
@@ -1406,8 +1279,7 @@ function mostrarGrid(
     );
 
 
-  elemento.innerHTML =
-    "";
+  elemento.innerHTML = "";
 
 
   const lista =
@@ -1419,25 +1291,58 @@ function mostrarGrid(
       )
 
       .sort(
-        (a,b) =>
-          new Date(
-            a.primeira_chegada
-          ) -
-          new Date(
-            b.primeira_chegada
-          )
+        (a,b) => {
+
+
+          const fechadoA =
+            a.fechado === true;
+
+
+          const fechadoB =
+            b.fechado === true;
+
+
+          /*
+            ABERTOS SEMPRE ANTES
+            DOS FECHADOS
+          */
+
+          if (
+            fechadoA !==
+            fechadoB
+          ) {
+
+            return fechadoA
+              ? 1
+              : -1;
+
+          }
+
+
+          /*
+            MANTÉM ORDEM ORIGINAL
+            DE CHEGADA
+          */
+
+          return (
+            new Date(
+              a.primeira_chegada
+            ) -
+            new Date(
+              b.primeira_chegada
+            )
+          );
+
+        }
       );
 
 
-  if (
-    lista.length === 0
-  ) {
+  if (lista.length === 0) {
 
     elemento.innerHTML =
       '<div class="vazio">' +
       'Nenhum motoboy registrado hoje.' +
       '</div>';
-
 
     return;
 
@@ -1454,9 +1359,47 @@ function mostrarGrid(
         );
 
 
+      const estaFechado =
+        moto.fechado === true;
+
+
+      const classeFechado =
+        estaFechado
+          ? " fechado"
+          : "";
+
+
+      /*
+        SE ESTIVER FECHADO:
+        APENAS MOSTRA FECHADO.
+
+        NÃO EXISTE BOTÃO REABRIR.
+      */
+
+      const fechamento =
+        estaFechado
+
+          ? `
+              <div class="status-fechado">
+                🔒 FECHADO
+              </div>
+            `
+
+          : `
+              <button
+                class="botao-fechar"
+                onclick="fecharGrid('${moto.id}')"
+              >
+                🔒 FECHAR
+              </button>
+            `;
+
+
       elemento.innerHTML += `
 
-        <div class="grid-item">
+        <div
+          class="grid-item${classeFechado}"
+        >
 
 
           <div class="grid-nome">
@@ -1503,10 +1446,16 @@ function mostrarGrid(
           </div>
 
 
+          <div class="acao-grid">
+
+            ${fechamento}
+
+          </div>
+
+
         </div>
 
       `;
-
 
     }
   );
@@ -1516,12 +1465,155 @@ function mostrarGrid(
 
 
 /* =====================================================
+   FECHAR MOTOBOY
+
+   AO FECHAR:
+
+   1. FECHADO = TRUE
+   2. STATUS = REMOVIDO
+   3. POSIÇÃO = NULL
+   4. SAI DE DISPONÍVEIS
+   5. SAI DE EM ENTREGA
+   6. CONTINUA NO GRID
+   7. VAI PARA O FINAL DO GRID
+   ===================================================== */
+
+async function fecharGrid(id) {
+
+  esconderMensagem();
+
+
+  try {
+
+
+    const busca =
+      await supabaseClient
+        .from("motoboys")
+        .select("*")
+        .eq("id", id)
+        .maybeSingle();
+
+
+    if (busca.error) {
+
+      throw busca.error;
+
+    }
+
+
+    const moto =
+      busca.data;
+
+
+    if (!moto) {
+
+      return;
+
+    }
+
+
+    if (moto.fechado === true) {
+
+      return;
+
+    }
+
+
+    const confirmar =
+      confirm(
+        "Fechar " +
+        moto.nome +
+        "?\n\n" +
+        "O motoboy será removido da operação " +
+        "e ficará como FECHADO no final do Grid."
+      );
+
+
+    if (!confirmar) {
+
+      return;
+
+    }
+
+
+    const resposta =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+
+          fechado: true,
+
+          status: "removido",
+
+          posicao: null
+
+        })
+        .eq("id", id);
+
+
+    if (resposta.error) {
+
+      throw resposta.error;
+
+    }
+
+
+    /*
+      SE ELE ESTAVA DISPONÍVEL,
+      REORGANIZA AS POSIÇÕES
+      DOS OUTROS MOTOBOYS.
+    */
+
+    await reorganizarFila();
+
+
+    /*
+      ATUALIZA A TELA.
+    */
+
+    await carregarDados();
+
+
+    mostrarMensagem(
+      "🔒 " +
+      moto.nome +
+      " foi fechado e removido da operação.",
+      "sucesso"
+    );
+
+
+    setTimeout(
+      esconderMensagem,
+      2500
+    );
+
+
+  } catch (erro) {
+
+
+    console.error(
+      "Erro ao fechar:",
+      erro
+    );
+
+
+    mostrarMensagem(
+      "Não foi possível fechar o motoboy: " +
+      erro.message,
+      "erro"
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
    SALVAR BAG E MÁQUINA
    ===================================================== */
 
-async function salvarBagMaquina(
-  id
-) {
+async function salvarBagMaquina(id) {
 
   const campoBag =
     document.getElementById(
@@ -1560,15 +1652,10 @@ async function salvarBagMaquina(
             campoMaquina.value.trim()
 
         })
-        .eq(
-          "id",
-          id
-        );
+        .eq("id", id);
 
 
-    if (
-      resposta.error
-    ) {
+    if (resposta.error) {
 
       throw resposta.error;
 
@@ -1591,7 +1678,6 @@ async function salvarBagMaquina(
         campoBag.classList.remove(
           "salvo"
         );
-
 
         campoMaquina.classList.remove(
           "salvo"
@@ -1633,6 +1719,10 @@ async function reorganizarFila() {
         "status",
         "disponivel"
       )
+      .eq(
+        "fechado",
+        false
+      )
       .order(
         "posicao",
         {
@@ -1641,9 +1731,7 @@ async function reorganizarFila() {
       );
 
 
-  if (
-    resposta.error
-  ) {
+  if (resposta.error) {
 
     throw resposta.error;
 
@@ -1686,9 +1774,7 @@ async function reorganizarFila() {
           );
 
 
-      if (
-        atualizacao.error
-      ) {
+      if (atualizacao.error) {
 
         throw atualizacao.error;
 
@@ -1730,6 +1816,10 @@ async function moverNaFila(
           "status",
           "disponivel"
         )
+        .eq(
+          "fechado",
+          false
+        )
         .order(
           "posicao",
           {
@@ -1738,9 +1828,7 @@ async function moverNaFila(
         );
 
 
-    if (
-      resposta.error
-    ) {
+    if (resposta.error) {
 
       throw resposta.error;
 
@@ -1759,9 +1847,7 @@ async function moverNaFila(
       );
 
 
-    if (
-      indice === -1
-    ) {
+    if (indice === -1) {
 
       return;
 
@@ -1769,8 +1855,7 @@ async function moverNaFila(
 
 
     const destino =
-      indice +
-      direcao;
+      indice + direcao;
 
 
     if (
@@ -1792,8 +1877,7 @@ async function moverNaFila(
 
 
     /*
-      POSIÇÃO TEMPORÁRIA PARA EVITAR
-      CONFLITO DURANTE A TROCA.
+      POSIÇÃO TEMPORÁRIA
     */
 
     const passo1 =
@@ -1811,14 +1895,17 @@ async function moverNaFila(
         );
 
 
-    if (
-      passo1.error
-    ) {
+    if (passo1.error) {
 
       throw passo1.error;
 
     }
 
+
+    /*
+      OUTRO ASSUME POSIÇÃO
+      DO ATUAL
+    */
 
     const passo2 =
       await supabaseClient
@@ -1835,14 +1922,17 @@ async function moverNaFila(
         );
 
 
-    if (
-      passo2.error
-    ) {
+    if (passo2.error) {
 
       throw passo2.error;
 
     }
 
+
+    /*
+      ATUAL ASSUME POSIÇÃO
+      DO OUTRO
+    */
 
     const passo3 =
       await supabaseClient
@@ -1859,9 +1949,7 @@ async function moverNaFila(
         );
 
 
-    if (
-      passo3.error
-    ) {
+    if (passo3.error) {
 
       throw passo3.error;
 
@@ -1889,12 +1977,10 @@ async function moverNaFila(
 /* =====================================================
    EXCLUIR DA FILA
 
-   NÃO APAGA O GRID.
+   NÃO APAGA O GRID
    ===================================================== */
 
-async function excluirDaFila(
-  id
-) {
+async function excluirDaFila(id) {
 
   esconderMensagem();
 
@@ -1906,16 +1992,11 @@ async function excluirDaFila(
       await supabaseClient
         .from("motoboys")
         .select("*")
-        .eq(
-          "id",
-          id
-        )
+        .eq("id", id)
         .maybeSingle();
 
 
-    if (
-      busca.error
-    ) {
+    if (busca.error) {
 
       throw busca.error;
 
@@ -1933,17 +2014,13 @@ async function excluirDaFila(
     }
 
 
-    const confirmar =
-      confirm(
+    if (
+      !confirm(
         "Remover " +
         moto.nome +
         " da fila?\n\n" +
         "O histórico continuará no Grid."
-      );
-
-
-    if (
-      !confirmar
+      )
     ) {
 
       return;
@@ -1969,9 +2046,7 @@ async function excluirDaFila(
         );
 
 
-    if (
-      resposta.error
-    ) {
+    if (resposta.error) {
 
       throw resposta.error;
 
@@ -2000,12 +2075,10 @@ async function excluirDaFila(
 
 
 /* =====================================================
-   RETORNAR MANUALMENTE PARA FILA
+   RETORNAR MANUALMENTE
    ===================================================== */
 
-async function retornarEntregaManual(
-  id
-) {
+async function retornarEntregaManual(id) {
 
   esconderMensagem();
 
@@ -2017,16 +2090,11 @@ async function retornarEntregaManual(
       await supabaseClient
         .from("motoboys")
         .select("*")
-        .eq(
-          "id",
-          id
-        )
+        .eq("id", id)
         .maybeSingle();
 
 
-    if (
-      busca.error
-    ) {
+    if (busca.error) {
 
       throw busca.error;
 
@@ -2039,8 +2107,8 @@ async function retornarEntregaManual(
 
     if (
       !moto ||
-      moto.status !==
-      "em_entrega"
+      moto.status !== "em_entrega" ||
+      moto.fechado === true
     ) {
 
       await carregarDados();
@@ -2050,16 +2118,12 @@ async function retornarEntregaManual(
     }
 
 
-    const confirmar =
-      confirm(
+    if (
+      !confirm(
         "Retornar " +
         moto.nome +
         " para o final da fila?"
-      );
-
-
-    if (
-      !confirmar
+      )
     ) {
 
       return;
@@ -2077,6 +2141,10 @@ async function retornarEntregaManual(
           "status",
           "disponivel"
         )
+        .eq(
+          "fechado",
+          false
+        )
         .order(
           "posicao",
           {
@@ -2087,9 +2155,7 @@ async function retornarEntregaManual(
         .maybeSingle();
 
 
-    if (
-      maior.error
-    ) {
+    if (maior.error) {
 
       throw maior.error;
 
@@ -2119,9 +2185,7 @@ async function retornarEntregaManual(
         );
 
 
-    if (
-      retorno.error
-    ) {
+    if (retorno.error) {
 
       throw retorno.error;
 
@@ -2149,12 +2213,10 @@ async function retornarEntregaManual(
 /* =====================================================
    EXCLUIR EM ENTREGA
 
-   NÃO APAGA O GRID.
+   NÃO APAGA GRID
    ===================================================== */
 
-async function excluirEmEntrega(
-  id
-) {
+async function excluirEmEntrega(id) {
 
   esconderMensagem();
 
@@ -2166,16 +2228,11 @@ async function excluirEmEntrega(
       await supabaseClient
         .from("motoboys")
         .select("*")
-        .eq(
-          "id",
-          id
-        )
+        .eq("id", id)
         .maybeSingle();
 
 
-    if (
-      busca.error
-    ) {
+    if (busca.error) {
 
       throw busca.error;
 
@@ -2193,17 +2250,13 @@ async function excluirEmEntrega(
     }
 
 
-    const confirmar =
-      confirm(
+    if (
+      !confirm(
         "Remover " +
         moto.nome +
         " de Em entrega?\n\n" +
         "O histórico continuará no Grid."
-      );
-
-
-    if (
-      !confirmar
+      )
     ) {
 
       return;
@@ -2229,9 +2282,7 @@ async function excluirEmEntrega(
         );
 
 
-    if (
-      resposta.error
-    ) {
+    if (resposta.error) {
 
       throw resposta.error;
 
@@ -2258,8 +2309,6 @@ async function excluirEmEntrega(
 
 /* =====================================================
    CHAMAR PRÓXIMO
-
-   GRAVA O HORÁRIO DA ÚLTIMA SAÍDA.
    ===================================================== */
 
 async function chamarProximo() {
@@ -2278,6 +2327,10 @@ async function chamarProximo() {
           "status",
           "disponivel"
         )
+        .eq(
+          "fechado",
+          false
+        )
         .order(
           "posicao",
           {
@@ -2288,9 +2341,7 @@ async function chamarProximo() {
         .maybeSingle();
 
 
-    if (
-      resposta.error
-    ) {
+    if (resposta.error) {
 
       throw resposta.error;
 
@@ -2306,7 +2357,6 @@ async function chamarProximo() {
       alert(
         "Não há motoboys disponíveis."
       );
-
 
       return;
 
@@ -2339,9 +2389,7 @@ async function chamarProximo() {
         );
 
 
-    if (
-      atualizacao.error
-    ) {
+    if (atualizacao.error) {
 
       throw atualizacao.error;
 
@@ -2400,7 +2448,7 @@ async function chamarProximo() {
 
 
 /* =====================================================
-   ATUALIZAÇÃO MANUAL
+   ATUALIZAR LISTA
    ===================================================== */
 
 async function atualizarListaManual() {
@@ -2427,7 +2475,7 @@ async function atualizarListaManual() {
 
 
 /* =====================================================
-   LIMPAR TELA AO ENCERRAR
+   LIMPAR TELA
    ===================================================== */
 
 function limparTelaEncerramento() {
@@ -2484,7 +2532,7 @@ function limparTelaEncerramento() {
 /* =====================================================
    ENCERRAR DIA
 
-   ESTE É O ÚNICO MOMENTO EM QUE
+   ÚNICO MOMENTO EM QUE
    O GRID É APAGADO.
    ===================================================== */
 
@@ -2498,9 +2546,7 @@ async function encerrarDia() {
     );
 
 
-  if (
-    !confirmar
-  ) {
+  if (!confirmar) {
 
     return;
 
@@ -2515,7 +2561,7 @@ async function encerrarDia() {
 
     /*
       BUSCA TODOS OS REGISTROS,
-      INDEPENDENTEMENTE DO STATUS.
+      INCLUSIVE FECHADOS E REMOVIDOS.
     */
 
     const busca =
@@ -2524,9 +2570,7 @@ async function encerrarDia() {
         .select("id");
 
 
-    if (
-      busca.error
-    ) {
+    if (busca.error) {
 
       throw busca.error;
 
@@ -2537,9 +2581,7 @@ async function encerrarDia() {
       busca.data || [];
 
 
-    if (
-      registros.length === 0
-    ) {
+    if (registros.length === 0) {
 
       limparTelaEncerramento();
 
@@ -2562,7 +2604,7 @@ async function encerrarDia() {
 
 
     /*
-      APAGA TODOS OS REGISTROS.
+      APAGA TODOS.
     */
 
     const apagar =
@@ -2575,25 +2617,19 @@ async function encerrarDia() {
         );
 
 
-    if (
-      apagar.error
-    ) {
+    if (apagar.error) {
 
       throw apagar.error;
 
     }
 
 
-    /*
-      LIMPA A TELA IMEDIATAMENTE.
-    */
-
     limparTelaEncerramento();
 
 
     /*
-      CONFERE NO SUPABASE SE
-      REALMENTE FOI ZERADO.
+      CONFERE SE REALMENTE
+      FICOU VAZIO.
     */
 
     const conferencia =
@@ -2602,9 +2638,7 @@ async function encerrarDia() {
         .select("id");
 
 
-    if (
-      conferencia.error
-    ) {
+    if (conferencia.error) {
 
       throw conferencia.error;
 
@@ -2653,7 +2687,7 @@ async function encerrarDia() {
 
 
 /* =====================================================
-   REALTIME SUPABASE
+   REALTIME
    ===================================================== */
 
 supabaseClient
@@ -2690,9 +2724,7 @@ supabaseClient
 
 
 /* =====================================================
-   ATUALIZAÇÃO AUTOMÁTICA DE SEGURANÇA
-
-   A CADA 3 SEGUNDOS.
+   ATUALIZAÇÃO AUTOMÁTICA
    ===================================================== */
 
 setInterval(
@@ -2703,7 +2735,7 @@ setInterval(
 
 
 /* =====================================================
-   ATUALIZAR QUANDO VOLTAR PARA ABA
+   ATUALIZAR AO VOLTAR PARA A ABA
    ===================================================== */
 
 document.addEventListener(
@@ -2725,10 +2757,6 @@ document.addEventListener(
 
 
 
-/* =====================================================
-   ATUALIZAR QUANDO A JANELA GANHAR FOCO
-   ===================================================== */
-
 window.addEventListener(
   "focus",
   carregarDados
@@ -2737,7 +2765,7 @@ window.addEventListener(
 
 
 /* =====================================================
-   INICIAR SISTEMA
+   INICIAR
    ===================================================== */
 
 carregarDados();
