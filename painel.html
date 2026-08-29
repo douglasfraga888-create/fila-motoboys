@@ -48,22 +48,14 @@ header {
 .icone-topo {
   position: absolute;
   left: 24px;
-
   font-size: 48px;
-  line-height: 1;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 header h1 {
   margin: 0;
   width: 100%;
   padding: 0 120px;
-
   text-align: center;
-
   font-size: 27px;
   font-weight: bold;
 }
@@ -71,7 +63,6 @@ header h1 {
 #relogio {
   position: absolute;
   right: 24px;
-
   font-size: 18px;
   font-weight: bold;
 }
@@ -98,10 +89,7 @@ header h1 {
   border-radius: 14px;
   padding: 20px;
   margin-bottom: 20px;
-
-  box-shadow:
-    0 3px 12px
-    rgba(0,0,0,.08);
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
 }
 
 h2 {
@@ -126,9 +114,7 @@ h2 {
   align-items: center;
 
   padding: 15px 5px;
-
   border-bottom: 1px solid #e5e7eb;
-
   gap: 10px;
 }
 
@@ -158,10 +144,8 @@ h2 {
   padding: 6px 10px;
   border-radius: 20px;
   font-size: 12px;
-
   background: #dcfce7;
   color: #166534;
-
   white-space: nowrap;
 }
 
@@ -184,10 +168,8 @@ button {
   border: 0;
   border-radius: 10px;
   padding: 15px;
-
   font-size: 16px;
   font-weight: bold;
-
   cursor: pointer;
 }
 
@@ -225,11 +207,9 @@ button:disabled {
 
 #mensagem {
   display: none;
-
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 20px;
-
   font-weight: bold;
 }
 
@@ -247,16 +227,12 @@ button:disabled {
 
 #chamado {
   display: none;
-
   background: #dcfce7;
   color: #166534;
-
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 20px;
-
   text-align: center;
-
   font-size: 22px;
   font-weight: bold;
 }
@@ -266,18 +242,21 @@ button:disabled {
    FILA
    ===================================================== */
 
-.direita-fila {
+.direita-fila,
+.direita-entrega {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.acoes-fila {
+.acoes-fila,
+.acoes-entrega {
   display: flex;
   gap: 5px;
 }
 
-.acoes-fila button {
+.acoes-fila button,
+.acoes-entrega button {
   padding: 8px 10px;
   font-size: 14px;
   border-radius: 8px;
@@ -294,28 +273,6 @@ button:disabled {
   color: white;
 }
 
-
-/* =====================================================
-   EM ENTREGA
-   ===================================================== */
-
-.direita-entrega {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.acoes-entrega {
-  display: flex;
-  gap: 5px;
-}
-
-.acoes-entrega button {
-  padding: 8px 10px;
-  font-size: 14px;
-  border-radius: 8px;
-}
-
 .botao-retornar-manual {
   background: #2563eb;
   color: white;
@@ -330,14 +287,13 @@ button:disabled {
   display: grid;
 
   grid-template-columns:
-    2fr
+    2.2fr
     1fr
     1fr
     1fr
     1.3fr;
 
   gap: 10px;
-
   padding: 10px;
 
   background: #111827;
@@ -355,7 +311,7 @@ button:disabled {
   display: grid;
 
   grid-template-columns:
-    2fr
+    2.2fr
     1fr
     1fr
     1fr
@@ -373,6 +329,9 @@ button:disabled {
 }
 
 .grid-nome {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   font-weight: bold;
 }
 
@@ -382,14 +341,12 @@ button:disabled {
 
 .campo-grid {
   width: 100%;
-
   padding: 9px;
 
   border: 1px solid #d1d5db;
   border-radius: 8px;
 
   font-size: 15px;
-
   background: white;
 }
 
@@ -405,7 +362,28 @@ button:disabled {
 
 
 /* =====================================================
-   BOTÃO FECHAR
+   EDITAR NOME
+   ===================================================== */
+
+.botao-editar-nome {
+  width: auto;
+  min-width: 34px;
+
+  padding: 6px 8px;
+
+  background: #2563eb;
+  color: white;
+
+  border-radius: 7px;
+
+  font-size: 13px;
+
+  flex-shrink: 0;
+}
+
+
+/* =====================================================
+   FECHAR
    ===================================================== */
 
 .acao-grid {
@@ -417,11 +395,8 @@ button:disabled {
 .botao-fechar {
   background: #dc2626;
   color: white;
-
   padding: 9px 12px;
-
   font-size: 13px;
-
   white-space: nowrap;
 }
 
@@ -432,19 +407,13 @@ button:disabled {
 
 .grid-item.fechado {
   background: #fee2e2;
-
   border: 2px solid #ef4444;
-
   border-radius: 10px;
-
   margin-top: 6px;
   margin-bottom: 6px;
 }
 
-.grid-item.fechado .grid-nome {
-  color: #991b1b;
-}
-
+.grid-item.fechado .grid-nome,
 .grid-item.fechado .grid-horario {
   color: #991b1b;
 }
@@ -472,7 +441,7 @@ button:disabled {
 
 
 /* =====================================================
-   TABLET
+   RESPONSIVO
    ===================================================== */
 
 @media (max-width: 750px) {
@@ -484,53 +453,41 @@ button:disabled {
 }
 
 
-/* =====================================================
-   CELULAR
-   ===================================================== */
-
 @media (max-width: 650px) {
 
   header {
     min-height: 165px;
     padding: 85px 15px 15px;
-
     flex-direction: column;
   }
 
   .icone-topo {
     top: 18px;
     left: 50%;
-
     transform: translateX(-50%);
-
     font-size: 48px;
   }
 
   header h1 {
     padding: 0;
-
     font-size: 23px;
-
     text-align: center;
   }
 
   #relogio {
     position: static;
-
     margin-top: 8px;
   }
 
   .item-fila,
   .item-entrega {
     align-items: flex-start;
-
     flex-direction: column;
   }
 
   .direita-fila,
   .direita-entrega {
     width: 100%;
-
     justify-content: space-between;
   }
 
@@ -552,19 +509,16 @@ button:disabled {
 
   .grid-item.fechado {
     background: #fee2e2;
-
     border: 2px solid #ef4444;
   }
 
   .grid-nome {
     grid-column: 1 / 3;
-
     font-size: 17px;
   }
 
   .acao-grid {
     grid-column: 1 / 3;
-
     justify-content: stretch;
   }
 
@@ -574,7 +528,6 @@ button:disabled {
 
   .status-fechado {
     width: 100%;
-
     text-align: center;
   }
 
@@ -607,30 +560,26 @@ button:disabled {
 
 <div class="container">
 
-
   <div id="mensagem"></div>
 
   <div id="chamado"></div>
 
 
-  <!-- DISPONÍVEIS / EM ENTREGA -->
-
   <div class="grid-principal">
 
+
+    <!-- DISPONÍVEIS -->
 
     <div class="card">
 
       <h2>
-
         🟢 Disponíveis
-
         <span
           id="contadorFila"
           class="contador"
         >
           0
         </span>
-
       </h2>
 
       <div id="fila">
@@ -640,19 +589,18 @@ button:disabled {
     </div>
 
 
+    <!-- EM ENTREGA -->
+
     <div class="card">
 
       <h2>
-
         🛵 Em entrega
-
         <span
           id="contadorEntrega"
           class="contador"
         >
           0
         </span>
-
       </h2>
 
       <div id="entregas">
@@ -665,14 +613,13 @@ button:disabled {
   </div>
 
 
-  <!-- CONTROLE DA LOJA -->
+  <!-- CONTROLE -->
 
   <div class="card">
 
     <h2>
       🚀 Controle da loja
     </h2>
-
 
     <button
       class="chamar"
@@ -681,9 +628,7 @@ button:disabled {
       CHAMAR PRÓXIMO
     </button>
 
-
     <br><br>
-
 
     <button
       class="atualizar"
@@ -692,9 +637,7 @@ button:disabled {
       🔄 ATUALIZAR LISTA
     </button>
 
-
     <br><br>
-
 
     <button
       class="encerrar"
@@ -717,21 +660,13 @@ button:disabled {
 
     <div class="grid-cabecalho">
 
-      <div>
-        Motoboy
-      </div>
+      <div>Motoboy</div>
 
-      <div>
-        Chegada
-      </div>
+      <div>Chegada</div>
 
-      <div>
-        Nº Bag
-      </div>
+      <div>Nº Bag</div>
 
-      <div>
-        Máquina
-      </div>
+      <div>Máquina</div>
 
       <div style="text-align:right;">
         Fechamento
@@ -750,7 +685,6 @@ button:disabled {
 </div>
 
 
-
 <script>
 
 
@@ -761,10 +695,8 @@ button:disabled {
 const SUPABASE_URL =
   "https://nmkkabthynytwevadthq.supabase.co";
 
-
 const SUPABASE_KEY =
   "sb_publishable_pvTjmMDG1aC7qDyYW3kEZA_WR9-a-E3";
-
 
 const supabaseClient =
   supabase.createClient(
@@ -776,7 +708,6 @@ const supabaseClient =
 let carregandoDados = false;
 
 
-
 /* =====================================================
    MENSAGENS
    ===================================================== */
@@ -784,12 +715,9 @@ let carregandoDados = false;
 function mostrarMensagem(texto, tipo) {
 
   const elemento =
-    document.getElementById(
-      "mensagem"
-    );
+    document.getElementById("mensagem");
 
   elemento.innerText = texto;
-
   elemento.className = tipo;
 
 }
@@ -798,16 +726,12 @@ function mostrarMensagem(texto, tipo) {
 function esconderMensagem() {
 
   const elemento =
-    document.getElementById(
-      "mensagem"
-    );
+    document.getElementById("mensagem");
 
   elemento.innerText = "";
-
   elemento.className = "";
 
 }
-
 
 
 /* =====================================================
@@ -817,11 +741,8 @@ function esconderMensagem() {
 function formatarHorario(data) {
 
   if (!data) {
-
     return "--:--";
-
   }
-
 
   return new Date(data)
     .toLocaleTimeString(
@@ -835,54 +756,43 @@ function formatarHorario(data) {
 }
 
 
-
 /* =====================================================
    RELÓGIO
    ===================================================== */
 
 function atualizarRelogio() {
 
-  const agora =
-    new Date();
-
-
   document
-    .getElementById(
-      "relogio"
-    )
+    .getElementById("relogio")
     .innerText =
-    agora.toLocaleTimeString(
-      "pt-BR",
-      {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-      }
-    );
+    new Date()
+      .toLocaleTimeString(
+        "pt-BR",
+        {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        }
+      );
 
 }
-
 
 setInterval(
   atualizarRelogio,
   1000
 );
 
-
 atualizarRelogio();
 
 
-
 /* =====================================================
-   PROTEGER HTML
+   HTML SEGURO
    ===================================================== */
 
 function esc(texto) {
 
   const div =
-    document.createElement(
-      "div"
-    );
+    document.createElement("div");
 
   div.textContent =
     texto ?? "";
@@ -892,60 +802,58 @@ function esc(texto) {
 }
 
 
+/* =====================================================
+   NORMALIZAR NOME
+
+   João / JOAO / joão = mesmo nome
+   ===================================================== */
+
+function normalizarNomePainel(nome) {
+
+  return String(nome || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+
+}
+
 
 /* =====================================================
-   CARREGAR DADOS
+   CARREGAR
    ===================================================== */
 
 async function carregarDados() {
 
   if (carregandoDados) {
-
     return;
-
   }
-
 
   carregandoDados = true;
 
-
   try {
-
 
     const resposta =
       await supabaseClient
         .from("motoboys")
         .select("*");
 
-
     if (resposta.error) {
-
       throw resposta.error;
-
     }
-
 
     const todos =
       resposta.data || [];
 
 
-    /*
-      DISPONÍVEIS
-
-      Além do status, verificamos fechado
-      para garantir que nenhum motoboy
-      fechado apareça na fila.
-    */
-
     const fila =
       todos
-
         .filter(
           moto =>
             moto.status === "disponivel" &&
             moto.fechado !== true
         )
-
         .sort(
           (a,b) =>
             (a.posicao || 999999) -
@@ -953,37 +861,27 @@ async function carregarDados() {
         );
 
 
-    /*
-      EM ENTREGA
-
-      Motoboys fechados também não aparecem.
-    */
-
     const entregas =
       todos
-
         .filter(
           moto =>
             moto.status === "em_entrega" &&
             moto.fechado !== true
         )
-
         .sort(
           (a,b) => {
 
-            const dataA =
+            const aData =
               a.ultima_saida
                 ? new Date(a.ultima_saida)
                 : new Date(0);
 
-
-            const dataB =
+            const bData =
               b.ultima_saida
                 ? new Date(b.ultima_saida)
                 : new Date(0);
 
-
-            return dataA - dataB;
+            return aData - bData;
 
           }
         );
@@ -998,9 +896,7 @@ async function carregarDados() {
 
   } catch (erro) {
 
-
     console.error(erro);
-
 
     mostrarMensagem(
       "Erro ao carregar o sistema: " +
@@ -1008,9 +904,7 @@ async function carregarDados() {
       "erro"
     );
 
-
   } finally {
-
 
     carregandoDados = false;
 
@@ -1019,26 +913,19 @@ async function carregarDados() {
 }
 
 
-
 /* =====================================================
-   MOSTRAR FILA
+   FILA
    ===================================================== */
 
 function mostrarFila(fila) {
 
   const elemento =
-    document.getElementById(
-      "fila"
-    );
-
+    document.getElementById("fila");
 
   elemento.innerHTML = "";
 
-
   document
-    .getElementById(
-      "contadorFila"
-    )
+    .getElementById("contadorFila")
     .innerText =
     fila.length;
 
@@ -1058,82 +945,64 @@ function mostrarFila(fila) {
   fila.forEach(
     (moto, index) => {
 
-
       const podeSubir =
         index > 0;
 
-
       const podeDescer =
-        index <
-        fila.length - 1;
+        index < fila.length - 1;
 
 
       elemento.innerHTML += `
 
         <div class="item item-fila">
 
-
           <div class="esquerda">
-
 
             <div class="posicao">
               ${index + 1}º
             </div>
 
-
             <div class="nome">
               ${esc(moto.nome)}
             </div>
-
 
           </div>
 
 
           <div class="direita-fila">
 
-
             <div class="status">
               Disponível
             </div>
 
-
             <div class="acoes-fila">
-
 
               <button
                 class="botao-subir"
-                title="Subir uma posição"
                 ${podeSubir ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', -1)"
               >
                 ▲
               </button>
 
-
               <button
                 class="botao-descer"
-                title="Descer uma posição"
                 ${podeDescer ? "" : "disabled"}
                 onclick="moverNaFila('${moto.id}', 1)"
               >
                 ▼
               </button>
 
-
               <button
                 class="botao-excluir"
-                title="Remover da fila"
                 onclick="excluirDaFila('${moto.id}')"
               >
                 🗑️
               </button>
 
-
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -1145,26 +1014,19 @@ function mostrarFila(fila) {
 }
 
 
-
 /* =====================================================
-   MOSTRAR EM ENTREGA
+   EM ENTREGA
    ===================================================== */
 
 function mostrarEntregas(entregas) {
 
   const elemento =
-    document.getElementById(
-      "entregas"
-    );
-
+    document.getElementById("entregas");
 
   elemento.innerHTML = "";
 
-
   document
-    .getElementById(
-      "contadorEntrega"
-    )
+    .getElementById("contadorEntrega")
     .innerText =
     entregas.length;
 
@@ -1184,7 +1046,6 @@ function mostrarEntregas(entregas) {
   entregas.forEach(
     moto => {
 
-
       const ultimaSaida =
         formatarHorario(
           moto.ultima_saida
@@ -1195,60 +1056,47 @@ function mostrarEntregas(entregas) {
 
         <div class="item item-entrega">
 
-
           <div>
-
 
             <div class="nome">
               🛵 ${esc(moto.nome)}
             </div>
 
-
             <div class="info">
-
               Última saída:
               ${ultimaSaida}
-
             </div>
-
 
           </div>
 
 
           <div class="direita-entrega">
 
-
             <div class="status entrega">
               Em entrega
             </div>
 
-
             <div class="acoes-entrega">
-
 
               <button
                 class="botao-retornar-manual"
-                title="Retornar para o final da fila"
                 onclick="retornarEntregaManual('${moto.id}')"
+                title="Retornar para fila"
               >
                 ↩
               </button>
 
-
               <button
                 class="botao-excluir"
-                title="Remover de Em entrega"
                 onclick="excluirEmEntrega('${moto.id}')"
+                title="Remover"
               >
                 🗑️
               </button>
 
-
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -1260,24 +1108,14 @@ function mostrarEntregas(entregas) {
 }
 
 
-
 /* =====================================================
    GRID
-
-   ABERTOS:
-   ORDEM DE CHEGADA
-
-   FECHADOS:
-   SEMPRE NO FINAL
    ===================================================== */
 
 function mostrarGrid(motoboys) {
 
   const elemento =
-    document.getElementById(
-      "historico"
-    );
-
+    document.getElementById("historico");
 
   elemento.innerHTML = "";
 
@@ -1293,24 +1131,18 @@ function mostrarGrid(motoboys) {
       .sort(
         (a,b) => {
 
-
           const fechadoA =
             a.fechado === true;
-
 
           const fechadoB =
             b.fechado === true;
 
 
           /*
-            ABERTOS SEMPRE ANTES
-            DOS FECHADOS
+             Fechados sempre no final.
           */
 
-          if (
-            fechadoA !==
-            fechadoB
-          ) {
+          if (fechadoA !== fechadoB) {
 
             return fechadoA
               ? 1
@@ -1319,18 +1151,9 @@ function mostrarGrid(motoboys) {
           }
 
 
-          /*
-            MANTÉM ORDEM ORIGINAL
-            DE CHEGADA
-          */
-
           return (
-            new Date(
-              a.primeira_chegada
-            ) -
-            new Date(
-              b.primeira_chegada
-            )
+            new Date(a.primeira_chegada) -
+            new Date(b.primeira_chegada)
           );
 
         }
@@ -1352,7 +1175,6 @@ function mostrarGrid(motoboys) {
   lista.forEach(
     moto => {
 
-
       const chegada =
         formatarHorario(
           moto.primeira_chegada
@@ -1368,13 +1190,6 @@ function mostrarGrid(motoboys) {
           ? " fechado"
           : "";
 
-
-      /*
-        SE ESTIVER FECHADO:
-        APENAS MOSTRA FECHADO.
-
-        NÃO EXISTE BOTÃO REABRIR.
-      */
 
       const fechamento =
         estaFechado
@@ -1402,19 +1217,33 @@ function mostrarGrid(motoboys) {
         >
 
 
+          <!-- NOME + EDITAR -->
+
           <div class="grid-nome">
 
-            ${esc(moto.nome)}
+            <span>
+              ${esc(moto.nome)}
+            </span>
+
+            <button
+              class="botao-editar-nome"
+              onclick="editarNome('${moto.id}')"
+              title="Editar nome"
+            >
+              ✏️
+            </button>
 
           </div>
 
+
+          <!-- CHEGADA -->
 
           <div class="grid-horario">
-
             🕐 ${chegada}
-
           </div>
 
+
+          <!-- BAG -->
 
           <div>
 
@@ -1431,6 +1260,8 @@ function mostrarGrid(motoboys) {
           </div>
 
 
+          <!-- MÁQUINA -->
+
           <div>
 
             <input
@@ -1446,10 +1277,10 @@ function mostrarGrid(motoboys) {
           </div>
 
 
+          <!-- FECHAR -->
+
           <div class="acao-grid">
-
             ${fechamento}
-
           </div>
 
 
@@ -1463,28 +1294,15 @@ function mostrarGrid(motoboys) {
 }
 
 
-
 /* =====================================================
-   FECHAR MOTOBOY
-
-   AO FECHAR:
-
-   1. FECHADO = TRUE
-   2. STATUS = REMOVIDO
-   3. POSIÇÃO = NULL
-   4. SAI DE DISPONÍVEIS
-   5. SAI DE EM ENTREGA
-   6. CONTINUA NO GRID
-   7. VAI PARA O FINAL DO GRID
+   EDITAR NOME
    ===================================================== */
 
-async function fecharGrid(id) {
+async function editarNome(id) {
 
   esconderMensagem();
 
-
   try {
-
 
     const busca =
       await supabaseClient
@@ -1495,9 +1313,7 @@ async function fecharGrid(id) {
 
 
     if (busca.error) {
-
       throw busca.error;
-
     }
 
 
@@ -1507,15 +1323,271 @@ async function fecharGrid(id) {
 
     if (!moto) {
 
+      mostrarMensagem(
+        "Motoboy não encontrado.",
+        "erro"
+      );
+
       return;
 
     }
 
 
-    if (moto.fechado === true) {
+    const digitado =
+      prompt(
+        "Editar nome do motoboy:",
+        moto.nome
+      );
+
+
+    if (digitado === null) {
+      return;
+    }
+
+
+    const novoNome =
+      String(digitado)
+        .trim()
+        .replace(/\s+/g, " ");
+
+
+    if (!novoNome) {
+
+      mostrarMensagem(
+        "O nome não pode ficar vazio.",
+        "erro"
+      );
 
       return;
 
+    }
+
+
+    if (novoNome === moto.nome) {
+      return;
+    }
+
+
+    /* =================================================
+       VERIFICAR DUPLICIDADE
+       ================================================= */
+
+    const consulta =
+      await supabaseClient
+        .from("motoboys")
+        .select("id,nome");
+
+
+    if (consulta.error) {
+      throw consulta.error;
+    }
+
+
+    const novoNormalizado =
+      normalizarNomePainel(
+        novoNome
+      );
+
+
+    const duplicado =
+      (consulta.data || [])
+        .find(
+          outro =>
+
+            String(outro.id) !==
+            String(id)
+
+            &&
+
+            normalizarNomePainel(
+              outro.nome
+            ) ===
+            novoNormalizado
+        );
+
+
+    if (duplicado) {
+
+      alert(
+        'Já existe um motoboy chamado "' +
+        duplicado.nome +
+        '".\n\n' +
+        "Escolha outro nome."
+      );
+
+      return;
+
+    }
+
+
+    /* =================================================
+       SALVAR
+       ================================================= */
+
+    const resposta =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+          nome: novoNome
+        })
+        .eq("id", id);
+
+
+    if (resposta.error) {
+      throw resposta.error;
+    }
+
+
+    await carregarDados();
+
+
+    mostrarMensagem(
+      "✏️ Nome alterado de " +
+      moto.nome +
+      " para " +
+      novoNome +
+      ".",
+      "sucesso"
+    );
+
+
+    setTimeout(
+      esconderMensagem,
+      2500
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      "Erro ao editar nome:",
+      erro
+    );
+
+
+    mostrarMensagem(
+      "Não foi possível alterar o nome: " +
+      erro.message,
+      "erro"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SALVAR BAG / MÁQUINA
+   ===================================================== */
+
+async function salvarBagMaquina(id) {
+
+  const campoBag =
+    document.getElementById(
+      "bag-" + id
+    );
+
+  const campoMaquina =
+    document.getElementById(
+      "maquina-" + id
+    );
+
+
+  if (!campoBag || !campoMaquina) {
+    return;
+  }
+
+
+  try {
+
+    const resposta =
+      await supabaseClient
+        .from("motoboys")
+        .update({
+
+          bag:
+            campoBag.value.trim(),
+
+          maquina:
+            campoMaquina.value.trim()
+
+        })
+        .eq("id", id);
+
+
+    if (resposta.error) {
+      throw resposta.error;
+    }
+
+
+    campoBag.classList.add("salvo");
+
+    campoMaquina.classList.add("salvo");
+
+
+    setTimeout(
+      () => {
+
+        campoBag.classList.remove(
+          "salvo"
+        );
+
+        campoMaquina.classList.remove(
+          "salvo"
+        );
+
+      },
+      1000
+    );
+
+
+  } catch (erro) {
+
+    mostrarMensagem(
+      "Erro ao salvar Bag/Máquina: " +
+      erro.message,
+      "erro"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   FECHAR GRID
+   ===================================================== */
+
+async function fecharGrid(id) {
+
+  esconderMensagem();
+
+  try {
+
+    const busca =
+      await supabaseClient
+        .from("motoboys")
+        .select("*")
+        .eq("id", id)
+        .maybeSingle();
+
+
+    if (busca.error) {
+      throw busca.error;
+    }
+
+
+    const moto =
+      busca.data;
+
+
+    if (!moto) {
+      return;
+    }
+
+
+    if (moto.fechado === true) {
+      return;
     }
 
 
@@ -1524,15 +1596,13 @@ async function fecharGrid(id) {
         "Fechar " +
         moto.nome +
         "?\n\n" +
-        "O motoboy será removido da operação " +
-        "e ficará como FECHADO no final do Grid."
+        "Ele será removido da operação e ficará " +
+        "como FECHADO no final do Grid."
       );
 
 
     if (!confirmar) {
-
       return;
-
     }
 
 
@@ -1552,24 +1622,11 @@ async function fecharGrid(id) {
 
 
     if (resposta.error) {
-
       throw resposta.error;
-
     }
 
 
-    /*
-      SE ELE ESTAVA DISPONÍVEL,
-      REORGANIZA AS POSIÇÕES
-      DOS OUTROS MOTOBOYS.
-    */
-
     await reorganizarFila();
-
-
-    /*
-      ATUALIZA A TELA.
-    */
 
     await carregarDados();
 
@@ -1577,7 +1634,7 @@ async function fecharGrid(id) {
     mostrarMensagem(
       "🔒 " +
       moto.nome +
-      " foi fechado e removido da operação.",
+      " foi fechado.",
       "sucesso"
     );
 
@@ -1590,15 +1647,8 @@ async function fecharGrid(id) {
 
   } catch (erro) {
 
-
-    console.error(
-      "Erro ao fechar:",
-      erro
-    );
-
-
     mostrarMensagem(
-      "Não foi possível fechar o motoboy: " +
+      "Não foi possível fechar: " +
       erro.message,
       "erro"
     );
@@ -1606,101 +1656,6 @@ async function fecharGrid(id) {
   }
 
 }
-
-
-
-/* =====================================================
-   SALVAR BAG E MÁQUINA
-   ===================================================== */
-
-async function salvarBagMaquina(id) {
-
-  const campoBag =
-    document.getElementById(
-      "bag-" + id
-    );
-
-
-  const campoMaquina =
-    document.getElementById(
-      "maquina-" + id
-    );
-
-
-  if (
-    !campoBag ||
-    !campoMaquina
-  ) {
-
-    return;
-
-  }
-
-
-  try {
-
-
-    const resposta =
-      await supabaseClient
-        .from("motoboys")
-        .update({
-
-          bag:
-            campoBag.value.trim(),
-
-          maquina:
-            campoMaquina.value.trim()
-
-        })
-        .eq("id", id);
-
-
-    if (resposta.error) {
-
-      throw resposta.error;
-
-    }
-
-
-    campoBag.classList.add(
-      "salvo"
-    );
-
-
-    campoMaquina.classList.add(
-      "salvo"
-    );
-
-
-    setTimeout(
-      function() {
-
-        campoBag.classList.remove(
-          "salvo"
-        );
-
-        campoMaquina.classList.remove(
-          "salvo"
-        );
-
-      },
-      1000
-    );
-
-
-  } catch (erro) {
-
-
-    mostrarMensagem(
-      "Erro ao salvar Bag/Máquina: " +
-      erro.message,
-      "erro"
-    );
-
-  }
-
-}
-
 
 
 /* =====================================================
@@ -1712,17 +1667,9 @@ async function reorganizarFila() {
   const resposta =
     await supabaseClient
       .from("motoboys")
-      .select(
-        "id,posicao"
-      )
-      .eq(
-        "status",
-        "disponivel"
-      )
-      .eq(
-        "fechado",
-        false
-      )
+      .select("id,posicao")
+      .eq("status", "disponivel")
+      .eq("fechado", false)
       .order(
         "posicao",
         {
@@ -1732,9 +1679,7 @@ async function reorganizarFila() {
 
 
   if (resposta.error) {
-
     throw resposta.error;
-
   }
 
 
@@ -1748,7 +1693,6 @@ async function reorganizarFila() {
     i++
   ) {
 
-
     const novaPosicao =
       i + 1;
 
@@ -1758,15 +1702,11 @@ async function reorganizarFila() {
       novaPosicao
     ) {
 
-
       const atualizacao =
         await supabaseClient
           .from("motoboys")
           .update({
-
-            posicao:
-              novaPosicao
-
+            posicao: novaPosicao
           })
           .eq(
             "id",
@@ -1775,9 +1715,7 @@ async function reorganizarFila() {
 
 
       if (atualizacao.error) {
-
         throw atualizacao.error;
-
       }
 
     }
@@ -1787,9 +1725,8 @@ async function reorganizarFila() {
 }
 
 
-
 /* =====================================================
-   MOVER NA FILA
+   MOVER FILA
    ===================================================== */
 
 async function moverNaFila(
@@ -1799,9 +1736,7 @@ async function moverNaFila(
 
   esconderMensagem();
 
-
   try {
-
 
     await reorganizarFila();
 
@@ -1809,17 +1744,9 @@ async function moverNaFila(
     const resposta =
       await supabaseClient
         .from("motoboys")
-        .select(
-          "id,posicao"
-        )
-        .eq(
-          "status",
-          "disponivel"
-        )
-        .eq(
-          "fechado",
-          false
-        )
+        .select("id,posicao")
+        .eq("status", "disponivel")
+        .eq("fechado", false)
         .order(
           "posicao",
           {
@@ -1829,9 +1756,7 @@ async function moverNaFila(
 
 
     if (resposta.error) {
-
       throw resposta.error;
-
     }
 
 
@@ -1848,9 +1773,7 @@ async function moverNaFila(
 
 
     if (indice === -1) {
-
       return;
-
     }
 
 
@@ -1862,97 +1785,56 @@ async function moverNaFila(
       destino < 0 ||
       destino >= fila.length
     ) {
-
       return;
-
     }
 
 
     const atual =
       fila[indice];
 
-
     const outro =
       fila[destino];
 
 
-    /*
-      POSIÇÃO TEMPORÁRIA
-    */
-
-    const passo1 =
+    let respostaUpdate =
       await supabaseClient
         .from("motoboys")
         .update({
-
-          posicao:
-            -999999
-
+          posicao: -999999
         })
-        .eq(
-          "id",
-          atual.id
-        );
+        .eq("id", atual.id);
 
 
-    if (passo1.error) {
-
-      throw passo1.error;
-
+    if (respostaUpdate.error) {
+      throw respostaUpdate.error;
     }
 
 
-    /*
-      OUTRO ASSUME POSIÇÃO
-      DO ATUAL
-    */
-
-    const passo2 =
+    respostaUpdate =
       await supabaseClient
         .from("motoboys")
         .update({
-
-          posicao:
-            atual.posicao
-
+          posicao: atual.posicao
         })
-        .eq(
-          "id",
-          outro.id
-        );
+        .eq("id", outro.id);
 
 
-    if (passo2.error) {
-
-      throw passo2.error;
-
+    if (respostaUpdate.error) {
+      throw respostaUpdate.error;
     }
 
 
-    /*
-      ATUAL ASSUME POSIÇÃO
-      DO OUTRO
-    */
-
-    const passo3 =
+    respostaUpdate =
       await supabaseClient
         .from("motoboys")
         .update({
-
-          posicao:
-            outro.posicao
-
+          posicao: outro.posicao
         })
-        .eq(
-          "id",
-          atual.id
-        );
+        .eq("id", atual.id);
 
 
-    if (passo3.error) {
-
-      throw passo3.error;
-
+    if (respostaUpdate.error) {
+      throw respostaUpdate.error;
     }
 
 
@@ -1960,7 +1842,6 @@ async function moverNaFila(
 
 
   } catch (erro) {
-
 
     mostrarMensagem(
       "Não foi possível mudar a ordem: " +
@@ -1973,20 +1854,17 @@ async function moverNaFila(
 }
 
 
-
 /* =====================================================
    EXCLUIR DA FILA
 
-   NÃO APAGA O GRID
+   NÃO ALTERA GRID
    ===================================================== */
 
 async function excluirDaFila(id) {
 
   esconderMensagem();
 
-
   try {
-
 
     const busca =
       await supabaseClient
@@ -1997,9 +1875,7 @@ async function excluirDaFila(id) {
 
 
     if (busca.error) {
-
       throw busca.error;
-
     }
 
 
@@ -2008,9 +1884,7 @@ async function excluirDaFila(id) {
 
 
     if (!moto) {
-
       return;
-
     }
 
 
@@ -2022,9 +1896,7 @@ async function excluirDaFila(id) {
         "O histórico continuará no Grid."
       )
     ) {
-
       return;
-
     }
 
 
@@ -2033,34 +1905,25 @@ async function excluirDaFila(id) {
         .from("motoboys")
         .update({
 
-          status:
-            "removido",
+          status: "removido",
 
-          posicao:
-            null
+          posicao: null
 
         })
-        .eq(
-          "id",
-          id
-        );
+        .eq("id", id);
 
 
     if (resposta.error) {
-
       throw resposta.error;
-
     }
 
 
     await reorganizarFila();
 
-
     await carregarDados();
 
 
   } catch (erro) {
-
 
     mostrarMensagem(
       "Não foi possível remover: " +
@@ -2073,18 +1936,15 @@ async function excluirDaFila(id) {
 }
 
 
-
 /* =====================================================
-   RETORNAR MANUALMENTE
+   RETORNAR ENTREGA
    ===================================================== */
 
 async function retornarEntregaManual(id) {
 
   esconderMensagem();
 
-
   try {
-
 
     const busca =
       await supabaseClient
@@ -2095,9 +1955,7 @@ async function retornarEntregaManual(id) {
 
 
     if (busca.error) {
-
       throw busca.error;
-
     }
 
 
@@ -2112,7 +1970,6 @@ async function retornarEntregaManual(id) {
     ) {
 
       await carregarDados();
-
       return;
 
     }
@@ -2125,26 +1982,16 @@ async function retornarEntregaManual(id) {
         " para o final da fila?"
       )
     ) {
-
       return;
-
     }
 
 
     const maior =
       await supabaseClient
         .from("motoboys")
-        .select(
-          "posicao"
-        )
-        .eq(
-          "status",
-          "disponivel"
-        )
-        .eq(
-          "fechado",
-          false
-        )
+        .select("posicao")
+        .eq("status", "disponivel")
+        .eq("fechado", false)
         .order(
           "posicao",
           {
@@ -2156,15 +2003,12 @@ async function retornarEntregaManual(id) {
 
 
     if (maior.error) {
-
       throw maior.error;
-
     }
 
 
     const ultimaPosicao =
-      maior.data?.posicao ||
-      0;
+      maior.data?.posicao || 0;
 
 
     const retorno =
@@ -2172,23 +2016,17 @@ async function retornarEntregaManual(id) {
         .from("motoboys")
         .update({
 
-          status:
-            "disponivel",
+          status: "disponivel",
 
           posicao:
             ultimaPosicao + 1
 
         })
-        .eq(
-          "id",
-          id
-        );
+        .eq("id", id);
 
 
     if (retorno.error) {
-
       throw retorno.error;
-
     }
 
 
@@ -2196,7 +2034,6 @@ async function retornarEntregaManual(id) {
 
 
   } catch (erro) {
-
 
     mostrarMensagem(
       "Não foi possível retornar: " +
@@ -2209,20 +2046,15 @@ async function retornarEntregaManual(id) {
 }
 
 
-
 /* =====================================================
    EXCLUIR EM ENTREGA
-
-   NÃO APAGA GRID
    ===================================================== */
 
 async function excluirEmEntrega(id) {
 
   esconderMensagem();
 
-
   try {
-
 
     const busca =
       await supabaseClient
@@ -2233,9 +2065,7 @@ async function excluirEmEntrega(id) {
 
 
     if (busca.error) {
-
       throw busca.error;
-
     }
 
 
@@ -2244,9 +2074,7 @@ async function excluirEmEntrega(id) {
 
 
     if (!moto) {
-
       return;
-
     }
 
 
@@ -2258,9 +2086,7 @@ async function excluirEmEntrega(id) {
         "O histórico continuará no Grid."
       )
     ) {
-
       return;
-
     }
 
 
@@ -2269,23 +2095,16 @@ async function excluirEmEntrega(id) {
         .from("motoboys")
         .update({
 
-          status:
-            "removido",
+          status: "removido",
 
-          posicao:
-            null
+          posicao: null
 
         })
-        .eq(
-          "id",
-          id
-        );
+        .eq("id", id);
 
 
     if (resposta.error) {
-
       throw resposta.error;
-
     }
 
 
@@ -2293,7 +2112,6 @@ async function excluirEmEntrega(id) {
 
 
   } catch (erro) {
-
 
     mostrarMensagem(
       "Não foi possível remover: " +
@@ -2306,7 +2124,6 @@ async function excluirEmEntrega(id) {
 }
 
 
-
 /* =====================================================
    CHAMAR PRÓXIMO
    ===================================================== */
@@ -2315,22 +2132,14 @@ async function chamarProximo() {
 
   esconderMensagem();
 
-
   try {
-
 
     const resposta =
       await supabaseClient
         .from("motoboys")
         .select("*")
-        .eq(
-          "status",
-          "disponivel"
-        )
-        .eq(
-          "fechado",
-          false
-        )
+        .eq("status", "disponivel")
+        .eq("fechado", false)
         .order(
           "posicao",
           {
@@ -2342,9 +2151,7 @@ async function chamarProximo() {
 
 
     if (resposta.error) {
-
       throw resposta.error;
-
     }
 
 
@@ -2364,8 +2171,7 @@ async function chamarProximo() {
 
 
     const agora =
-      new Date()
-        .toISOString();
+      new Date().toISOString();
 
 
     const atualizacao =
@@ -2373,26 +2179,18 @@ async function chamarProximo() {
         .from("motoboys")
         .update({
 
-          status:
-            "em_entrega",
+          status: "em_entrega",
 
-          posicao:
-            null,
+          posicao: null,
 
-          ultima_saida:
-            agora
+          ultima_saida: agora
 
         })
-        .eq(
-          "id",
-          moto.id
-        );
+        .eq("id", moto.id);
 
 
     if (atualizacao.error) {
-
       throw atualizacao.error;
-
     }
 
 
@@ -2409,9 +2207,7 @@ async function chamarProximo() {
       "🛵 " +
       moto.nome +
       " saiu para entrega às " +
-      formatarHorario(
-        agora
-      );
+      formatarHorario(agora);
 
 
     chamado.style.display =
@@ -2419,11 +2215,9 @@ async function chamarProximo() {
 
 
     setTimeout(
-      function() {
-
+      () => {
         chamado.style.display =
           "none";
-
       },
       5000
     );
@@ -2433,7 +2227,6 @@ async function chamarProximo() {
 
 
   } catch (erro) {
-
 
     mostrarMensagem(
       "Erro ao chamar o motoboy: " +
@@ -2446,15 +2239,13 @@ async function chamarProximo() {
 }
 
 
-
 /* =====================================================
-   ATUALIZAR LISTA
+   ATUALIZAR
    ===================================================== */
 
 async function atualizarListaManual() {
 
   esconderMensagem();
-
 
   await carregarDados();
 
@@ -2473,7 +2264,6 @@ async function atualizarListaManual() {
 }
 
 
-
 /* =====================================================
    LIMPAR TELA
    ===================================================== */
@@ -2481,9 +2271,7 @@ async function atualizarListaManual() {
 function limparTelaEncerramento() {
 
   document
-    .getElementById(
-      "fila"
-    )
+    .getElementById("fila")
     .innerHTML =
     '<div class="vazio">' +
     'Nenhum motoboy disponível.' +
@@ -2491,9 +2279,7 @@ function limparTelaEncerramento() {
 
 
   document
-    .getElementById(
-      "entregas"
-    )
+    .getElementById("entregas")
     .innerHTML =
     '<div class="vazio">' +
     'Nenhum motoboy em entrega.' +
@@ -2501,9 +2287,7 @@ function limparTelaEncerramento() {
 
 
   document
-    .getElementById(
-      "historico"
-    )
+    .getElementById("historico")
     .innerHTML =
     '<div class="vazio">' +
     'Nenhum motoboy registrado hoje.' +
@@ -2511,29 +2295,29 @@ function limparTelaEncerramento() {
 
 
   document
-    .getElementById(
-      "contadorFila"
-    )
+    .getElementById("contadorFila")
     .innerText =
     "0";
 
 
   document
-    .getElementById(
-      "contadorEntrega"
-    )
+    .getElementById("contadorEntrega")
     .innerText =
     "0";
 
 }
 
 
-
 /* =====================================================
    ENCERRAR DIA
 
-   ÚNICO MOMENTO EM QUE
-   O GRID É APAGADO.
+   APAGA:
+   - DISPONÍVEIS
+   - EM ENTREGA
+   - FORA DA FILA
+   - REMOVIDOS
+   - FECHADOS
+   - GRID
    ===================================================== */
 
 async function encerrarDia() {
@@ -2547,9 +2331,7 @@ async function encerrarDia() {
 
 
   if (!confirmar) {
-
     return;
-
   }
 
 
@@ -2558,12 +2340,6 @@ async function encerrarDia() {
 
   try {
 
-
-    /*
-      BUSCA TODOS OS REGISTROS,
-      INCLUSIVE FECHADOS E REMOVIDOS.
-    */
-
     const busca =
       await supabaseClient
         .from("motoboys")
@@ -2571,9 +2347,7 @@ async function encerrarDia() {
 
 
     if (busca.error) {
-
       throw busca.error;
-
     }
 
 
@@ -2585,11 +2359,9 @@ async function encerrarDia() {
 
       limparTelaEncerramento();
 
-
       alert(
         "🌙 Dia encerrado com sucesso!"
       );
-
 
       return;
 
@@ -2603,34 +2375,20 @@ async function encerrarDia() {
       );
 
 
-    /*
-      APAGA TODOS.
-    */
-
     const apagar =
       await supabaseClient
         .from("motoboys")
         .delete()
-        .in(
-          "id",
-          ids
-        );
+        .in("id", ids);
 
 
     if (apagar.error) {
-
       throw apagar.error;
-
     }
 
 
     limparTelaEncerramento();
 
-
-    /*
-      CONFERE SE REALMENTE
-      FICOU VAZIO.
-    */
 
     const conferencia =
       await supabaseClient
@@ -2639,9 +2397,7 @@ async function encerrarDia() {
 
 
     if (conferencia.error) {
-
       throw conferencia.error;
-
     }
 
 
@@ -2667,7 +2423,6 @@ async function encerrarDia() {
 
   } catch (erro) {
 
-
     console.error(
       "Erro ao encerrar:",
       erro
@@ -2685,7 +2440,6 @@ async function encerrarDia() {
 }
 
 
-
 /* =====================================================
    REALTIME
    ===================================================== */
@@ -2700,14 +2454,11 @@ supabaseClient
     "postgres_changes",
     {
 
-      event:
-        "*",
+      event: "*",
 
-      schema:
-        "public",
+      schema: "public",
 
-      table:
-        "motoboys"
+      table: "motoboys"
 
     },
 
@@ -2722,7 +2473,6 @@ supabaseClient
   .subscribe();
 
 
-
 /* =====================================================
    ATUALIZAÇÃO AUTOMÁTICA
    ===================================================== */
@@ -2733,9 +2483,8 @@ setInterval(
 );
 
 
-
 /* =====================================================
-   ATUALIZAR AO VOLTAR PARA A ABA
+   VOLTOU PARA ABA
    ===================================================== */
 
 document.addEventListener(
@@ -2756,12 +2505,10 @@ document.addEventListener(
 );
 
 
-
 window.addEventListener(
   "focus",
   carregarDados
 );
-
 
 
 /* =====================================================
