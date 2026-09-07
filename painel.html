@@ -105,6 +105,31 @@ h2 {
 
 
 /* =====================================================
+   CABEÇALHO DA FILA
+   ===================================================== */
+
+.topo-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.topo-fila h2 {
+  margin: 0;
+}
+
+.botao-chamar-topo {
+  background: #15803d;
+  color: white;
+  padding: 12px 18px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+
+/* =====================================================
    ITENS
    ===================================================== */
 
@@ -180,12 +205,6 @@ button:hover {
 button:disabled {
   opacity: .35;
   cursor: not-allowed;
-}
-
-.chamar {
-  width: 100%;
-  background: #15803d;
-  color: white;
 }
 
 .atualizar {
@@ -452,7 +471,6 @@ button:disabled {
 
 }
 
-
 @media (max-width: 650px) {
 
   header {
@@ -477,6 +495,19 @@ button:disabled {
   #relogio {
     position: static;
     margin-top: 8px;
+  }
+
+  .topo-fila {
+    align-items: stretch;
+  }
+
+  .topo-fila h2 {
+    font-size: 21px;
+  }
+
+  .botao-chamar-topo {
+    padding: 10px 12px;
+    font-size: 12px;
   }
 
   .item-fila,
@@ -572,15 +603,26 @@ button:disabled {
 
     <div class="card">
 
-      <h2>
-        🟢 Disponíveis
-        <span
-          id="contadorFila"
-          class="contador"
+      <div class="topo-fila">
+
+        <h2>
+          🟢 Disponíveis
+          <span
+            id="contadorFila"
+            class="contador"
+          >
+            0
+          </span>
+        </h2>
+
+        <button
+          class="botao-chamar-topo"
+          onclick="chamarProximo()"
         >
-          0
-        </span>
-      </h2>
+          🚀 CHAMAR PRÓXIMO
+        </button>
+
+      </div>
 
       <div id="fila">
         Carregando...
@@ -618,17 +660,8 @@ button:disabled {
   <div class="card">
 
     <h2>
-      🚀 Controle da loja
+      ⚙️ Controle da loja
     </h2>
-
-    <button
-      class="chamar"
-      onclick="chamarProximo()"
-    >
-      CHAMAR PRÓXIMO
-    </button>
-
-    <br><br>
 
     <button
       class="atualizar"
@@ -804,8 +837,6 @@ function esc(texto) {
 
 /* =====================================================
    NORMALIZAR NOME
-
-   João / JOAO / joão = mesmo nome
    ===================================================== */
 
 function normalizarNomePainel(nome) {
@@ -1138,10 +1169,6 @@ function mostrarGrid(motoboys) {
             b.fechado === true;
 
 
-          /*
-             Fechados sempre no final.
-          */
-
           if (fechadoA !== fechadoB) {
 
             return fechadoA
@@ -1217,8 +1244,6 @@ function mostrarGrid(motoboys) {
         >
 
 
-          <!-- NOME + EDITAR -->
-
           <div class="grid-nome">
 
             <span>
@@ -1236,14 +1261,10 @@ function mostrarGrid(motoboys) {
           </div>
 
 
-          <!-- CHEGADA -->
-
           <div class="grid-horario">
             🕐 ${chegada}
           </div>
 
-
-          <!-- BAG -->
 
           <div>
 
@@ -1260,8 +1281,6 @@ function mostrarGrid(motoboys) {
           </div>
 
 
-          <!-- MÁQUINA -->
-
           <div>
 
             <input
@@ -1276,8 +1295,6 @@ function mostrarGrid(motoboys) {
 
           </div>
 
-
-          <!-- FECHAR -->
 
           <div class="acao-grid">
             ${fechamento}
@@ -1368,10 +1385,6 @@ async function editarNome(id) {
     }
 
 
-    /* =================================================
-       VERIFICAR DUPLICIDADE
-       ================================================= */
-
     const consulta =
       await supabaseClient
         .from("motoboys")
@@ -1420,10 +1433,6 @@ async function editarNome(id) {
     }
 
 
-    /* =================================================
-       SALVAR
-       ================================================= */
-
     const resposta =
       await supabaseClient
         .from("motoboys")
@@ -1442,9 +1451,7 @@ async function editarNome(id) {
 
 
     mostrarMensagem(
-      "✏️ Nome alterado de " +
-      moto.nome +
-      " para " +
+      "✏️ Nome alterado para " +
       novoNome +
       ".",
       "sucesso"
@@ -1458,12 +1465,6 @@ async function editarNome(id) {
 
 
   } catch (erro) {
-
-    console.error(
-      "Erro ao editar nome:",
-      erro
-    );
-
 
     mostrarMensagem(
       "Não foi possível alterar o nome: " +
@@ -1629,20 +1630,6 @@ async function fecharGrid(id) {
     await reorganizarFila();
 
     await carregarDados();
-
-
-    mostrarMensagem(
-      "🔒 " +
-      moto.nome +
-      " foi fechado.",
-      "sucesso"
-    );
-
-
-    setTimeout(
-      esconderMensagem,
-      2500
-    );
 
 
   } catch (erro) {
@@ -1856,8 +1843,6 @@ async function moverNaFila(
 
 /* =====================================================
    EXCLUIR DA FILA
-
-   NÃO ALTERA GRID
    ===================================================== */
 
 async function excluirDaFila(id) {
@@ -2310,14 +2295,6 @@ function limparTelaEncerramento() {
 
 /* =====================================================
    ENCERRAR DIA
-
-   APAGA:
-   - DISPONÍVEIS
-   - EM ENTREGA
-   - FORA DA FILA
-   - REMOVIDOS
-   - FECHADOS
-   - GRID
    ===================================================== */
 
 async function encerrarDia() {
@@ -2390,34 +2367,8 @@ async function encerrarDia() {
     limparTelaEncerramento();
 
 
-    const conferencia =
-      await supabaseClient
-        .from("motoboys")
-        .select("id");
-
-
-    if (conferencia.error) {
-      throw conferencia.error;
-    }
-
-
-    if (
-      conferencia.data &&
-      conferencia.data.length > 0
-    ) {
-
-      throw new Error(
-        "Ainda existem registros após o encerramento."
-      );
-
-    }
-
-
     alert(
-      "🌙 Dia encerrado com sucesso!\n\n" +
-      "Fila: vazia\n" +
-      "Em entrega: vazio\n" +
-      "Grid: vazio"
+      "🌙 Dia encerrado com sucesso!"
     );
 
 
